@@ -51,8 +51,8 @@
             // 
             this.aDataGridViewLogs.AllowUserToAddRows = false;
             this.aDataGridViewLogs.AllowUserToDeleteRows = false;
-            this.aDataGridViewLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.aDataGridViewLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.aDataGridViewLogs.AutoGenerateColumns = false;
             this.aDataGridViewLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -101,13 +101,13 @@
             // 
             // aTextBoxSearch
             // 
-            this.aTextBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aTextBoxSearch.Location = new System.Drawing.Point(478, 13);
-            this.aTextBoxSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.aTextBoxSearch.Name = "aTextBoxSearch";
-            this.aTextBoxSearch.Size = new System.Drawing.Size(305, 20);
-            this.aTextBoxSearch.TabIndex = 4;
-            this.aTextBoxSearch.TextChanged += new System.EventHandler(this.ATextBoxSearch_TextChanged);
+            //this.aTextBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            //this.aTextBoxSearch.Location = new System.Drawing.Point(478, 13);
+            //this.aTextBoxSearch.Margin = new System.Windows.Forms.Padding(4);
+            //this.aTextBoxSearch.Name = "aTextBoxSearch";
+            //this.aTextBoxSearch.Size = new System.Drawing.Size(305, 20);
+            //this.aTextBoxSearch.TabIndex = 4;
+            //this.aTextBoxSearch.TextChanged += new System.EventHandler(this.ATextBoxSearch_TextChanged);
             // 
             // aLabelSearch
             // 

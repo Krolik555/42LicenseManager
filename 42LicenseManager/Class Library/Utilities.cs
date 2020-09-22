@@ -1,9 +1,11 @@
-﻿using Equin.ApplicationFramework;
+﻿using _42Transfer;
+using Equin.ApplicationFramework;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -600,7 +602,8 @@ namespace _42LicenseManager
                     $"\n Database Version: {DBVer.ToString()}" +
                     $"\n Latest Version: {Class_Library.Settings.CurrentSoftwareVersion.ToString()}. " +
                     $"\n What would you like to do?";
-                Forms.ErrorForm ErrForm = new Forms.ErrorForm(Message, "Update DB", "Create New DB", "Abort");
+
+                ErrorForm ErrForm = new ErrorForm(Message, "Update DB", "Create New DB");
                 DialogResult result = ErrForm.ShowDialog();
 
                 // Solution to the error

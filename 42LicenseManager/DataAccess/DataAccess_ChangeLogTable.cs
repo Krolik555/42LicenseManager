@@ -16,7 +16,7 @@ namespace _42LicenseManager
         // 
         // Stored Procedures
         //
-        public static List<LogClass> GetLogs_ByLicenseId(int LicenseId, string DBDIR_Name)
+        public List<LogClass> GetLogs_ByLicenseId(int LicenseId, string DBDIR_Name)
         {
             Cursor.Current = Cursors.WaitCursor;
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnValCustom(DBDIR_Name)))
@@ -25,7 +25,7 @@ namespace _42LicenseManager
             }
         }
 
-        public static List<LogClass> GetLogs_GetAllLogs(string DBDIR_Name)
+        public List<LogClass> GetLogs_GetAllLogs(string DBDIR_Name)
         {
             Cursor.Current = Cursors.WaitCursor;
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnValCustom(DBDIR_Name)))
@@ -84,7 +84,7 @@ namespace _42LicenseManager
             }
         }
 
-        public static void DeleteLog(int id, string DBDIR_Name)
+        public void DeleteLog(int id, string DBDIR_Name)
         {
             Cursor.Current = Cursors.WaitCursor;
             // Create command for SQL server

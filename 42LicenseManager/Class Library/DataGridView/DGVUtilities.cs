@@ -20,13 +20,20 @@ namespace _42LicenseManager
             try
             {
                 SavedSortation.Sortation = FromThisDGV.SortOrder;
-                SavedSortation.SortByColumn = FromThisDGV.SortedColumn.DisplayIndex;
+                if (FromThisDGV.SortedColumn != null)
+                {
+                    
+                    SavedSortation.SortByColumn = FromThisDGV.SortedColumn.DisplayIndex;
+                }
+                    
             }
             catch
             {
 
             }
             return SavedSortation;
+
+            
         }
 
         /// <summary>
