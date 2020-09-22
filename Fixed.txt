@@ -1,0 +1,10 @@
+	4/16/2019 - 4/23/2019
+	• Fixed: If user searches for license then deletes the license, the form will not refresh automatically.
+	• Fixed: Search by name cannot have a space between first and last name
+	• Changed \ to / on "Cancel\Close" button
+	• Added button for "Cancel License"
+	• Added loading cursor whenever the DB is accessed.
+	• Added Move feature to move machines to a new license.
+	• Renamed Move Machines form
+	• Changed Add License default date to be for this year not next.
+	• Changed Add License Review Status default to be Open

@@ -1,0 +1,11 @@
+0000000000000000000000000000000000000000 a612fa2ce7c92abb7f70345b54dc65a56610daae Krolik555 <nathane.123c@gmail.com> 1561473319 -0500	clone: from https://github.com/Krolik555/42LicenseManager.git
+a612fa2ce7c92abb7f70345b54dc65a56610daae c8d39a6169eccba4b195b38003ed25ee6a9711a1 Krolik555 <nathane.123c@gmail.com> 1561473400 -0500	commit: Added program to GitHub
+c8d39a6169eccba4b195b38003ed25ee6a9711a1 6552d5cd6bfb33038e88940a46dc6be883faa4b6 Krolik555 <nathane.123c@gmail.com> 1561490176 -0500	merge 6-24-19Patches: Fast-forward
+6552d5cd6bfb33038e88940a46dc6be883faa4b6 9f27cf37b66cbe6159d42c12161e96ded3419482 Krolik555 <nathane.123c@gmail.com> 1561490617 -0500	merge 6-24-19Patches: Fast-forward
+9f27cf37b66cbe6159d42c12161e96ded3419482 29c2d427c573b5ea139f503e396ecb351dbe09a1 Krolik555 <nathane.123c@gmail.com> 1561492357 -0500	commit: Changes to PreReqs
+29c2d427c573b5ea139f503e396ecb351dbe09a1 c2aa4008446835d1bd9d90b5b9555f680d17d206 Krolik555 <nathane.123c@gmail.com> 1561493316 -0500	commit: Finished version 1.1.8! Now has proper pre-requisites!
+c2aa4008446835d1bd9d90b5b9555f680d17d206 80d91b59cc5081cdad2ed4cd9447e8195dfd5e25 Krolik555 <nathane.123c@gmail.com> 1561500133 -0500	commit: - Adjusted the create new database procedure to make it less prone to crashing.
+80d91b59cc5081cdad2ed4cd9447e8195dfd5e25 21a239435b153a4329abd0e63b09275acec1869f Krolik555 <nathane.123c@gmail.com> 1561500247 -0500	commit: Set new version
+21a239435b153a4329abd0e63b09275acec1869f fd82f11b70eaef432a72a753c8c7789af697c817 Krolik555 <nathane.123c@gmail.com> 1562777223 -0500	commit: For some reason it forgot my changes that were made.
+fd82f11b70eaef432a72a753c8c7789af697c817 014744b322ae0a6dd340fc7483d5459ace7117ee Krolik555 <nathane.123c@gmail.com> 1562777346 -0500	commit: Fixed no-database bug on startup.
+014744b322ae0a6dd340fc7483d5459ace7117ee 963bfdf732c1aded9eeb5aa465f40eb49a859904 Krolik555 <nathane.123c@gmail.com> 1562779946 -0500	commit: nothing relally
