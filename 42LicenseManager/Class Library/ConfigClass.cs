@@ -13,6 +13,7 @@ namespace _42LicenseManager
         public string DBDir_Name { get; set; }
         public string TimeToRenew { get; set; }
         public string InstalledDirectory { get; set; }
+        public bool AllowDuplicateMachines { get; set; }
     }
 
 }

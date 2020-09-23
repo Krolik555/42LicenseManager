@@ -13,7 +13,7 @@ namespace _42LicenseManager
     public partial class AddMachinesForm : Form
     {
         public int LicenseID { get; set; }
-        ConfigClass Config = Utilities.GetConfigData();
+        ConfigClass Config = Class_Library.Config.Get();
 
         public AddMachinesForm()
         {
@@ -23,7 +23,7 @@ namespace _42LicenseManager
         private void aButtonSave_Click(object sender, EventArgs e)
         {
             // VERIFY MACHINE DOESN'T EXIST ELSWHERE
-            if (Utilities.MachineExist(aTextBoxMachineName.Text, Config.DBDir_Name, out List<int> LicenseIDofDupes))
+            if (Utilities.MachineExist(aTextBoxMachineName.Text, Config.DBDir_Name, out List<int> LicenseIDofDupes) && Config.AllowDuplicateMachines == false)
             {
                 // !ERROR!
                 MessageBox.Show($"This machine name is already being used by License {LicenseIDofDupes[0].ToString()}. " +

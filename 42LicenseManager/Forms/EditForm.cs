@@ -20,8 +20,8 @@ namespace _42LicenseManager
         public EditForm()
         {
             InitializeComponent();
-            Config = Utilities.GetConfigData();
-            
+            Config = Class_Library.Config.Get();
+
         }
 
         private void EditForm_Load(object sender, EventArgs e)

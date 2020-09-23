@@ -14,7 +14,7 @@ namespace _42LicenseManager
     {
         public LicensedMachines InputMachine { get; set; }
         LicensedMachines ChangedLicense = new LicensedMachines();
-        ConfigClass Config = Utilities.GetConfigData();
+        ConfigClass Config = Class_Library.Config.Get();
 
         public EditLicensedMachineForm()
         {
@@ -39,14 +39,15 @@ namespace _42LicenseManager
 
         private void aButtonSave_Click(object sender, EventArgs e)
         {
-            if (Utilities.MachineExist(InputMachine, aTextBoxMachineName.Text, Config.DBDir_Name, out List<int> LicenseIDofDupes))
+            // Check if machine exists and if duplicates are allowed
+            if (Utilities.MachineExist(InputMachine, aTextBoxMachineName.Text, Config.DBDir_Name, out List<int> LicenseIDofDupes) && Config.AllowDuplicateMachines == false)
             {
                 // !ERROR!
                 MessageBox.Show($"This machine name is already being used by License {LicenseIDofDupes[0].ToString()}. " +
                     $"\nNo duplicates are allowed at this time. Please rename the machine and try again.", "Duplicate!", MessageBoxButtons.OK);
                 return;
             }
-            else
+            else // if no duplicate and/or duplicates are allowed - edit machine name
             {
                 InputMachine.CopyDataTo(ChangedLicense); // Used to get the ID and LicenseID of the input license.
 

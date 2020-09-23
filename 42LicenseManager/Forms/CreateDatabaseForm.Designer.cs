@@ -41,6 +41,7 @@
             this.aLabeldotmdf = new System.Windows.Forms.Label();
             this.aLabelHelp = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.aCheckBoxAllowDupeMachines = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // aButtonCreateNewDatabase
@@ -134,12 +135,27 @@
             this.aLabelHelp.Text = "(?)";
             this.toolTip1.SetToolTip(this.aLabelHelp, "How many days prior to a license expiring to \r\nset it as \'Open\' for review.");
             // 
+            // aCheckBoxAllowDupeMachines
+            // 
+            this.aCheckBoxAllowDupeMachines.AutoSize = true;
+            this.aCheckBoxAllowDupeMachines.Checked = true;
+            this.aCheckBoxAllowDupeMachines.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.aCheckBoxAllowDupeMachines.Location = new System.Drawing.Point(155, 91);
+            this.aCheckBoxAllowDupeMachines.Name = "aCheckBoxAllowDupeMachines";
+            this.aCheckBoxAllowDupeMachines.Size = new System.Drawing.Size(174, 17);
+            this.aCheckBoxAllowDupeMachines.TabIndex = 18;
+            this.aCheckBoxAllowDupeMachines.Text = "Allow duplicate machine names";
+            this.toolTip1.SetToolTip(this.aCheckBoxAllowDupeMachines, "Allows multiple machines, regardless of who owns them, to have the same name. \r\n\r" +
+        "\nWarning: Once this is enabled it cannot be disabled!");
+            this.aCheckBoxAllowDupeMachines.UseVisualStyleBackColor = true;
+            // 
             // CreateDatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(623, 115);
+            this.Controls.Add(this.aCheckBoxAllowDupeMachines);
             this.Controls.Add(this.aLabelHelp);
             this.Controls.Add(this.aLabeldotmdf);
             this.Controls.Add(this.aLabelDatabaseName);
@@ -175,5 +191,6 @@
         private System.Windows.Forms.Label aLabeldotmdf;
         private System.Windows.Forms.Label aLabelHelp;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox aCheckBoxAllowDupeMachines;
     }
 }

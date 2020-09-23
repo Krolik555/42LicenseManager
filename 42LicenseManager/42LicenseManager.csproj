@@ -89,6 +89,7 @@
     <Compile Include="Class Library\DataGridView\DGVPositionInfo.cs" />
     <Compile Include="Class Library\DataGridView\DGVSortInfo.cs" />
     <Compile Include="Class Library\DataGridView\DGVUtilities.cs" />
+    <Compile Include="Class Library\Config.cs" />
     <Compile Include="Class Library\Settings.cs" />
     <Compile Include="Forms\CreateDatabaseForm.cs">
       <SubType>Form</SubType>

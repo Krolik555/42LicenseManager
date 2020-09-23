@@ -27,26 +27,32 @@ namespace _42LicenseManager
                 // CHECK FOR CONFIG
                 if (File.Exists($@"{Environment.CurrentDirectory}\Config.txt"))
                 {
-                    //// READ CONFIG
-                    string[] contents = File.ReadAllLines($@"{Environment.CurrentDirectory}\Config.txt");
-                    if (contents != null && contents.Length >= 0)
-                    { // DISPLAY DATA IN TEXT BOXES
-                        aTextBoxDir.Text = contents[0].Remove(0, 6); // Remove "DBDIR="
-                        aTextBoxTimeToRenew.Text = contents[1].Remove(0, 12); // Remove "TimeToRenew="
-                    }
+                    ConfigClass ConfigData = Class_Library.Config.Get();
+
+                    aTextBoxDir.Text = ConfigData.DBDir_Name;
+                    aTextBoxTimeToRenew.Text = ConfigData.TimeToRenew;
+                    aCheckBoxAllowDupeMachines.Checked = ConfigData.AllowDuplicateMachines;
                 }
                 else
                 {
                     // INSERT DEFAULT VALUES INTO TEXT BOXES
                     aTextBoxDir.Text = $@"C:\Users\{Environment.UserName}\Documents\42LicenseManager\42LMDB.mdf";
                     aTextBoxTimeToRenew.Text = 21.ToString();
+                    aCheckBoxAllowDupeMachines.Checked = true;
                 }
             }
             catch(Exception error)
             {
                 MessageBox.Show(error.ToString());
             }
-            
+
+            // If "allow duplicates" is checked, disable the checkbox.
+            if (aCheckBoxAllowDupeMachines.Checked)
+            {
+                aCheckBoxAllowDupeMachines.Enabled = false;
+                aLabelAllowDupeMachineDisabledTip.Visible = true;
+            }
+
         }
 
         private void AButtonBrowse_Click(object sender, EventArgs e)
@@ -62,38 +68,24 @@ namespace _42LicenseManager
 
         private void aButtonSave_Click(object sender, EventArgs e)
         {
+            ConfigClass NewConfig = new ConfigClass();
             try
             {
                 // SAVE DATA TO CONFIG OBJECT
-                ConfigOutput.DBDir_Name = aTextBoxDir.Text;
-                ConfigOutput.TimeToRenew = aTextBoxTimeToRenew.Text;
-                ConfigOutput.InstalledDirectory = Environment.CurrentDirectory;
+                NewConfig.DBDir_Name = aTextBoxDir.Text;
+                NewConfig.TimeToRenew = aTextBoxTimeToRenew.Text;
+                NewConfig.InstalledDirectory = Environment.CurrentDirectory;
+                NewConfig.AllowDuplicateMachines = aCheckBoxAllowDupeMachines.Checked;
 
-                // VERIFY DATABASE EXISTS BEFORE CLOSING
-                if (Utilities.VerifyDatabaseExists(ConfigOutput))
-                {
-                    // OVERWRITE/CREATE CONFIG FILE USING TEXT BOX DATA
-                    TextWriter tw = new StreamWriter($@"{Environment.CurrentDirectory}\Config.txt");
-                    tw.WriteLine($"DBDIR={aTextBoxDir.Text}");
-                    tw.WriteLine($"TimeToRenew={aTextBoxTimeToRenew.Text}");
-                    tw.WriteLine($"InstalledDirectory={Environment.CurrentDirectory}");
-                    tw.Close();
+                Class_Library.Config.Update(NewConfig);
 
-                    DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("The selected Database does not exist.");
-                    aTextBoxDir.Select();
-                }
-                
 
             }
             catch(Exception error)
             {
                 MessageBox.Show(error.ToString());
             }
+            this.Close();
         }
 
         private void AButtonCancel_Click(object sender, EventArgs e)
@@ -121,6 +113,14 @@ namespace _42LicenseManager
         private void ATextBoxDir_Leave(object sender, EventArgs e)
         {
 
+        }
+
+        private void aCheckBoxAllowDupeMachines_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (aCheckBoxAllowDupeMachines.Checked)
+            {
+                MessageBox.Show("Once this has been checked it cannot be unchecked. Is this okay?", "Warning!", MessageBoxButtons.OKCancel);
+            }
         }
     }
 }

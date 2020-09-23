@@ -15,7 +15,7 @@ namespace _42LicenseManager
     {
         public License InputLicense { get; set; }
         public int MachineCount { get; set; }
-        ConfigClass Config = Utilities.GetConfigData();
+        ConfigClass Config = Class_Library.Config.Get();
 
 
         public ManagePCsForm()

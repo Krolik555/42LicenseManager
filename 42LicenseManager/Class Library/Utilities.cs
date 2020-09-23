@@ -55,7 +55,7 @@ namespace _42LicenseManager
         public static void CreateLog(List<string> ChangesMade, int AccountIdentifier)
         {
             // GET DB DIRECTORY W/ DB NAME
-            ConfigClass Config = Utilities.GetConfigData();
+            ConfigClass Config = Class_Library.Config.Get();
             foreach (string change in ChangesMade)
             {
                 // CREATE NEW LOG
@@ -213,7 +213,7 @@ namespace _42LicenseManager
         public static List<string> FindChanges (LicensedMachines OriginalMachine, LicensedMachines ChangedMachine)
         {
             string Format = $"(License: {OriginalMachine.LicenseId})";
-            ConfigClass Config = Utilities.GetConfigData();
+            ConfigClass Config = Class_Library.Config.Get();
             List<string> Changes = new List<string>();
             bool MachineNameChanged = false;
             // MACHINE NAME
@@ -271,69 +271,69 @@ namespace _42LicenseManager
         }
 
 
-        /// <summary>
-        /// Gets or creates program settings. If a Config file exists it will retrieve data from it otherwise it will create a new config file.
-        /// </summary>
-        /// <returns></returns>
-        public static ConfigClass GetConfigData()
-        {
-            ConfigClass Config = new ConfigClass();
-            string[] Conf = null;
-            string ConfigFile = $@"{Environment.CurrentDirectory}\Config.txt";
-            //string ConfigFile = $@"C:\Users\{Environment.UserName}\Appdata\Roaming\42LicenseManager\Config.txt";
+        ///// <summary>
+        ///// Gets or creates program settings. If a Config file exists it will retrieve data from it otherwise it will create a new config file.
+        ///// </summary>
+        ///// <returns></returns>
+        //public static ConfigClass GetConfigData()
+        //{
+        //    ConfigClass Config = new ConfigClass();
+        //    string[] Conf = null;
+        //    string ConfigFile = $@"{Environment.CurrentDirectory}\Config.txt";
+        //    //string ConfigFile = $@"C:\Users\{Environment.UserName}\Appdata\Roaming\42LicenseManager\Config.txt";
 
-            try
-            {
-                // IF CONFIG.TXT EXIST GET DATA
-                //if (File.Exists($@"{Environment.CurrentDirectory}\Config.txt"))
-                if (File.Exists(ConfigFile))
-                {
+        //    try
+        //    {
+        //        // IF CONFIG.TXT EXIST GET DATA
+        //        //if (File.Exists($@"{Environment.CurrentDirectory}\Config.txt"))
+        //        if (File.Exists(ConfigFile))
+        //        {
 
-                    Conf = File.ReadAllLines(ConfigFile);
-                    if (Conf != null && Conf.Length >= 0)
-                    {
-                        try
-                        { // GET DATA IF VALID ELSE ERASE DATA
-                            Config.DBDir_Name = Conf[0].Contains("DBDIR=") && Conf[0] != "" ? Conf[0].Remove(0, 6) : ""; // Remove "DBDIR="
-                            Config.TimeToRenew = Conf[1].Contains("TimeToRenew=") && Conf[1] != "" ? Conf[1].Remove(0, 12) : ""; // Remove "TimeToRenew="
-                            Config.InstalledDirectory = Conf[2].Contains("InstalledDirectory=") && Conf[2] != "" ? Environment.CurrentDirectory.Remove(0, 19) : ""; // Remove "InstallDir="
-                        }
-                        catch (Exception error)
-                        {
-                            MessageBox.Show(error.ToString());
-                        }
-                        // IF DATA IS ERASED THEN DELETE CONFIG FILE AND RE-RUN Utilities.GetConfig
-                        if (Config.DBDir_Name == "" || Config.TimeToRenew.ToString() == "" || Config.InstalledDirectory == "")
-                        {
-                            File.Delete($@"{Environment.CurrentDirectory}\Config.txt");
-                            Config = Utilities.GetConfigData();
-                        }
-                    }
-                }
-                else
-                { // NO CONFIG DATA FOUND. ASK CREATE NEW.
-                    if (MessageBox.Show("Database settings are not configured or missing. Configure now?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        ConfigForm CF = new ConfigForm();
-                        DialogResult _cf = CF.ShowDialog();
-                        if (_cf == DialogResult.OK)
-                        {
-                            Config = CF.OutputConfig();
-                        }
-                    }
-                    else
-                    {
-                        Application.Exit();
-                    }
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.ToString());
-            }
+        //            Conf = File.ReadAllLines(ConfigFile);
+        //            if (Conf != null && Conf.Length >= 0)
+        //            {
+        //                try
+        //                { // GET DATA IF VALID ELSE ERASE DATA
+        //                    Config.DBDir_Name = Conf[0].Contains("DBDIR=") && Conf[0] != "" ? Conf[0].Remove(0, 6) : ""; // Remove "DBDIR="
+        //                    Config.TimeToRenew = Conf[1].Contains("TimeToRenew=") && Conf[1] != "" ? Conf[1].Remove(0, 12) : ""; // Remove "TimeToRenew="
+        //                    Config.InstalledDirectory = Conf[2].Contains("InstalledDirectory=") && Conf[2] != "" ? Environment.CurrentDirectory.Remove(0, 19) : ""; // Remove "InstallDir="
+        //                }
+        //                catch (Exception error)
+        //                {
+        //                    MessageBox.Show(error.ToString());
+        //                }
+        //                // IF DATA IS ERASED THEN DELETE CONFIG FILE AND RE-RUN Utilities.GetConfig
+        //                if (Config.DBDir_Name == "" || Config.TimeToRenew.ToString() == "" || Config.InstalledDirectory == "")
+        //                {
+        //                    File.Delete($@"{Environment.CurrentDirectory}\Config.txt");
+        //                    Config = Utilities.GetConfigData();
+        //                }
+        //            }
+        //        }
+        //        else
+        //        { // NO CONFIG DATA FOUND. ASK CREATE NEW.
+        //            if (MessageBox.Show("Database settings are not configured or missing. Configure now?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+        //            {
+        //                ConfigForm CF = new ConfigForm();
+        //                DialogResult _cf = CF.ShowDialog();
+        //                if (_cf == DialogResult.OK)
+        //                {
+        //                    Config = CF.OutputConfig();
+        //                }
+        //            }
+        //            else
+        //            {
+        //                Application.Exit();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception err)
+        //    {
+        //        MessageBox.Show(err.ToString());
+        //    }
 
-            return Config;
-        }
+        //    return Config;
+        //}
 
         public static string GetLicenseIDToString (License license)
         {
@@ -482,6 +482,7 @@ namespace _42LicenseManager
             {
                 foreach (LicensedMachines machine in Duplicates)
                 {
+                    // Verify the machine with identical name isn't the machine currently being created/edited
                     if (machine.Id != MachineBeingEdited.Id)
                     {
                         VerifiedDuplicates.Add(machine);
@@ -489,7 +490,7 @@ namespace _42LicenseManager
                 }
             }
 
-            // DUPLICATE FOUND return true
+            // DUPLICATE FOUND return value and true
             if (VerifiedDuplicates.Count > 0)
             {
 

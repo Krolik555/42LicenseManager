@@ -1,4 +1,6 @@
-﻿using Equin.ApplicationFramework;
+﻿using _42LicenseManager.Class_Library;
+using _42LicenseManager.Forms;
+using Equin.ApplicationFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,13 +20,15 @@ namespace _42LicenseManager
     public partial class Dashboard : Form
     {
 
-        
         /// <summary>
         /// List used to supply sortable data to DGV in Dashboard
         /// </summary>
         public static List<License> LicensesDGV = new List<License>();
         public string USERNAME = Environment.UserName;
-        ConfigClass Config = new ConfigClass();
+        /// <summary>
+        /// Contains the data from the configuration file that is stored on the computer.
+        /// </summary>
+        public ConfigClass Config = new ConfigClass();
         public int MyProperty { get; set; }
         Version CurrentVer = Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -41,7 +45,8 @@ namespace _42LicenseManager
             try
             {
                 // VERIFY INTEGRITY OF CONFIG & DATABASE | GET CONFIG INFO
-                Config = Utilities.GetConfigData();
+                //Config = Utilities.GetConfigData();
+                Config = Class_Library.Config.Get();
 
                 // Check If DB is current Version
                 Utilities.CheckDatabaseForUpdates(Config);
@@ -551,5 +556,6 @@ namespace _42LicenseManager
         {
             Utilities.CloseSQLConnection();
         }
+
     }
 }

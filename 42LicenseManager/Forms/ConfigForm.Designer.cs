@@ -41,6 +41,8 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.aButtonCancel = new System.Windows.Forms.Button();
+            this.aLabelAllowDupeMachineDisabledTip = new System.Windows.Forms.Label();
+            this.aCheckBoxAllowDupeMachines = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // aTextBoxDir
@@ -75,7 +77,7 @@
             // 
             this.aLabelTimeToRenew.AutoSize = true;
             this.aLabelTimeToRenew.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aLabelTimeToRenew.Location = new System.Drawing.Point(12, 92);
+            this.aLabelTimeToRenew.Location = new System.Drawing.Point(5, 92);
             this.aLabelTimeToRenew.Name = "aLabelTimeToRenew";
             this.aLabelTimeToRenew.Size = new System.Drawing.Size(122, 13);
             this.aLabelTimeToRenew.TabIndex = 4;
@@ -113,7 +115,7 @@
             this.aLabelHelp.AutoSize = true;
             this.aLabelHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aLabelHelp.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.aLabelHelp.Location = new System.Drawing.Point(115, 105);
+            this.aLabelHelp.Location = new System.Drawing.Point(123, 91);
             this.aLabelHelp.Name = "aLabelHelp";
             this.aLabelHelp.Size = new System.Drawing.Size(19, 13);
             this.aLabelHelp.TabIndex = 9;
@@ -143,11 +145,40 @@
             this.aButtonCancel.UseVisualStyleBackColor = true;
             this.aButtonCancel.Click += new System.EventHandler(this.AButtonCancel_Click);
             // 
+            // aLabelAllowDupeMachineDisabledTip
+            // 
+            this.aLabelAllowDupeMachineDisabledTip.AutoSize = true;
+            this.aLabelAllowDupeMachineDisabledTip.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.aLabelAllowDupeMachineDisabledTip.Location = new System.Drawing.Point(179, 116);
+            this.aLabelAllowDupeMachineDisabledTip.Name = "aLabelAllowDupeMachineDisabledTip";
+            this.aLabelAllowDupeMachineDisabledTip.Size = new System.Drawing.Size(19, 13);
+            this.aLabelAllowDupeMachineDisabledTip.TabIndex = 13;
+            this.aLabelAllowDupeMachineDisabledTip.Text = "(?)";
+            this.toolTip1.SetToolTip(this.aLabelAllowDupeMachineDisabledTip, "Once this is checked it cannot be unchecked");
+            this.aLabelAllowDupeMachineDisabledTip.Visible = false;
+            // 
+            // aCheckBoxAllowDupeMachines
+            // 
+            this.aCheckBoxAllowDupeMachines.AutoSize = true;
+            this.aCheckBoxAllowDupeMachines.Checked = true;
+            this.aCheckBoxAllowDupeMachines.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.aCheckBoxAllowDupeMachines.Location = new System.Drawing.Point(12, 115);
+            this.aCheckBoxAllowDupeMachines.Name = "aCheckBoxAllowDupeMachines";
+            this.aCheckBoxAllowDupeMachines.Size = new System.Drawing.Size(174, 17);
+            this.aCheckBoxAllowDupeMachines.TabIndex = 12;
+            this.aCheckBoxAllowDupeMachines.Text = "Allow duplicate machine names";
+            this.toolTip1.SetToolTip(this.aCheckBoxAllowDupeMachines, "This allows multiple machines, regardless of owner, to have identical names.\r\n\r\nW" +
+        "arning: Once this is enabled it cannot be disabled!");
+            this.aCheckBoxAllowDupeMachines.UseVisualStyleBackColor = true;
+            this.aCheckBoxAllowDupeMachines.CheckStateChanged += new System.EventHandler(this.aCheckBoxAllowDupeMachines_CheckStateChanged);
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(639, 150);
+            this.Controls.Add(this.aLabelAllowDupeMachineDisabledTip);
+            this.Controls.Add(this.aCheckBoxAllowDupeMachines);
             this.Controls.Add(this.aButtonCancel);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.aButtonCreateNewDatabase);
@@ -183,5 +214,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button aButtonCancel;
+        private System.Windows.Forms.Label aLabelAllowDupeMachineDisabledTip;
+        private System.Windows.Forms.CheckBox aCheckBoxAllowDupeMachines;
     }
 }
