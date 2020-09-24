@@ -14,36 +14,46 @@ namespace _42LicenseManager.Class_Library
         
 
         #region Edit Config File
-        public static void Update(ConfigClass ConfigData)
+        public static void Update(ConfigClass In_ConfigData)
         {
             if (File.Exists($@"{Environment.CurrentDirectory}\Config.txt"))
             {
-                //// SAVE DATA TO CONFIG OBJECT
-                //ConfigClass Newconfig = new ConfigClass();
-                //Newconfig.DBDir_Name = aTextBoxDir.Text;
-                //Newconfig.TimeToRenew = aTextBoxTimeToRenew.Text;
-                //Newconfig.InstalledDirectory = Environment.CurrentDirectory;
-
+                createConfig(In_ConfigData);
+            }
+            // If Config file is missing
+            else
+            {
+                // Allow duplicate machine names
+                var result = MessageBox.Show("The config file is missing. I can create a new one I just need to know, does this database allow duplicate machine names?", "", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    In_ConfigData.AllowDuplicateMachines = true;
+                }
+                else if (result == DialogResult.No)
+                {
+                    In_ConfigData.AllowDuplicateMachines = false;
+                }
+                createConfig(In_ConfigData);
+                Application.Restart();
+            }
+            // Private Method to Create a config file.
+            void createConfig(ConfigClass _ConfigData)
+            {
                 // VERIFY DATABASE EXISTS BEFORE CLOSING
-                if (Utilities.VerifyDatabaseExists(ConfigData))
+                if (Utilities.VerifyDatabaseExists(_ConfigData))
                 {
                     // OVERWRITE/CREATE CONFIG FILE USING TEXT BOX DATA
                     TextWriter tw = new StreamWriter($@"{Environment.CurrentDirectory}\Config.txt");
-                    tw.WriteLine($"DBDIR={ConfigData.DBDir_Name}");
-                    tw.WriteLine($"TimeToRenew={ConfigData.TimeToRenew}");
-                    tw.WriteLine($"InstalledDirectory={ConfigData.InstalledDirectory}");
-                    tw.WriteLine($"AllowDuplicateMachines={ConfigData.AllowDuplicateMachines}");
+                    tw.WriteLine($"DBDIR={_ConfigData.DBDir_Name}");
+                    tw.WriteLine($"TimeToRenew={_ConfigData.TimeToRenew}");
+                    tw.WriteLine($"InstalledDirectory={_ConfigData.InstalledDirectory}");
+                    tw.WriteLine($"AllowDuplicateMachines={_ConfigData.AllowDuplicateMachines}");
                     tw.Close();
-
                 }
                 else
                 {
                     MessageBox.Show("The selected Database does not exist.");
                 }
-            }
-            else
-            {
-                MessageBox.Show("The config file is missing.");
             }
         }
         #endregion Edit Config File

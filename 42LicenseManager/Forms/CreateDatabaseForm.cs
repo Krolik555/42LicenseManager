@@ -46,13 +46,14 @@ namespace _42LicenseManager
                 tw.WriteLine($@"DBDIR={aTextBoxNewDBDir.Text}\{aTextBoxDatabaseName.Text}.mdf");
                 tw.WriteLine($"TimeToRenew={aTextBoxTimeToRenew.Text}");
                 tw.WriteLine($"InstalledDirectory={Environment.CurrentDirectory}");
-                tw.WriteLine($"AllowDuplicateMachines={aCheckBoxAllowDupeMachines}");
+                tw.WriteLine($"AllowDuplicateMachines={aCheckBoxAllowDupeMachines.Checked}");
                 tw.Close();
 
                 // GET DATA FOR CREATING NEW DATABASE
                 ConfigOutput.DBDir_Name = $@"{aTextBoxNewDBDir.Text}\{aTextBoxDatabaseName.Text}.mdf";
                 ConfigOutput.TimeToRenew = aTextBoxTimeToRenew.Text;
                 ConfigOutput.InstalledDirectory = Environment.CurrentDirectory;
+                ConfigOutput.AllowDuplicateMachines = aCheckBoxAllowDupeMachines.Checked;
 
                 // CREATE NEW DATABASE
                 Utilities.CreateNewDatabase(ConfigOutput);

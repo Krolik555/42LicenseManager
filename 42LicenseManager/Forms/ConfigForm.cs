@@ -78,7 +78,7 @@ namespace _42LicenseManager
                 NewConfig.AllowDuplicateMachines = aCheckBoxAllowDupeMachines.Checked;
 
                 Class_Library.Config.Update(NewConfig);
-
+                
 
             }
             catch(Exception error)
