@@ -59,6 +59,11 @@ namespace _42LicenseManager
                 aComboboxSortBy.SelectedIndex = 0;
 
                 DGVUtilities.SetSortationDefault(5, SortOrder.Descending, aDataGridViewLicenses);
+
+                // Set Title Name
+
+
+                this.Text += $" v.{CurrentVer} (Database: {Path.GetFileName(Config.DBDir_Name)})";
             }
             catch (System.Data.SqlClient.SqlException err)
             {
@@ -549,7 +554,7 @@ namespace _42LicenseManager
        
         private void aButtonTest_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ATextBoxSearch_Leave(object sender, EventArgs e)
@@ -557,5 +562,9 @@ namespace _42LicenseManager
             Utilities.CloseSQLConnection();
         }
 
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
