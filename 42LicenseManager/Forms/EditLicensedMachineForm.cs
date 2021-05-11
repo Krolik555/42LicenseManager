@@ -14,7 +14,7 @@ namespace _42LicenseManager
     {
         public LicensedMachines InputMachine { get; set; }
         LicensedMachines ChangedLicense = new LicensedMachines();
-        ConfigClass Config = Class_Library.Config.Get();
+        ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
         public EditLicensedMachineForm()
         {

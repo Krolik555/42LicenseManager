@@ -15,7 +15,7 @@ namespace _42LicenseManager
     {
         public License InputLicense { get; set; }
         public bool GetAllLogs { get; set; }
-        ConfigClass Config = Class_Library.Config.Get();
+        ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
         public ViewLogsForm()
         {

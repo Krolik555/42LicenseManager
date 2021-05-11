@@ -39,10 +39,10 @@
             this.aButtonCreateNewDatabase = new System.Windows.Forms.Button();
             this.aLabelHelp = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.aButtonCancel = new System.Windows.Forms.Button();
             this.aLabelAllowDupeMachineDisabledTip = new System.Windows.Forms.Label();
             this.aCheckBoxAllowDupeMachines = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.aButtonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // aTextBoxDir
@@ -122,29 +122,6 @@
             this.aLabelHelp.Text = "(?)";
             this.toolTip1.SetToolTip(this.aLabelHelp, "How many days prior to a license expiring to \r\nset it as \'Open\' for review.\r\n");
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Calibri Light", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(612, 45);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "Fill out the information below. If you do not have a database click \'Create New D" +
-    "atabase\'.";
-            // 
-            // aButtonCancel
-            // 
-            this.aButtonCancel.Location = new System.Drawing.Point(498, 115);
-            this.aButtonCancel.Name = "aButtonCancel";
-            this.aButtonCancel.Size = new System.Drawing.Size(129, 23);
-            this.aButtonCancel.TabIndex = 11;
-            this.aButtonCancel.Text = "Cancel";
-            this.aButtonCancel.UseVisualStyleBackColor = true;
-            this.aButtonCancel.Click += new System.EventHandler(this.AButtonCancel_Click);
-            // 
             // aLabelAllowDupeMachineDisabledTip
             // 
             this.aLabelAllowDupeMachineDisabledTip.AutoSize = true;
@@ -172,11 +149,35 @@
             this.aCheckBoxAllowDupeMachines.UseVisualStyleBackColor = true;
             this.aCheckBoxAllowDupeMachines.CheckStateChanged += new System.EventHandler(this.aCheckBoxAllowDupeMachines_CheckStateChanged);
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Calibri Light", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(12, 12);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(612, 45);
+            this.textBox1.TabIndex = 10;
+            this.textBox1.Text = "Fill out the information below. If you do not have a database click \'Create New D" +
+    "atabase\'.";
+            // 
+            // aButtonCancel
+            // 
+            this.aButtonCancel.Location = new System.Drawing.Point(498, 115);
+            this.aButtonCancel.Name = "aButtonCancel";
+            this.aButtonCancel.Size = new System.Drawing.Size(129, 23);
+            this.aButtonCancel.TabIndex = 11;
+            this.aButtonCancel.Text = "Cancel";
+            this.aButtonCancel.UseVisualStyleBackColor = true;
+            this.aButtonCancel.Click += new System.EventHandler(this.AButtonCancel_Click);
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(639, 150);
+            this.ControlBox = false;
             this.Controls.Add(this.aLabelAllowDupeMachineDisabledTip);
             this.Controls.Add(this.aCheckBoxAllowDupeMachines);
             this.Controls.Add(this.aButtonCancel);
@@ -189,11 +190,12 @@
             this.Controls.Add(this.aButtonSave);
             this.Controls.Add(this.aTextBoxDir);
             this.Controls.Add(this.aLabelHelp);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ConfigForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Configure Database";
             this.ResumeLayout(false);

@@ -16,38 +16,41 @@ namespace _42LicenseManager.Class_Library
         #region Edit Config File
         public static void Update(ConfigClass In_ConfigData)
         {
-            if (File.Exists($@"{Environment.CurrentDirectory}\Config.txt"))
+            // if Config exists, update config
+            if (File.Exists(Path.GetDirectoryName($@"{Path.GetDirectoryName(In_ConfigData.DBDir_Name)}\Config.txt")))
             {
                 createConfig(In_ConfigData);
             }
-            // If Config file is missing
+            // If Config file is missing - Create new config file
             else
             {
-                // Allow duplicate machine names
-                var result = MessageBox.Show("The config file is missing. I can create a new one I just need to know, does this database allow duplicate machine names?", "", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    In_ConfigData.AllowDuplicateMachines = true;
-                }
-                else if (result == DialogResult.No)
-                {
-                    In_ConfigData.AllowDuplicateMachines = false;
-                }
+                // Default Config settings 
+                In_ConfigData.BackupTarget = "";
+                In_ConfigData.AutoBackup = false;
+                In_ConfigData.BackupSchedule = 24;
+                In_ConfigData.BackupExpiration = 6;
+
                 createConfig(In_ConfigData);
-                Application.Restart();
+                //Application.Restart();
+                
             }
-            // Private Method to Create a config file.
+
+            // Private Method to Create or rewrite a config file.
             void createConfig(ConfigClass _ConfigData)
             {
                 // VERIFY DATABASE EXISTS BEFORE CLOSING
                 if (Utilities.VerifyDatabaseExists(_ConfigData))
                 {
                     // OVERWRITE/CREATE CONFIG FILE USING TEXT BOX DATA
-                    TextWriter tw = new StreamWriter($@"{Environment.CurrentDirectory}\Config.txt");
+                    TextWriter tw = new StreamWriter($@"{Path.GetDirectoryName(In_ConfigData.DBDir_Name)}\Config.txt");
                     tw.WriteLine($"DBDIR={_ConfigData.DBDir_Name}");
                     tw.WriteLine($"TimeToRenew={_ConfigData.TimeToRenew}");
                     tw.WriteLine($"InstalledDirectory={_ConfigData.InstalledDirectory}");
                     tw.WriteLine($"AllowDuplicateMachines={_ConfigData.AllowDuplicateMachines}");
+                    tw.WriteLine($"BackupTarget={_ConfigData.BackupTarget}");
+                    tw.WriteLine($"AutoBackup={_ConfigData.AutoBackup}");
+                    tw.WriteLine($"BackupSchedule={_ConfigData.BackupSchedule}");
+                    tw.WriteLine($"BackupExpiration={_ConfigData.BackupExpiration}");
                     tw.Close();
                 }
                 else
@@ -63,37 +66,41 @@ namespace _42LicenseManager.Class_Library
         /// Gets or creates program settings. If a Config file exists it will retrieve data from it otherwise it will create a new config file.
         /// </summary>
         /// <returns></returns>
-        public static ConfigClass Get()
+        public static ConfigClass Get(string PathToConfigFile)
         {
             ConfigClass Config = new ConfigClass();
-            string[] Conf = null;
-            string ConfigDirectory = $@"{Environment.CurrentDirectory}\Config.txt";
+            string[] Conf;
+
 
             try
             {
                 // IF CONFIG.TXT EXIST GET DATA
-                if (File.Exists(ConfigDirectory))
+                if (File.Exists(PathToConfigFile))
                 {
 
-                    Conf = File.ReadAllLines(ConfigDirectory);
+                    Conf = File.ReadAllLines(PathToConfigFile);
                     if (Conf != null && Conf.Length >= 0)
                     {
                         try
-                        { // GET DATA IF VALID ELSE ERASE DATA
+                        { // GET DATA IF VALID
                             Config.DBDir_Name = Conf[0].Contains("DBDIR=") && Conf[0] != "" ? Conf[0].Remove(0, 6) : ""; // Remove "DBDIR=" text
                             Config.TimeToRenew = Conf[1].Contains("TimeToRenew=") && Conf[1] != "" ? Conf[1].Remove(0, 12) : ""; // Remove "TimeToRenew=" text
                             Config.InstalledDirectory = Conf[2].Contains("InstalledDirectory=") && Conf[2] != "" ? Conf[2].Remove(0, 19) : ""; // Remove "InstallDir=" text
                             Config.AllowDuplicateMachines = Conf[3].Contains("AllowDuplicateMachines=") && Conf[3] != "" ? Convert.ToBoolean(Conf[3].Remove(0, 23)) : Convert.ToBoolean("");
+                            Config.BackupTarget = Conf[4].Contains("BackupTarget=") && Conf[4] != "" ? Conf[4].Remove(0, 13) : ""; // Remove "BackupTarget=" text
+                            //Config.AutoBackup = Conf[5].Contains("AutoBackup=") && Conf[5] != "" ? Convert.ToBoolean(Conf[5].Remove(0, 11)) : Convert.ToBoolean(""); // remove "AutoBackup=" text
+                            //Config.BackupSchedule = Conf[6].Contains("BackupSchedule=") && Conf[6] != "" ? Convert.ToInt32(Conf[6].Remove(0, 15)) : Convert.ToInt32("");
+                            //Config.BackupExpiration = Conf[7].Contains("BackupExpiration=") && Conf[7] != "" ? Convert.ToInt32(Conf[7].Remove(0, 17)) : Convert.ToInt32("");
                         }
                         catch (Exception error)
                         {
                             MessageBox.Show(error.ToString());
                         }
-                        // IF DATA IS ERASED THEN DELETE CONFIG FILE AND RE-RUN THIS
+                        // IF DATA IS CORRUPT THEN DELETE CONFIG FILE AND RE-RUN Config.Get
                         if (Config.DBDir_Name == "" || Config.TimeToRenew.ToString() == "" || Config.InstalledDirectory == "")
                         {
-                            File.Delete($@"{Environment.CurrentDirectory}\Config.txt");
-                            Config = Class_Library.Config.Get();
+                            File.Delete(PathToConfigFile);
+                            Config = Class_Library.Config.Get(PathToConfigFile);
                         }
                     }
                 }
@@ -101,11 +108,12 @@ namespace _42LicenseManager.Class_Library
                 { // NO CONFIG DATA FOUND. ASK CREATE NEW.
                     if (MessageBox.Show("Database settings are not configured or missing. Configure now?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        ConfigForm CF = new ConfigForm();
+                        ConfigForm CF = new ConfigForm(false);
+                        
                         DialogResult _cf = CF.ShowDialog();
                         if (_cf == DialogResult.OK)
                         {
-                            Config = CF.OutputConfig();
+                            Config = CF.ConfigOutput;
                         }
                     }
                     else

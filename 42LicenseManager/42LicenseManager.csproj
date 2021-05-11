@@ -95,13 +95,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class Library\Backup.cs" />
     <Compile Include="Class Library\ConfigClass.cs" />
+    <Compile Include="Class Library\DatabaseLibrary.cs" />
     <Compile Include="Class Library\DataGridView\DGVPositionInfo.cs" />
     <Compile Include="Class Library\DataGridView\DGVSortInfo.cs" />
     <Compile Include="Class Library\DataGridView\DGVUtilities.cs" />
     <Compile Include="Class Library\Config.cs" />
+    <Compile Include="Class Library\ErrorLogs.cs" />
     <Compile Include="Class Library\Settings.cs" />
     <Compile Include="Class Library\Updates.cs" />
+    <Compile Include="Forms\BackupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BackupForm.Designer.cs">
+      <DependentUpon>BackupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateDatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +171,12 @@
     <Compile Include="Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectDatabaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectDatabaseForm.Designer.cs">
+      <DependentUpon>SelectDatabaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoadingScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +207,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BackupForm.resx">
+      <DependentUpon>BackupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
@@ -226,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MoveForm.resx">
       <DependentUpon>MoveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectDatabaseForm.resx">
+      <DependentUpon>SelectDatabaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewLogsForm.resx">
       <DependentUpon>ViewLogsForm.cs</DependentUpon>

@@ -77,9 +77,13 @@ namespace _42LicenseManager
 
             try
             {
-                // GET INFO
-                SavedPosition.SelectedRow = FromThisDGV.CurrentCell.RowIndex;
-                SavedPosition.SelectedColumn = FromThisDGV.CurrentCell.ColumnIndex;
+                if (FromThisDGV.RowCount > 0) // This must be here for the first database entry otherwise it is null and causes errors.
+                {
+                    // GET INFO
+                    SavedPosition.SelectedRow = FromThisDGV.CurrentCell.RowIndex;
+                    SavedPosition.SelectedColumn = FromThisDGV.CurrentCell.ColumnIndex;
+                }
+                
             }
             catch
             {

@@ -13,7 +13,7 @@ namespace _42LicenseManager
     public partial class AddMachinesForm : Form
     {
         public int LicenseID { get; set; }
-        ConfigClass Config = Class_Library.Config.Get();
+        ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
         public AddMachinesForm()
         {

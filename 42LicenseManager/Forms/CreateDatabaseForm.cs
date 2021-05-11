@@ -41,15 +41,22 @@ namespace _42LicenseManager
                 {
                     throw new System.IO.IOException();
                 }
+
+                Class_Library.DatabaseLibrary.Add(newdbdir);
+
                 // CREATE CONFIG FILE FOR NEW DATABASE
-                TextWriter tw = new StreamWriter($@"{Environment.CurrentDirectory}\Config.txt");
+                TextWriter tw = new StreamWriter($@"{aTextBoxNewDBDir.Text}\Config.txt", true);
                 tw.WriteLine($@"DBDIR={aTextBoxNewDBDir.Text}\{aTextBoxDatabaseName.Text}.mdf");
                 tw.WriteLine($"TimeToRenew={aTextBoxTimeToRenew.Text}");
                 tw.WriteLine($"InstalledDirectory={Environment.CurrentDirectory}");
                 tw.WriteLine($"AllowDuplicateMachines={aCheckBoxAllowDupeMachines.Checked}");
+                tw.WriteLine($"BackupTarget=");
+                tw.WriteLine($"AutoBackup=");
+                tw.WriteLine($"BackupSchedule=");
+                tw.WriteLine($"BackupExpiration=");
                 tw.Close();
 
-                // GET DATA FOR CREATING NEW DATABASE
+                // GET DEFAULT DATA FOR CREATING NEW DATABASE
                 ConfigOutput.DBDir_Name = $@"{aTextBoxNewDBDir.Text}\{aTextBoxDatabaseName.Text}.mdf";
                 ConfigOutput.TimeToRenew = aTextBoxTimeToRenew.Text;
                 ConfigOutput.InstalledDirectory = Environment.CurrentDirectory;
@@ -60,7 +67,7 @@ namespace _42LicenseManager
 
                 DialogResult = DialogResult.OK;
                 this.Close();
-                Application.Restart();
+                //Application.Restart();
             }
             catch (System.IO.IOException)
             {

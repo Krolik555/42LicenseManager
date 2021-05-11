@@ -20,7 +20,7 @@ namespace _42LicenseManager
         public EditForm()
         {
             InitializeComponent();
-            Config = Class_Library.Config.Get();
+            Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
         }
 

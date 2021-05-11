@@ -13,44 +13,39 @@ namespace _42LicenseManager
 {
     public partial class ConfigForm : Form
     {
-        ConfigClass ConfigOutput = new ConfigClass();
+        public ConfigClass ConfigOutput = new ConfigClass();
+
+        public bool? Preload_AllowDupeMachines { get; set; }
 
         public ConfigForm()
         {
             InitializeComponent();
             wireup();
         }
+        public ConfigForm(bool AllowDupeMachines)
+        {
+            Preload_AllowDupeMachines = AllowDupeMachines;
+            InitializeComponent();
+            wireup();
+        }
+
         public void wireup()
         {
-            try
+            
+            if (Preload_AllowDupeMachines != null)
             {
-                // CHECK FOR CONFIG
-                if (File.Exists($@"{Environment.CurrentDirectory}\Config.txt"))
-                {
-                    ConfigClass ConfigData = Class_Library.Config.Get();
-
-                    aTextBoxDir.Text = ConfigData.DBDir_Name;
-                    aTextBoxTimeToRenew.Text = ConfigData.TimeToRenew;
-                    aCheckBoxAllowDupeMachines.Checked = ConfigData.AllowDuplicateMachines;
-                }
-                else
-                {
-                    // INSERT DEFAULT VALUES INTO TEXT BOXES
-                    aTextBoxDir.Text = $@"C:\Users\{Environment.UserName}\Documents\42LicenseManager\42LMDB.mdf";
-                    aTextBoxTimeToRenew.Text = 21.ToString();
-                    aCheckBoxAllowDupeMachines.Checked = true;
-                }
+                aCheckBoxAllowDupeMachines.Checked = Preload_AllowDupeMachines.Value;
             }
-            catch(Exception error)
-            {
-                MessageBox.Show(error.ToString());
-            }
-
             // If "allow duplicates" is checked, disable the checkbox.
             if (aCheckBoxAllowDupeMachines.Checked)
             {
                 aCheckBoxAllowDupeMachines.Enabled = false;
                 aLabelAllowDupeMachineDisabledTip.Visible = true;
+            }
+            else
+            {
+                aCheckBoxAllowDupeMachines.Enabled = true;
+                aLabelAllowDupeMachineDisabledTip.Visible = false;
             }
 
         }
@@ -62,6 +57,7 @@ namespace _42LicenseManager
             if (BrowseFile.ShowDialog() == DialogResult.OK)
             {
                 aTextBoxDir.Text = BrowseFile.FileName;
+                checkConfig(Path.GetDirectoryName(aTextBoxDir.Text) + @"\Config.txt");
             }
 
         }
@@ -78,13 +74,17 @@ namespace _42LicenseManager
                 NewConfig.AllowDuplicateMachines = aCheckBoxAllowDupeMachines.Checked;
 
                 Class_Library.Config.Update(NewConfig);
-                
+                ConfigOutput = NewConfig;
+
+                // Add new db to DatabaseLibrary
+                Class_Library.DatabaseLibrary.Add(NewConfig.DBDir_Name);
 
             }
             catch(Exception error)
             {
                 MessageBox.Show(error.ToString());
             }
+            DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -94,10 +94,6 @@ namespace _42LicenseManager
             this.Close();
         }
 
-        public ConfigClass OutputConfig()
-        {
-            return ConfigOutput;
-        }
 
         private void AButtonCreateNewDatabase_Click(object sender, EventArgs e)
         {
@@ -105,6 +101,7 @@ namespace _42LicenseManager
             DialogResult _CreateDBForm = CreateNewDBForm.ShowDialog();
             if (_CreateDBForm == DialogResult.OK)
             {
+                DialogResult = DialogResult.OK;
                 this.Close();
             }
             
@@ -112,15 +109,64 @@ namespace _42LicenseManager
 
         private void ATextBoxDir_Leave(object sender, EventArgs e)
         {
+            if (aTextBoxDir.Text.EndsWith(".mdf"))
+            {
+                string configPath = Path.GetDirectoryName(aTextBoxDir.Text) + @"\Config.txt";
 
+                if (File.Exists(configPath))
+                {
+                    // Get config and fill fields
+                    checkConfig(configPath);                   
+                }
+
+            }
+
+            
+            
         }
 
         private void aCheckBoxAllowDupeMachines_CheckStateChanged(object sender, EventArgs e)
         {
-            if (aCheckBoxAllowDupeMachines.Checked)
+            if (aCheckBoxAllowDupeMachines.Checked && aCheckBoxAllowDupeMachines.Enabled)
             {
-                MessageBox.Show("Once this has been checked it cannot be unchecked. Is this okay?", "Warning!", MessageBoxButtons.OKCancel);
+                if (MessageBox.Show("Once this has been checked it cannot be unchecked. Is this okay?", "Warning!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    aCheckBoxAllowDupeMachines.Checked = false;
+                }
+            }            
+        }
+
+
+
+        #region Methods
+        public void checkConfig(string ConfigFileDir)
+        {
+            try
+            {
+                // CHECK FOR CONFIG
+                if (File.Exists(ConfigFileDir))
+                {
+                    ConfigClass ConfigData = Class_Library.Config.Get(ConfigFileDir);
+
+
+                    aTextBoxTimeToRenew.Text = ConfigData.TimeToRenew;
+                    if (ConfigData.AllowDuplicateMachines)
+                    {
+                        aCheckBoxAllowDupeMachines.Enabled = false;
+                        aCheckBoxAllowDupeMachines.Checked = true;
+                    }
+                    
+                }
+                else
+                {
+                    // Leave blank to make user select values
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.ToString());
             }
         }
+        #endregion
     }
 }

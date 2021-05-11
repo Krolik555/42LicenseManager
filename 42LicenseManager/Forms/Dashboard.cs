@@ -25,6 +25,12 @@ namespace _42LicenseManager
         /// </summary>
         public static List<License> LicensesDGV = new List<License>();
         public string USERNAME = Environment.UserName;
+
+        /// <summary>
+        /// this is selected by the user during program load
+        /// </summary>
+        //public static string SelectedDatabase;
+
         /// <summary>
         /// Contains the data from the configuration file that is stored on the computer.
         /// </summary>
@@ -32,8 +38,11 @@ namespace _42LicenseManager
         public int MyProperty { get; set; }
         Version CurrentVer = Assembly.GetExecutingAssembly().GetName().Version;
 
+        
+
         public Dashboard()
         {
+            
             InitializeComponent();
 
             // Get Current software version
@@ -44,9 +53,24 @@ namespace _42LicenseManager
         {
             try
             {
+                //Select Database
+                SelectDatabaseForm dbLibraryForm = new SelectDatabaseForm();
+                DialogResult selectedDB = dbLibraryForm.ShowDialog();
+                if (selectedDB == DialogResult.OK)
+                {
+                    // Set Database selected by user
+                    Class_Library.Settings.SelectedDatabaseFilePath = dbLibraryForm.returnSelectedDatabaseFilePath;
+                    Class_Library.Settings.SelectedDatabaseDirectory_Only = dbLibraryForm.returnSelectedDatabaseDirectory_Only;
+                    Class_Library.Settings.SelectedDatabaseConfigFilePath = dbLibraryForm.returnSelectedDatabaseConfigFilePath;
+                }
+                else
+                {
+                    this.Close();
+                }
+
+                
                 // VERIFY INTEGRITY OF CONFIG & DATABASE | GET CONFIG INFO
-                //Config = Utilities.GetConfigData();
-                Config = Class_Library.Config.Get();
+                Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
                 // Check If DB is current Version
                 Utilities.CheckDatabaseForUpdates(Config);
@@ -63,7 +87,8 @@ namespace _42LicenseManager
                 // Set Title Name
 
 
-                this.Text += $" v.{CurrentVer} (Database: {Path.GetFileName(Config.DBDir_Name)})";
+                this.Text += $" v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})";
+
             }
             catch (System.Data.SqlClient.SqlException err)
             {
@@ -565,6 +590,26 @@ namespace _42LicenseManager
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void configureBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BackupForm backupForm = new BackupForm();
+            DialogResult DR = backupForm.ShowDialog();
+            if (DR == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void backupNowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Get Backup Target Directory
+            string BackupDir = Config.BackupTarget;
+            // Get backup Target File name
+            string backupFileName = Path.GetFileName(Config.DBDir_Name);
+            // Backup
+            Backup.Now(Config.DBDir_Name, backupFileName, BackupDir);
         }
     }
 }

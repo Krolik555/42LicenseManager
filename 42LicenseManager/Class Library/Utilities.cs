@@ -55,7 +55,7 @@ namespace _42LicenseManager
         public static void CreateLog(List<string> ChangesMade, int AccountIdentifier)
         {
             // GET DB DIRECTORY W/ DB NAME
-            ConfigClass Config = Class_Library.Config.Get();
+            ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
             foreach (string change in ChangesMade)
             {
                 // CREATE NEW LOG
@@ -213,7 +213,7 @@ namespace _42LicenseManager
         public static List<string> FindChanges (LicensedMachines OriginalMachine, LicensedMachines ChangedMachine)
         {
             string Format = $"(License: {OriginalMachine.LicenseId})";
-            ConfigClass Config = Class_Library.Config.Get();
+            ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
             List<string> Changes = new List<string>();
             bool MachineNameChanged = false;
             // MACHINE NAME
@@ -619,7 +619,7 @@ namespace _42LicenseManager
                         DialogResult _cf = CF.ShowDialog();
                         if (_cf == DialogResult.OK)
                         {
-                            Config = CF.OutputConfig();
+                            Config = CF.ConfigOutput;
                         }
                         break;
                     case DialogResult.Abort:

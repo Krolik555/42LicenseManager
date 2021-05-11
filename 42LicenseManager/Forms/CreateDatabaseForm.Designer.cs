@@ -46,11 +46,11 @@
             // 
             // aButtonCreateNewDatabase
             // 
-            this.aButtonCreateNewDatabase.Location = new System.Drawing.Point(476, 80);
+            this.aButtonCreateNewDatabase.Location = new System.Drawing.Point(482, 85);
             this.aButtonCreateNewDatabase.Name = "aButtonCreateNewDatabase";
             this.aButtonCreateNewDatabase.Size = new System.Drawing.Size(129, 23);
             this.aButtonCreateNewDatabase.TabIndex = 5;
-            this.aButtonCreateNewDatabase.Text = "Create New Database";
+            this.aButtonCreateNewDatabase.Text = "Create";
             this.aButtonCreateNewDatabase.UseVisualStyleBackColor = true;
             this.aButtonCreateNewDatabase.Click += new System.EventHandler(this.AButtonCreateNewDatabase_Click);
             // 
@@ -58,7 +58,7 @@
             // 
             this.aButtonBrowse.Location = new System.Drawing.Point(530, 12);
             this.aButtonBrowse.Name = "aButtonBrowse";
-            this.aButtonBrowse.Size = new System.Drawing.Size(75, 23);
+            this.aButtonBrowse.Size = new System.Drawing.Size(75, 20);
             this.aButtonBrowse.TabIndex = 2;
             this.aButtonBrowse.Text = "Browse";
             this.aButtonBrowse.UseVisualStyleBackColor = true;

@@ -14,7 +14,7 @@ namespace _42LicenseManager
     public partial class MoveForm : Form
     {
         public List<LicensedMachines> SelectedMachines_Input { get; set; }
-        ConfigClass Config = Class_Library.Config.Get();
+        ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
         List<License> LicensesDGV = new List<License>();
         List<LicensedMachines> LicensedMachinesDGV = new List<LicensedMachines>();
         
