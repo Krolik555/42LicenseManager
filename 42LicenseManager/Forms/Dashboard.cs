@@ -35,10 +35,14 @@ namespace _42LicenseManager
         /// Contains the data from the configuration file that is stored on the computer.
         /// </summary>
         public ConfigClass Config = new ConfigClass();
-        public int MyProperty { get; set; }
         Version CurrentVer = Assembly.GetExecutingAssembly().GetName().Version;
 
+
+        //PendingActionForm paForm = new PendingActionForm*/("Backing up your database.", "...");
         
+
+
+
 
         public Dashboard()
         {
@@ -85,9 +89,9 @@ namespace _42LicenseManager
                 DGVUtilities.SetSortationDefault(5, SortOrder.Descending, aDataGridViewLicenses);
 
                 // Set Title Name
-
-
                 this.Text += $" v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})";
+
+                backgroundWorkerAutoBackup.RunWorkerAsync();
 
             }
             catch (System.Data.SqlClient.SqlException err)
@@ -110,7 +114,7 @@ namespace _42LicenseManager
                 if (dresult == DialogResult.Yes) // If user wants to change database directory
                 {
                     // SETUP CONFIG FORM -- to re-configure database
-                    ConfigForm _configform = new ConfigForm();
+                    ConfigForm _configform = new ConfigForm(Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath));
                     DialogResult _Configform = _configform.ShowDialog();
                     if (_Configform == DialogResult.OK)
                     {
@@ -466,7 +470,7 @@ namespace _42LicenseManager
         private void setDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // SETUP CONFIG FORM
-            ConfigForm _configform = new ConfigForm();
+            ConfigForm _configform = new ConfigForm(Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath));
             DialogResult _Configform = _configform.ShowDialog();
             if (_Configform == DialogResult.OK)
             {
@@ -598,18 +602,127 @@ namespace _42LicenseManager
             DialogResult DR = backupForm.ShowDialog();
             if (DR == DialogResult.OK)
             {
-
+                Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+                if (Config.AutoBackup)
+                {
+                    //If autoBackup was just turned off that means the background worker is dead.
+                    // Start the background worker back up.
+                    backgroundWorkerAutoBackup.RunWorkerAsync();
+                }
             }
         }
 
         private void backupNowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Get Backup Target Directory
-            string BackupDir = Config.BackupTarget;
-            // Get backup Target File name
-            string backupFileName = Path.GetFileName(Config.DBDir_Name);
-            // Backup
-            Backup.Now(Config.DBDir_Name, backupFileName, BackupDir);
+            DialogResult DRBackupPrompt = MessageBox.Show("Backup now?", "Backup", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DRBackupPrompt == DialogResult.Yes)
+            {
+
+                Cursor.Current = Cursors.WaitCursor;
+                // Get Backup Target Directory
+                string BackupDir = Config.BackupTarget_PathOnly;
+                // Get backup Target File name
+                string backupFileName = Path.GetFileName(Config.DBDir_Name);
+                // Backup
+                if (Config.DBDir_Name != "" && backupFileName != "" && BackupDir != "")
+                {
+                    
+                    backgroundWorkerBackup.RunWorkerAsync();
+
+                }
+                else
+                {
+                    MessageBox.Show("Backup is not configured properly. Go to 'Edit > Configure Backup' to correct this issue.", "Backup Failed!", MessageBoxButtons.OK);
+                }
+            }
+
+            
+
         }
+
+        private void selectDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        #region Backup async processes
+        /// <summary>
+        /// Last time program checked for backup
+        /// </summary>
+        public static DateTime LastBackupCheck { get; set; }
+
+        private void backgroundWorkerBackup_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //backgroundWorkerPendingAction.RunWorkerAsync();
+            
+            Class_Library.Backup.Now(Config.DBDir_Name, Path.GetFileName(Config.DBDir_Name), Config.BackupTarget_PathOnly);
+            Backup.ClearOldBackups(Config.BackupTarget_PathOnly);
+
+            //backgroundWorkerPendingAction.CancelAsync();
+        }
+
+        private void backgroundWorkerBackup_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void backgroundWorkerBackup_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+
+
+        private void backgroundWorkerAutoBackup_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (Config.AutoBackup)
+            {
+                LastBackupCheck = DateTime.Now;
+
+                // if last backup exceeds time limit
+                if (Backup.TimeToBackup(LastBackupCheck))
+                {
+                    // Get config data from file
+                    ConfigClass config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+
+                    // Backup
+                    Class_Library.Backup.AutoBackup(config.DBDir_Name, Path.GetFileName(config.DBDir_Name), config.BackupTarget_PathOnly);
+                    Class_Library.Backup.ClearOldBackups(config.BackupTarget_PathOnly);
+                }
+                else
+                {
+                    // sleep for 10 minutes
+                    Thread.Sleep(600000);
+                    //Thread.Sleep(5000);
+                }
+            }
+        }
+
+        #endregion
+
+
+        public void backgroundWorkerPendingAction_DoWork(object sender, DoWorkEventArgs e)
+        {
+            PendingActionForm paForm = new PendingActionForm("Backing Up", "Loading . . .");
+            
+            paForm.Show();
+
+            while (!backgroundWorkerPendingAction.CancellationPending)
+            {
+                Thread.Sleep(2000);
+            }
+            paForm.Close();
+        }
+
+        private void backgroundWorkerPendingAction_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            
+        }
+
+
     }
 }

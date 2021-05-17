@@ -35,12 +35,12 @@ namespace _42LicenseManager.Forms
             this.aButtonBrowse = new System.Windows.Forms.Button();
             this.aCheckBoxAutoBackup = new System.Windows.Forms.CheckBox();
             this.aGroupBackup = new System.Windows.Forms.GroupBox();
-            this.aComboboxBackupSchedule = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.aComboboxBackupExpiration = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.aComboboxBackupSchedule = new System.Windows.Forms.ComboBox();
             this.aButtonSave = new System.Windows.Forms.Button();
             this.aButtonCancel = new System.Windows.Forms.Button();
             this.aGroupBackup.SuspendLayout();
@@ -98,38 +98,6 @@ namespace _42LicenseManager.Forms
             this.aGroupBackup.TabIndex = 5;
             this.aGroupBackup.TabStop = false;
             // 
-            // aComboboxBackupSchedule
-            // 
-            this.aComboboxBackupSchedule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.aComboboxBackupSchedule.FormattingEnabled = true;
-            this.aComboboxBackupSchedule.Items.AddRange(new object[] {
-            "1",
-            "3",
-            "6",
-            "24"});
-            this.aComboboxBackupSchedule.Location = new System.Drawing.Point(134, 13);
-            this.aComboboxBackupSchedule.Name = "aComboboxBackupSchedule";
-            this.aComboboxBackupSchedule.Size = new System.Drawing.Size(101, 21);
-            this.aComboboxBackupSchedule.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(55, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Backup every";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(241, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "hours";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -162,9 +130,42 @@ namespace _42LicenseManager.Forms
             this.aComboboxBackupExpiration.Size = new System.Drawing.Size(101, 21);
             this.aComboboxBackupExpiration.TabIndex = 8;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(241, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "hours";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(55, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Backup every";
+            // 
+            // aComboboxBackupSchedule
+            // 
+            this.aComboboxBackupSchedule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.aComboboxBackupSchedule.FormattingEnabled = true;
+            this.aComboboxBackupSchedule.Items.AddRange(new object[] {
+            "1",
+            "3",
+            "6",
+            "24",
+            "48"});
+            this.aComboboxBackupSchedule.Location = new System.Drawing.Point(134, 13);
+            this.aComboboxBackupSchedule.Name = "aComboboxBackupSchedule";
+            this.aComboboxBackupSchedule.Size = new System.Drawing.Size(101, 21);
+            this.aComboboxBackupSchedule.TabIndex = 5;
+            // 
             // aButtonSave
             // 
-            this.aButtonSave.Location = new System.Drawing.Point(540, 162);
+            this.aButtonSave.Location = new System.Drawing.Point(449, 163);
             this.aButtonSave.Name = "aButtonSave";
             this.aButtonSave.Size = new System.Drawing.Size(75, 23);
             this.aButtonSave.TabIndex = 6;
@@ -174,7 +175,7 @@ namespace _42LicenseManager.Forms
             // 
             // aButtonCancel
             // 
-            this.aButtonCancel.Location = new System.Drawing.Point(459, 162);
+            this.aButtonCancel.Location = new System.Drawing.Point(530, 162);
             this.aButtonCancel.Name = "aButtonCancel";
             this.aButtonCancel.Size = new System.Drawing.Size(75, 23);
             this.aButtonCancel.TabIndex = 7;
@@ -198,7 +199,7 @@ namespace _42LicenseManager.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BackupForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "42LicenseManager>Configure Backup";
+            this.Text = "Configure Backups";
             this.aGroupBackup.ResumeLayout(false);
             this.aGroupBackup.PerformLayout();
             this.ResumeLayout(false);

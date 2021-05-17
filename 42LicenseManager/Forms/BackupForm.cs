@@ -23,7 +23,7 @@ namespace _42LicenseManager.Forms
             config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
             // Set values on startup
-            aTextboxBackupTarget.Text = config.BackupTarget;
+            aTextboxBackupTarget.Text = config.BackupTarget_PathOnly;
             aCheckBoxAutoBackup.Checked = config.AutoBackup;
             aGroupBackup.Enabled = aCheckBoxAutoBackup.Checked;
 
@@ -52,12 +52,16 @@ namespace _42LicenseManager.Forms
             }
             else
             {
-                config.BackupTarget = aTextboxBackupTarget.Text;
+                // gather config data from fields
+                config.BackupTarget_PathOnly = aTextboxBackupTarget.Text;
                 config.AutoBackup = aCheckBoxAutoBackup.Checked;
                 config.BackupSchedule = Convert.ToInt32(aComboboxBackupSchedule.SelectedItem);
                 config.BackupExpiration = Convert.ToInt32(aComboboxBackupExpiration.SelectedItem);
 
+                // update config file
                 Class_Library.Config.Update(config);
+
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }

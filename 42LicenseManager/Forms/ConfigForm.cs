@@ -14,11 +14,26 @@ namespace _42LicenseManager
     public partial class ConfigForm : Form
     {
         public ConfigClass ConfigOutput = new ConfigClass();
+        public ConfigClass _configInput = new ConfigClass();
 
         public bool? Preload_AllowDupeMachines { get; set; }
 
         public ConfigForm()
         {
+            InitializeComponent();
+            wireup();
+        }
+
+        public ConfigForm(ConfigClass ConfigInput)
+        {
+            _configInput = ConfigInput;
+            InitializeComponent();
+            wireup();
+        }
+        public ConfigForm(ConfigClass ConfigInput, bool AllowDupeMachines)
+        {
+            _configInput = ConfigInput;
+            Preload_AllowDupeMachines = AllowDupeMachines;
             InitializeComponent();
             wireup();
         }
@@ -28,6 +43,7 @@ namespace _42LicenseManager
             InitializeComponent();
             wireup();
         }
+
 
         public void wireup()
         {
@@ -46,6 +62,16 @@ namespace _42LicenseManager
             {
                 aCheckBoxAllowDupeMachines.Enabled = true;
                 aLabelAllowDupeMachineDisabledTip.Visible = false;
+            }
+
+            // If data exists, fill fields
+            if (Class_Library.Settings.SelectedDatabaseConfigFilePath != null)
+            {
+                //MessageBox.Show(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+
+                aTextBoxDir.Text = _configInput.DBDir_Name;
+                aTextBoxTimeToRenew.Text = _configInput.TimeToRenew;
+                aCheckBoxAllowDupeMachines.Checked = _configInput.AllowDuplicateMachines;
             }
 
         }

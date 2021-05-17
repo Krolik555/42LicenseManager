@@ -23,6 +23,8 @@ namespace _42LicenseManager.Class_Library
         /// </summary>
         public static string SelectedDatabaseFilePath { get; set; }
 
+
+
     }
 
 }

@@ -21,7 +21,7 @@ namespace _42LicenseManager.Class_Library
         public static void Create(string ErrorMessage)
         {            
             ConfigClass _config = Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
-            string LogFileDirectory = _config.BackupTarget;
+            string LogFileDirectory = _config.BackupTarget_PathOnly;
             string LogFileName = "ErrorLog.txt";
 
             // Determine what the log file will be named.

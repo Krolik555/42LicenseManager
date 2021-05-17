@@ -13,37 +13,90 @@ namespace _42LicenseManager.Class_Library
     {
         public static void Now(string SourceDir_FileName, string DestFileName, string DestFolderName)
         {
-            DialogResult DRBackupPrompt = MessageBox.Show("Backup now?", "Backup", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (DRBackupPrompt == DialogResult.Yes)
+            Cursor.Current = Cursors.AppStarting;
+
+            int BackupAttempts = 0;
+
+            // First backup attempt. Will return true if successful.
+            bool BackupSuccessful = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
+
+            // If first attempt failed, try again 2 more times.
+            while (BackupSuccessful == false && BackupAttempts < 2)
             {
-                Cursor.Current = Cursors.WaitCursor;
-
-                AutoBackup(SourceDir_FileName, DestFileName, DestFolderName);
-
+                System.Threading.Thread.Sleep(10000);
+                BackupSuccessful = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
+                BackupAttempts++;
             }
-            
-            
+            if (BackupSuccessful == false && BackupAttempts >= 3)
+            {
+                ErrorLogs.Create($"Backup failed after 3 attempts. \nDatabase: {SourceDir_FileName}");
+            }
+
+            if (BackupSuccessful)
+            {
+                // Get Config
+                ConfigClass config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+                // Set successful backup date
+                config.LastBackup = DateTime.Now;
+                // Update config file with new data
+                Class_Library.Config.Update(config);
+
+                MessageBox.Show("Backup Complete!");
+            }
+            else
+            {
+                MessageBox.Show("Backup Failed after 3 attempts.");
+            }
+
+            // Reset cursor
+            Cursor.Current = Cursors.Default;
+        }
+
+        public static bool TimeToBackup (DateTime LastBackupCheck)
+        {
+            ConfigClass config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+            if (LastBackupCheck < DateTime.Now.AddHours(-config.BackupSchedule) || config.LastBackup < DateTime.Now.AddHours(-config.BackupSchedule))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Checks when the last backup was. If the last backup is older than the user-specified backup time, it will backup.
+        // AutoBackup does not prompt user for anything.
         public static void AutoBackup(string SourceDir_FileName, string DestFileName, string DestFolderName)
         {
-            
             int BackupAttempts = 0;
-            bool tryAgain = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
 
+            // First backup attempt. Will return true if successful.
+            bool BackupSuccessful = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
 
-            while (tryAgain == false && BackupAttempts < 3)
+            // If first attempt failed, try again 2 more times.
+            while (BackupSuccessful == false && BackupAttempts < 2)
             {
                 System.Threading.Thread.Sleep(10000);
-                tryAgain = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
+                BackupSuccessful = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
                 BackupAttempts++;
             }
-            if (tryAgain == false && BackupAttempts >= 3)
+            if (BackupSuccessful == false && BackupAttempts >= 3)
             {
-                ErrorLogs.Create($"Backup failed after 3 attempts.");
+                ErrorLogs.Create($"Backup failed after 3 attempts. \nDatabase: {SourceDir_FileName}");
             }
+
+            if (BackupSuccessful)
+            {
+                // Get Config
+                ConfigClass config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+                // Set successful backup date
+                config.LastBackup = DateTime.Now;
+                // Update config file with new data
+                Class_Library.Config.Update(config);
+            }
+
         }
 
         /// <summary>
@@ -86,6 +139,50 @@ namespace _42LicenseManager.Class_Library
                 ErrorLogs.Create(($"Error in the 'FileCopy' stage: {e.Message}{ Environment.NewLine}{ errorMessage} \n\n {e}"));
                 return true; // Backup failed but don't keep trying.
             }
+        }
+
+        public static void ClearOldBackups(string DirectoryContainingBackups)
+        {
+            // Get the names of all current backups
+            string[] currentBackups = Directory.GetFiles(DirectoryContainingBackups);
+            // Get config data
+            ConfigClass _config = Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+            // Will be used to delete old backups
+            List<string> oldBackups = new List<string>();
+
+
+            foreach(string _backup in currentBackups)
+            {
+                // remove directory
+                string filename = Path.GetFileName(_backup);
+                // remove database name to keep only the date
+                filename = filename.Substring(0, 8);
+                // Add dashes into date
+                filename = $"{filename.Substring(0,4)}-{filename.Substring(4,2)}-{filename.Substring(6,2)}";
+
+                try
+                {
+                    // Convert to DateTime
+                    DateTime backupDate = DateTime.Parse(filename);
+
+                    // If backup is older than user specified time, delete it.
+                    if (backupDate < DateTime.Now.AddMonths(-_config.BackupExpiration))
+                    {
+                        // add full database path and name to list
+                        //oldBackups.Add(_backup);
+
+                        // Delete old database
+                        File.Delete(_backup);
+                    }
+                }
+                catch
+                {
+                    
+                }
+                
+            }
+
+
         }
     }
 }

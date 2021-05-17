@@ -17,7 +17,7 @@ namespace _42LicenseManager.Class_Library
         public static void Update(ConfigClass In_ConfigData)
         {
             // if Config exists, update config
-            if (File.Exists(Path.GetDirectoryName($@"{Path.GetDirectoryName(In_ConfigData.DBDir_Name)}\Config.txt")))
+            if (File.Exists(Class_Library.Settings.SelectedDatabaseConfigFilePath))
             {
                 createConfig(In_ConfigData);
             }
@@ -25,7 +25,7 @@ namespace _42LicenseManager.Class_Library
             else
             {
                 // Default Config settings 
-                In_ConfigData.BackupTarget = "";
+                In_ConfigData.BackupTarget_PathOnly = "";
                 In_ConfigData.AutoBackup = false;
                 In_ConfigData.BackupSchedule = 24;
                 In_ConfigData.BackupExpiration = 6;
@@ -47,10 +47,11 @@ namespace _42LicenseManager.Class_Library
                     tw.WriteLine($"TimeToRenew={_ConfigData.TimeToRenew}");
                     tw.WriteLine($"InstalledDirectory={_ConfigData.InstalledDirectory}");
                     tw.WriteLine($"AllowDuplicateMachines={_ConfigData.AllowDuplicateMachines}");
-                    tw.WriteLine($"BackupTarget={_ConfigData.BackupTarget}");
+                    tw.WriteLine($"BackupTarget={_ConfigData.BackupTarget_PathOnly}");
                     tw.WriteLine($"AutoBackup={_ConfigData.AutoBackup}");
                     tw.WriteLine($"BackupSchedule={_ConfigData.BackupSchedule}");
                     tw.WriteLine($"BackupExpiration={_ConfigData.BackupExpiration}");
+                    tw.WriteLine($"LastBackup={_ConfigData.LastBackup}");
                     tw.Close();
                 }
                 else
@@ -87,10 +88,11 @@ namespace _42LicenseManager.Class_Library
                             Config.TimeToRenew = Conf[1].Contains("TimeToRenew=") && Conf[1] != "" ? Conf[1].Remove(0, 12) : ""; // Remove "TimeToRenew=" text
                             Config.InstalledDirectory = Conf[2].Contains("InstalledDirectory=") && Conf[2] != "" ? Conf[2].Remove(0, 19) : ""; // Remove "InstallDir=" text
                             Config.AllowDuplicateMachines = Conf[3].Contains("AllowDuplicateMachines=") && Conf[3] != "" ? Convert.ToBoolean(Conf[3].Remove(0, 23)) : Convert.ToBoolean("");
-                            Config.BackupTarget = Conf[4].Contains("BackupTarget=") && Conf[4] != "" ? Conf[4].Remove(0, 13) : ""; // Remove "BackupTarget=" text
-                            //Config.AutoBackup = Conf[5].Contains("AutoBackup=") && Conf[5] != "" ? Convert.ToBoolean(Conf[5].Remove(0, 11)) : Convert.ToBoolean(""); // remove "AutoBackup=" text
-                            //Config.BackupSchedule = Conf[6].Contains("BackupSchedule=") && Conf[6] != "" ? Convert.ToInt32(Conf[6].Remove(0, 15)) : Convert.ToInt32("");
-                            //Config.BackupExpiration = Conf[7].Contains("BackupExpiration=") && Conf[7] != "" ? Convert.ToInt32(Conf[7].Remove(0, 17)) : Convert.ToInt32("");
+                            Config.BackupTarget_PathOnly = Conf[4].Contains("BackupTarget=") && Conf[4] != "" ? Conf[4].Remove(0, 13) : ""; // Remove "BackupTarget=" text
+                            Config.AutoBackup = Conf[5].Contains("AutoBackup=") && Conf[5] != "" ? Convert.ToBoolean(Conf[5].Remove(0, 11)) : Convert.ToBoolean(""); // remove "AutoBackup=" text
+                            Config.BackupSchedule = Conf[6].Contains("BackupSchedule=") && Conf[6] != "" ? Convert.ToInt32(Conf[6].Remove(0, 15)) : Convert.ToInt32("");
+                            Config.BackupExpiration = Conf[7].Contains("BackupExpiration=") && Conf[7] != "" ? Convert.ToInt32(Conf[7].Remove(0, 17)) : Convert.ToInt32("");
+                            Config.LastBackup = Conf[8].Contains("LastBackup=") && Conf[8] != "" ? Convert.ToDateTime(Conf[8].Remove(0, 11)) : Convert.ToDateTime("");
                         }
                         catch (Exception error)
                         {
@@ -108,8 +110,8 @@ namespace _42LicenseManager.Class_Library
                 { // NO CONFIG DATA FOUND. ASK CREATE NEW.
                     if (MessageBox.Show("Database settings are not configured or missing. Configure now?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        ConfigForm CF = new ConfigForm(false);
-                        
+                        ConfigForm CF = new ConfigForm(Config, false);
+
                         DialogResult _cf = CF.ShowDialog();
                         if (_cf == DialogResult.OK)
                         {

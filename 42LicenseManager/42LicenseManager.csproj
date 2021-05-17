@@ -171,6 +171,12 @@
     <Compile Include="Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PendingActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PendingActionForm.Designer.cs">
+      <DependentUpon>PendingActionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectDatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MoveForm.resx">
       <DependentUpon>MoveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PendingActionForm.resx">
+      <DependentUpon>PendingActionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectDatabaseForm.resx">
       <DependentUpon>SelectDatabaseForm.cs</DependentUpon>

@@ -49,20 +49,24 @@
             this.aToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configureBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aButtonViewAllLogs = new System.Windows.Forms.Button();
             this.aLabelView = new System.Windows.Forms.Label();
-            this.configureBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aStatusStripDashboard = new System.Windows.Forms.StatusStrip();
+            this.backgroundWorkerBackup = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerPendingAction = new System.ComponentModel.BackgroundWorker();
             this.aButtonRefresh = new System.Windows.Forms.Button();
             this.aButtonSearch = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.backupNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aStatusStripDashboard = new System.Windows.Forms.StatusStrip();
+            this.backgroundWorkerAutoBackup = new System.ComponentModel.BackgroundWorker();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -281,15 +285,30 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backupNowToolStripMenuItem,
+            this.selectDatabaseToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // backupNowToolStripMenuItem
+            // 
+            this.backupNowToolStripMenuItem.Name = "backupNowToolStripMenuItem";
+            this.backupNowToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.backupNowToolStripMenuItem.Text = "Backup Now";
+            this.backupNowToolStripMenuItem.Click += new System.EventHandler(this.backupNowToolStripMenuItem_Click);
+            // 
+            // selectDatabaseToolStripMenuItem
+            // 
+            this.selectDatabaseToolStripMenuItem.Name = "selectDatabaseToolStripMenuItem";
+            this.selectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.selectDatabaseToolStripMenuItem.Text = "Select Database";
+            this.selectDatabaseToolStripMenuItem.Click += new System.EventHandler(this.selectDatabaseToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -308,6 +327,13 @@
             this.setDatabaseToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.setDatabaseToolStripMenuItem.Text = "Configure Database";
             this.setDatabaseToolStripMenuItem.Click += new System.EventHandler(this.setDatabaseToolStripMenuItem_Click);
+            // 
+            // configureBackupToolStripMenuItem
+            // 
+            this.configureBackupToolStripMenuItem.Name = "configureBackupToolStripMenuItem";
+            this.configureBackupToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.configureBackupToolStripMenuItem.Text = "Configure Backup";
+            this.configureBackupToolStripMenuItem.Click += new System.EventHandler(this.configureBackupToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -353,12 +379,27 @@
             this.aLabelView.TabIndex = 34;
             this.aLabelView.Text = "View:";
             // 
-            // configureBackupToolStripMenuItem
+            // aStatusStripDashboard
             // 
-            this.configureBackupToolStripMenuItem.Name = "configureBackupToolStripMenuItem";
-            this.configureBackupToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.configureBackupToolStripMenuItem.Text = "Configure Backup";
-            this.configureBackupToolStripMenuItem.Click += new System.EventHandler(this.configureBackupToolStripMenuItem_Click);
+            this.aStatusStripDashboard.Location = new System.Drawing.Point(0, 536);
+            this.aStatusStripDashboard.Name = "aStatusStripDashboard";
+            this.aStatusStripDashboard.Size = new System.Drawing.Size(1312, 22);
+            this.aStatusStripDashboard.TabIndex = 36;
+            this.aStatusStripDashboard.Text = "statusStrip1";
+            // 
+            // backgroundWorkerBackup
+            // 
+            this.backgroundWorkerBackup.WorkerReportsProgress = true;
+            this.backgroundWorkerBackup.WorkerSupportsCancellation = true;
+            this.backgroundWorkerBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerBackup_DoWork);
+            this.backgroundWorkerBackup.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerBackup_ProgressChanged);
+            this.backgroundWorkerBackup.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerBackup_RunWorkerCompleted);
+            // 
+            // backgroundWorkerPendingAction
+            // 
+            this.backgroundWorkerPendingAction.WorkerSupportsCancellation = true;
+            this.backgroundWorkerPendingAction.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerPendingAction_DoWork);
+            this.backgroundWorkerPendingAction.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerPendingAction_RunWorkerCompleted);
             // 
             // aButtonRefresh
             // 
@@ -395,20 +436,10 @@
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             // 
-            // backupNowToolStripMenuItem
+            // backgroundWorkerAutoBackup
             // 
-            this.backupNowToolStripMenuItem.Name = "backupNowToolStripMenuItem";
-            this.backupNowToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.backupNowToolStripMenuItem.Text = "Backup Now";
-            this.backupNowToolStripMenuItem.Click += new System.EventHandler(this.backupNowToolStripMenuItem_Click);
-            // 
-            // aStatusStripDashboard
-            // 
-            this.aStatusStripDashboard.Location = new System.Drawing.Point(0, 536);
-            this.aStatusStripDashboard.Name = "aStatusStripDashboard";
-            this.aStatusStripDashboard.Size = new System.Drawing.Size(1312, 22);
-            this.aStatusStripDashboard.TabIndex = 36;
-            this.aStatusStripDashboard.Text = "statusStrip1";
+            this.backgroundWorkerAutoBackup.WorkerSupportsCancellation = true;
+            this.backgroundWorkerAutoBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAutoBackup_DoWork);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -524,6 +555,7 @@
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "License Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dashboard_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -577,6 +609,10 @@
         private System.Windows.Forms.ToolStripMenuItem configureBackupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backupNowToolStripMenuItem;
         public System.Windows.Forms.StatusStrip aStatusStripDashboard;
+        private System.Windows.Forms.ToolStripMenuItem selectDatabaseToolStripMenuItem;
+        public System.ComponentModel.BackgroundWorker backgroundWorkerBackup;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerPendingAction;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerAutoBackup;
     }
 }
 
