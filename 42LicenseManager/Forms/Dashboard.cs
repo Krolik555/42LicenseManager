@@ -617,7 +617,6 @@ namespace _42LicenseManager
             DialogResult DRBackupPrompt = MessageBox.Show("Backup now?", "Backup", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DRBackupPrompt == DialogResult.Yes)
             {
-
                 Cursor.Current = Cursors.WaitCursor;
                 // Get Backup Target Directory
                 string BackupDir = Config.BackupTarget_PathOnly;
@@ -635,8 +634,8 @@ namespace _42LicenseManager
                     MessageBox.Show("Backup is not configured properly. Go to 'Edit > Configure Backup' to correct this issue.", "Backup Failed!", MessageBoxButtons.OK);
                 }
             }
-
             
+
 
         }
 
@@ -658,13 +657,28 @@ namespace _42LicenseManager
 
         private void backgroundWorkerBackup_DoWork(object sender, DoWorkEventArgs e)
         {
-            //backgroundWorkerPendingAction.RunWorkerAsync();
+            Thread t = new Thread(new ThreadStart(Splash));
+            t.Start();
             
+
             Class_Library.Backup.Now(Config.DBDir_Name, Path.GetFileName(Config.DBDir_Name), Config.BackupTarget_PathOnly);
             Backup.ClearOldBackups(Config.BackupTarget_PathOnly);
 
-            //backgroundWorkerPendingAction.CancelAsync();
+            t.Abort();
         }
+
+        void Splash()
+        {
+            //Open a splash screen form
+            SplashScreen.SplashForm frm = new SplashScreen.SplashForm();
+            frm.Font = new Font("Time New Romans", 7);
+            frm.AppName = "Backup In Progress";
+            frm.ShowIcon = false;
+            frm.ShowInTaskbar = false;
+
+            Application.Run(frm);
+        }
+
 
         private void backgroundWorkerBackup_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -697,31 +711,11 @@ namespace _42LicenseManager
                 {
                     // sleep for 10 minutes
                     Thread.Sleep(600000);
-                    //Thread.Sleep(5000);
                 }
             }
         }
 
         #endregion
-
-
-        public void backgroundWorkerPendingAction_DoWork(object sender, DoWorkEventArgs e)
-        {
-            PendingActionForm paForm = new PendingActionForm("Backing Up", "Loading . . .");
-            
-            paForm.Show();
-
-            while (!backgroundWorkerPendingAction.CancellationPending)
-            {
-                Thread.Sleep(2000);
-            }
-            paForm.Close();
-        }
-
-        private void backgroundWorkerPendingAction_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            
-        }
 
 
     }

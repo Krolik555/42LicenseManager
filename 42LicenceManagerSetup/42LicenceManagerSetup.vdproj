@@ -100,19 +100,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_59548ECA90BC5B62B2DCE39FE614ACBC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E77BE16D420F4A428927A0FFA028B5BB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2DB0D562598C4AC3B15123E37BC8F7AF"
+        "OwnerKey" = "8:_D8EE3C247A294F1FA63F0BDAA36D6ED2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,19 +112,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E77BE16D420F4A428927A0FFA028B5BB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E59E89D22AD945BC9C51F143C64893FC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D8EE3C247A294F1FA63F0BDAA36D6ED2"
+        "OwnerKey" = "8:_16F6EF040B41E22EC0A010FB9C19C5B7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_16F6EF040B41E22EC0A010FB9C19C5B7"
+        "OwnerKey" = "8:_59548ECA90BC5B62B2DCE39FE614ACBC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2DB0D562598C4AC3B15123E37BC8F7AF"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -194,6 +194,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -420,7 +428,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:42LicenseManager, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:42LicenseManager, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D8EE3C247A294F1FA63F0BDAA36D6ED2"
@@ -647,15 +655,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:42LicenceManagerSetup"
-        "ProductCode" = "8:{8D098164-27BD-4A07-B007-1A380992CB3B}"
-        "PackageCode" = "8:{F950A0C6-1995-41D7-9325-282680AB31D0}"
+        "ProductCode" = "8:{4048B3B9-52D4-4ACB-831C-A078F93F44DB}"
+        "PackageCode" = "8:{99DCB197-2A6E-4D73-A853-6B9736972CFD}"
         "UpgradeCode" = "8:{7330FA14-90A3-4D95-A4E5-E5661FCFF39E}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.4.00"
+        "ProductVersion" = "8:2.0.0.0"
         "Manufacturer" = "8:42 Tech Solutions, Inc."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

@@ -62,7 +62,6 @@
             this.aLabelView = new System.Windows.Forms.Label();
             this.aStatusStripDashboard = new System.Windows.Forms.StatusStrip();
             this.backgroundWorkerBackup = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerPendingAction = new System.ComponentModel.BackgroundWorker();
             this.aButtonRefresh = new System.Windows.Forms.Button();
             this.aButtonSearch = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -347,14 +346,14 @@
             // checkForUpdatesToolStripMenuItem
             // 
             this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
             this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -394,12 +393,6 @@
             this.backgroundWorkerBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerBackup_DoWork);
             this.backgroundWorkerBackup.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerBackup_ProgressChanged);
             this.backgroundWorkerBackup.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerBackup_RunWorkerCompleted);
-            // 
-            // backgroundWorkerPendingAction
-            // 
-            this.backgroundWorkerPendingAction.WorkerSupportsCancellation = true;
-            this.backgroundWorkerPendingAction.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerPendingAction_DoWork);
-            this.backgroundWorkerPendingAction.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerPendingAction_RunWorkerCompleted);
             // 
             // aButtonRefresh
             // 
@@ -611,7 +604,6 @@
         public System.Windows.Forms.StatusStrip aStatusStripDashboard;
         private System.Windows.Forms.ToolStripMenuItem selectDatabaseToolStripMenuItem;
         public System.ComponentModel.BackgroundWorker backgroundWorkerBackup;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerPendingAction;
         private System.ComponentModel.BackgroundWorker backgroundWorkerAutoBackup;
     }
 }
