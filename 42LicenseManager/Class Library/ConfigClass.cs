@@ -19,6 +19,7 @@ namespace _42LicenseManager
         /// Program Install Directory
         /// </summary>
         public string InstalledDirectory { get; set; }
+        public bool AllowDuplicateClients { get; set; }
         public bool AllowDuplicateMachines { get; set; }
 
         //Backup Info

@@ -21,6 +21,12 @@ namespace _42LicenseManager
                 return connection.Query<License>("dbo.GDataDB_GetByLastName @LastName", new { LastName = lastName }).ToList();
             }
         }
+        /// <summary>
+        /// This works for Company Name, First, Last or even part of them.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="DBDIR_Name"></param>
+        /// <returns></returns>
         public static List<License> GetByName(string name, string DBDIR_Name) // This works for first and/or last name and/or Company Name
         {
             Cursor.Current = Cursors.WaitCursor;

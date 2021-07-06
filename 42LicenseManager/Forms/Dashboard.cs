@@ -175,15 +175,15 @@ namespace _42LicenseManager
             //GET SORTATION
             Class_Library.DataGridView.DGVSortInfo SavedSortation = DGVUtilities.GetSortation(aDataGridViewLicenses);
 
+
+            // GET DATA BY NAME
             if (aComboboxSortBy.SelectedItem.ToString() == @"Search by Name\Id")
             {
-
-                // GET DATA BY NAME
                 LicensesDGV = DataAccess_GDataTable.GetByName(aTextBoxSearch.Text, Config.DBDir_Name);
             }
+            // OR GET DATA BY MACHINE NAME
             else if (aComboboxSortBy.SelectedItem.ToString() == "Search by Machine Name")
             {
-                // GET DATA BY MACHINE NAME
                 List<LicensedMachines> LicenseFound = DataAccess_LicensedMachinesTable.GetByMachineName(aTextBoxSearch.Text, Config.DBDir_Name);
                 try
                 {
@@ -286,7 +286,8 @@ namespace _42LicenseManager
             AddLicenseForm _AddLicenseForm = new AddLicenseForm();
             DialogResult _form = _AddLicenseForm.ShowDialog();
 
-            if (_form == DialogResult.Yes) // SAVE AND ADD MACHINES BUTTON
+            #region SAVE AND ADD MACHINES BUTTON
+            if (_form == DialogResult.Yes) 
             {
                 // GET NEW LICENSE INFO from add license form
                 NewLicense = _AddLicenseForm.OutputLicense();
@@ -334,6 +335,9 @@ namespace _42LicenseManager
                 }
                 
             }
+            #endregion Save and Add Machines
+
+            #region Save
             if (_form == DialogResult.OK) // SAVE BUTTON
             {
                 // COLLECT DATA FROM CREATED LICENSE
@@ -364,6 +368,55 @@ namespace _42LicenseManager
                 InitializeLicensesTTR();
                 RefreshDashboard(this, e);
             }
+            #endregion Save
+
+            #region Open Duplicate Client Account
+            if (_form == DialogResult.Abort)
+            {
+                License SelectedLicense = new License();
+                License SelectedLicense_Changed = new License();
+                EditForm _editForm = new EditForm();
+                // GET DATA
+                try
+                {
+                    // GET SELECTED LICENSE FROM DB VIA ID
+                    SelectedLicense = _AddLicenseForm.OutputLicense();
+                }
+                catch
+                {
+                    MessageBox.Show("Please Select a row");
+                    return;
+                }
+
+                // LAUNCH EDIT FORM
+                if (SelectedLicense != null)
+                {
+                    _editForm.InputLicense = SelectedLicense; // Set License to be passed in
+                    DialogResult _editformResult = _editForm.ShowDialog();
+                    if (_editformResult == DialogResult.OK) // When editform.Savebutton is clicked
+                    {
+                        SelectedLicense_Changed = _editForm.OutputLicense(); // launch Edit form and return values to SelectedLicense_Changed
+
+                        if (SelectedLicense_Changed != SelectedLicense)
+                        {
+                            // Update SQL DB using changed License
+                            DataAccess_GDataTable.UpdateLicenseData(SelectedLicense_Changed, Config.DBDir_Name);
+
+                            // FIND CHANGES
+                            List<string> ChangesMade = Utilities.FindChanges(SelectedLicense, SelectedLicense_Changed);
+                            // CREATE/SAVE LOGS
+                            Utilities.CreateLog(ChangesMade, SelectedLicense.Id);
+                        }
+                        RefreshDashboard(this, e);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No license selected to edit");
+                }
+                RefreshDashboard(this, e);
+            }
+            #endregion Open Duplicate Client Account
         }
 
         private void aButtonDelete_Click(object sender, EventArgs e)
@@ -583,7 +636,9 @@ namespace _42LicenseManager
        
         private void aButtonTest_Click(object sender, EventArgs e)
         {
-            
+            Forms.ProRate.ProRateForm pRForm = new Forms.ProRate.ProRateForm();
+
+            pRForm.Show();
         }
 
         private void ATextBoxSearch_Leave(object sender, EventArgs e)

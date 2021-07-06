@@ -430,13 +430,61 @@ namespace _42LicenseManager
             DataAccess_GDataTable.UpdateLicenseData(SourceLicense, DBDir_Name);
         }
 
+        /// <summary>
+        /// Determines if Client already exists in database. It can also return the license(s) found via Out parameter.
+        /// "Client" can be company name, first name, last name or partial name.
+        /// If "AllNamesMustBeIdentical" is true then Company, First and Last name must be exact.
+        /// AllNamesMustBeIdentical is not case sensative. If this is set to false than it will return true if db client even contains inserted name.
+        /// </summary>
+        /// <param name="Client"></param>
+        /// <param name="DBDIR_Name"></param>
+        /// <param name="licenseFound"></param>
+        /// <returns></returns>
+        public static bool ClientExists(License Client, string DBDIR_Name, bool AllNamesMustBeIdentical, out List<License> licenseFound)
+        {
+            licenseFound = DataAccess_GDataTable.GetByName($"{Client.CompanyName} {Client.FirstName} {Client.LastName}", DBDIR_Name);
+
+            #region Names Must Be Idental
+            if (AllNamesMustBeIdentical)
+            {
+                List<License> identicalLicenseFound = new List<License>();
+
+                foreach(License dblicense in licenseFound)
+                {
+                    // If License == Client then Client is exact duplicate.
+                    if ($"{dblicense.CompanyName} {dblicense.FirstName} {dblicense.LastName}".ToLower() == $"{Client.CompanyName} {Client.FirstName} {Client.LastName}".ToLower())
+                    {
+                        // Add duplicate client to list of duplicates
+                        identicalLicenseFound.Add(dblicense);
+                    }
+                    
+
+                }
+
+                // Clear licenseFound list
+                licenseFound.Clear();
+                // Copy duplicate license list to licenseFound list (If non were found it will simply return an empty list)
+                licenseFound = identicalLicenseFound;
+                
+            }
+            #endregion
+
+            if (licenseFound.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Verify machine doesn't already exist in Database
         /// </summary>
         /// <param name="LicensedMachineName"></param>
         /// <param name="DBDIR_Name"></param>
-        public static bool MachineExist(string MachineToLookFor, string DBDIR_Name, out List<int> LicenseIDs)
+        public static bool MachineExists(string MachineToLookFor, string DBDIR_Name, out List<int> LicenseIDs)
         {
             List<LicensedMachines> Duplicates = new List<LicensedMachines>();
 
@@ -460,6 +508,7 @@ namespace _42LicenseManager
                 return false;
             }
         }
+
 
 
         /// <summary>

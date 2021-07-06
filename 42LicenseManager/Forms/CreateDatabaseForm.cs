@@ -13,7 +13,7 @@ namespace _42LicenseManager
 {
     public partial class CreateDatabaseForm : Form
     {
-        ConfigClass ConfigOutput = new ConfigClass();
+        //ConfigClass ConfigOutput = new ConfigClass();
 
         public CreateDatabaseForm()
         {
@@ -44,30 +44,39 @@ namespace _42LicenseManager
 
                 Class_Library.DatabaseLibrary.Add(newdbdir);
 
-                // CREATE CONFIG FILE FOR NEW DATABASE
-                TextWriter tw = new StreamWriter($@"{aTextBoxNewDBDir.Text}\Config.txt", true);
-                tw.WriteLine($@"DBDIR={aTextBoxNewDBDir.Text}\{aTextBoxDatabaseName.Text}.mdf");
-                tw.WriteLine($"TimeToRenew={aTextBoxTimeToRenew.Text}");
-                tw.WriteLine($"InstalledDirectory={Environment.CurrentDirectory}");
-                tw.WriteLine($"AllowDuplicateMachines={aCheckBoxAllowDupeMachines.Checked}");
-                tw.WriteLine($"BackupTarget=");
-                tw.WriteLine($"AutoBackup=");
-                tw.WriteLine($"BackupSchedule=");
-                tw.WriteLine($"BackupExpiration=");
-                tw.Close();
+                //// CREATE CONFIG FILE FOR NEW DATABASE
+                //TextWriter tw = new StreamWriter($@"{aTextBoxNewDBDir.Text}\Config.txt", true);
+                //tw.WriteLine($@"DBDIR={aTextBoxNewDBDir.Text}\{aTextBoxDatabaseName.Text}.mdf");
+                //tw.WriteLine($"TimeToRenew={aTextBoxTimeToRenew.Text}");
+                //tw.WriteLine($"InstalledDirectory={Environment.CurrentDirectory}");
+                //tw.WriteLine($"AllowDuplicateMachines={aCheckBoxAllowDupeMachines.Checked}");
+                //tw.WriteLine($"BackupTarget=");
+                //tw.WriteLine($"AutoBackup=");
+                //tw.WriteLine($"BackupSchedule=");
+                //tw.WriteLine($"BackupExpiration=");
+                //tw.Close();
 
-                // GET DEFAULT DATA FOR CREATING NEW DATABASE
-                ConfigOutput.DBDir_Name = $@"{aTextBoxNewDBDir.Text}\{aTextBoxDatabaseName.Text}.mdf";
-                ConfigOutput.TimeToRenew = aTextBoxTimeToRenew.Text;
-                ConfigOutput.InstalledDirectory = Environment.CurrentDirectory;
-                ConfigOutput.AllowDuplicateMachines = aCheckBoxAllowDupeMachines.Checked;
+                ConfigClass newConfig = new ConfigClass();
+                newConfig.DBDir_Name = $@"{aTextBoxNewDBDir.Text}\{aTextBoxDatabaseName.Text}.mdf";
+                newConfig.TimeToRenew = $"{aTextBoxTimeToRenew.Text}";
+                newConfig.InstalledDirectory = $"{Environment.CurrentDirectory}";
+                newConfig.AllowDuplicateClients = aCheckBoxAllowDupeClients.Checked;
+                newConfig.AllowDuplicateMachines = aCheckBoxAllowDupeMachines.Checked;
+                newConfig.BackupTarget_PathOnly = "";
+                newConfig.AutoBackup = false;
+                newConfig.BackupSchedule = 24;
+                newConfig.BackupExpiration = 6;
+
 
                 // CREATE NEW DATABASE
-                Utilities.CreateNewDatabase(ConfigOutput);
+                Utilities.CreateNewDatabase(newConfig);
+                // Create new Config file
+                Class_Library.Config.Update(newConfig);
+
+                
 
                 DialogResult = DialogResult.OK;
                 this.Close();
-                //Application.Restart();
             }
             catch (System.IO.IOException)
             {
@@ -101,6 +110,28 @@ namespace _42LicenseManager
             if (aTextBoxDatabaseName.Text.EndsWith(".mdf"))
             {
                 aTextBoxDatabaseName.Text = aTextBoxDatabaseName.Text.Remove(aTextBoxDatabaseName.Text.Length - 4);
+            }
+        }
+
+        private void aCheckBoxAllowDupeClients_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (aCheckBoxAllowDupeClients.Checked && aCheckBoxAllowDupeClients.Enabled)
+            {
+                if (MessageBox.Show("Once this has been checked it cannot be unchecked. Is this okay?", "Warning!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    aCheckBoxAllowDupeClients.Checked = false;
+                }
+            }
+        }
+
+        private void aCheckBoxAllowDupeMachines_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (aCheckBoxAllowDupeMachines.Checked && aCheckBoxAllowDupeMachines.Enabled)
+            {
+                if (MessageBox.Show("Once this has been checked it cannot be unchecked. Is this okay?", "Warning!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    aCheckBoxAllowDupeMachines.Checked = false;
+                }
             }
         }
     }

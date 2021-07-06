@@ -40,12 +40,15 @@ namespace _42LicenseManager.Forms
             // 
             // aDGVDatabases
             // 
+            this.aDGVDatabases.AllowUserToAddRows = false;
+            this.aDGVDatabases.AllowUserToDeleteRows = false;
             this.aDGVDatabases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aDGVDatabases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dbName,
             this.dbDir});
             this.aDGVDatabases.Location = new System.Drawing.Point(12, 30);
             this.aDGVDatabases.Name = "aDGVDatabases";
+            this.aDGVDatabases.ReadOnly = true;
             this.aDGVDatabases.Size = new System.Drawing.Size(844, 152);
             this.aDGVDatabases.TabIndex = 0;
             this.aDGVDatabases.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDGVDatabases_CellDoubleClick);

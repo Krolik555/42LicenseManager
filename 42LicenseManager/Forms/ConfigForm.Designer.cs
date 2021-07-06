@@ -39,8 +39,8 @@
             this.aButtonCreateNewDatabase = new System.Windows.Forms.Button();
             this.aLabelHelp = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.aLabelAllowDupeMachineDisabledTip = new System.Windows.Forms.Label();
             this.aCheckBoxAllowDupeMachines = new System.Windows.Forms.CheckBox();
+            this.aCheckBoxAllowDupeClients = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.aButtonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -122,24 +122,10 @@
             this.aLabelHelp.Text = "(?)";
             this.toolTip1.SetToolTip(this.aLabelHelp, "How many days prior to a license expiring to \r\nset it as \'Open\' for review.\r\n");
             // 
-            // aLabelAllowDupeMachineDisabledTip
-            // 
-            this.aLabelAllowDupeMachineDisabledTip.AutoSize = true;
-            this.aLabelAllowDupeMachineDisabledTip.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.aLabelAllowDupeMachineDisabledTip.Location = new System.Drawing.Point(179, 101);
-            this.aLabelAllowDupeMachineDisabledTip.Name = "aLabelAllowDupeMachineDisabledTip";
-            this.aLabelAllowDupeMachineDisabledTip.Size = new System.Drawing.Size(19, 13);
-            this.aLabelAllowDupeMachineDisabledTip.TabIndex = 13;
-            this.aLabelAllowDupeMachineDisabledTip.Text = "(?)";
-            this.toolTip1.SetToolTip(this.aLabelAllowDupeMachineDisabledTip, "Once this is checked it cannot be unchecked");
-            this.aLabelAllowDupeMachineDisabledTip.Visible = false;
-            // 
             // aCheckBoxAllowDupeMachines
             // 
             this.aCheckBoxAllowDupeMachines.AutoSize = true;
-            this.aCheckBoxAllowDupeMachines.Checked = true;
-            this.aCheckBoxAllowDupeMachines.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.aCheckBoxAllowDupeMachines.Location = new System.Drawing.Point(12, 100);
+            this.aCheckBoxAllowDupeMachines.Location = new System.Drawing.Point(12, 116);
             this.aCheckBoxAllowDupeMachines.Name = "aCheckBoxAllowDupeMachines";
             this.aCheckBoxAllowDupeMachines.Size = new System.Drawing.Size(174, 17);
             this.aCheckBoxAllowDupeMachines.TabIndex = 12;
@@ -148,6 +134,18 @@
         "arning: Once this is enabled it cannot be disabled!");
             this.aCheckBoxAllowDupeMachines.UseVisualStyleBackColor = true;
             this.aCheckBoxAllowDupeMachines.CheckStateChanged += new System.EventHandler(this.aCheckBoxAllowDupeMachines_CheckStateChanged);
+            // 
+            // aCheckBoxAllowDupeClients
+            // 
+            this.aCheckBoxAllowDupeClients.AutoSize = true;
+            this.aCheckBoxAllowDupeClients.Location = new System.Drawing.Point(12, 100);
+            this.aCheckBoxAllowDupeClients.Name = "aCheckBoxAllowDupeClients";
+            this.aCheckBoxAllowDupeClients.Size = new System.Drawing.Size(130, 17);
+            this.aCheckBoxAllowDupeClients.TabIndex = 14;
+            this.aCheckBoxAllowDupeClients.Text = "Allow duplicate clients";
+            this.toolTip1.SetToolTip(this.aCheckBoxAllowDupeClients, resources.GetString("aCheckBoxAllowDupeClients.ToolTip"));
+            this.aCheckBoxAllowDupeClients.UseVisualStyleBackColor = true;
+            this.aCheckBoxAllowDupeClients.CheckStateChanged += new System.EventHandler(this.aCheckBoxAllowDupeClients_CheckStateChanged);
             // 
             // textBox1
             // 
@@ -178,7 +176,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(639, 134);
             this.ControlBox = false;
-            this.Controls.Add(this.aLabelAllowDupeMachineDisabledTip);
+            this.Controls.Add(this.aCheckBoxAllowDupeClients);
             this.Controls.Add(this.aCheckBoxAllowDupeMachines);
             this.Controls.Add(this.aButtonCancel);
             this.Controls.Add(this.textBox1);
@@ -216,7 +214,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button aButtonCancel;
-        private System.Windows.Forms.Label aLabelAllowDupeMachineDisabledTip;
         private System.Windows.Forms.CheckBox aCheckBoxAllowDupeMachines;
+        private System.Windows.Forms.CheckBox aCheckBoxAllowDupeClients;
     }
 }

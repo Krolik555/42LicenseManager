@@ -16,6 +16,7 @@ namespace _42LicenseManager
         public ConfigClass ConfigOutput = new ConfigClass();
         public ConfigClass _configInput = new ConfigClass();
 
+        public bool? Preload_AllowDupeClients { get; set; }
         public bool? Preload_AllowDupeMachines { get; set; }
 
         public ConfigForm()
@@ -27,42 +28,30 @@ namespace _42LicenseManager
         public ConfigForm(ConfigClass ConfigInput)
         {
             _configInput = ConfigInput;
+            Preload_AllowDupeClients = _configInput.AllowDuplicateClients;
+            Preload_AllowDupeMachines = _configInput.AllowDuplicateMachines;
             InitializeComponent();
             wireup();
         }
-        public ConfigForm(ConfigClass ConfigInput, bool AllowDupeMachines)
-        {
-            _configInput = ConfigInput;
-            Preload_AllowDupeMachines = AllowDupeMachines;
-            InitializeComponent();
-            wireup();
-        }
-        public ConfigForm(bool AllowDupeMachines)
-        {
-            Preload_AllowDupeMachines = AllowDupeMachines;
-            InitializeComponent();
-            wireup();
-        }
+
 
 
         public void wireup()
         {
-            
-            if (Preload_AllowDupeMachines != null)
-            {
-                aCheckBoxAllowDupeMachines.Checked = Preload_AllowDupeMachines.Value;
-            }
-            // If "allow duplicates" is checked, disable the checkbox.
-            if (aCheckBoxAllowDupeMachines.Checked)
+            // Review Checkboxes. If checked, disable them first to prevent warning message
+            if (Preload_AllowDupeMachines == true)
             {
                 aCheckBoxAllowDupeMachines.Enabled = false;
-                aLabelAllowDupeMachineDisabledTip.Visible = true;
+                aCheckBoxAllowDupeMachines.Checked = Preload_AllowDupeMachines.Value;
             }
-            else
+            if (Preload_AllowDupeClients == true)
             {
-                aCheckBoxAllowDupeMachines.Enabled = true;
-                aLabelAllowDupeMachineDisabledTip.Visible = false;
+                aCheckBoxAllowDupeClients.Enabled = false;
+                aCheckBoxAllowDupeClients.Checked = Preload_AllowDupeClients.Value;
             }
+
+
+
 
             // If data exists, fill fields
             if (Class_Library.Settings.SelectedDatabaseConfigFilePath != null)
@@ -71,6 +60,7 @@ namespace _42LicenseManager
 
                 aTextBoxDir.Text = _configInput.DBDir_Name;
                 aTextBoxTimeToRenew.Text = _configInput.TimeToRenew;
+                aCheckBoxAllowDupeClients.Checked = _configInput.AllowDuplicateClients;
                 aCheckBoxAllowDupeMachines.Checked = _configInput.AllowDuplicateMachines;
             }
 
@@ -97,6 +87,7 @@ namespace _42LicenseManager
                 NewConfig.DBDir_Name = aTextBoxDir.Text;
                 NewConfig.TimeToRenew = aTextBoxTimeToRenew.Text;
                 NewConfig.InstalledDirectory = Environment.CurrentDirectory;
+                NewConfig.AllowDuplicateClients = aCheckBoxAllowDupeClients.Checked;
                 NewConfig.AllowDuplicateMachines = aCheckBoxAllowDupeMachines.Checked;
 
                 Class_Library.Config.Update(NewConfig);
@@ -151,6 +142,17 @@ namespace _42LicenseManager
             
         }
 
+        private void aCheckBoxAllowDupeClients_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (aCheckBoxAllowDupeClients.Checked && aCheckBoxAllowDupeClients.Enabled)
+            {
+                if (MessageBox.Show("Once this has been checked it cannot be unchecked. Is this okay?", "Warning!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    aCheckBoxAllowDupeClients.Checked = false;
+                }
+            }
+        }
+
         private void aCheckBoxAllowDupeMachines_CheckStateChanged(object sender, EventArgs e)
         {
             if (aCheckBoxAllowDupeMachines.Checked && aCheckBoxAllowDupeMachines.Enabled)
@@ -194,5 +196,7 @@ namespace _42LicenseManager
             }
         }
         #endregion
+
+
     }
 }

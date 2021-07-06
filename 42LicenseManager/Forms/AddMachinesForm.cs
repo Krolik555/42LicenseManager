@@ -23,7 +23,7 @@ namespace _42LicenseManager
         private void aButtonSave_Click(object sender, EventArgs e)
         {
             // VERIFY MACHINE DOESN'T EXIST ELSWHERE
-            if (Utilities.MachineExist(aTextBoxMachineName.Text, Config.DBDir_Name, out List<int> LicenseIDofDupes) && Config.AllowDuplicateMachines == false)
+            if (Utilities.MachineExists(aTextBoxMachineName.Text, Config.DBDir_Name, out List<int> LicenseIDofDupes) && Config.AllowDuplicateMachines == false)
             {
                 // !ERROR!
                 MessageBox.Show($"This machine name is already being used by License {LicenseIDofDupes[0].ToString()}. " +

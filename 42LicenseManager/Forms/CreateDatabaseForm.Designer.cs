@@ -42,11 +42,12 @@
             this.aLabelHelp = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.aCheckBoxAllowDupeMachines = new System.Windows.Forms.CheckBox();
+            this.aCheckBoxAllowDupeClients = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // aButtonCreateNewDatabase
             // 
-            this.aButtonCreateNewDatabase.Location = new System.Drawing.Point(482, 85);
+            this.aButtonCreateNewDatabase.Location = new System.Drawing.Point(482, 101);
             this.aButtonCreateNewDatabase.Name = "aButtonCreateNewDatabase";
             this.aButtonCreateNewDatabase.Size = new System.Drawing.Size(129, 23);
             this.aButtonCreateNewDatabase.TabIndex = 5;
@@ -138,9 +139,7 @@
             // aCheckBoxAllowDupeMachines
             // 
             this.aCheckBoxAllowDupeMachines.AutoSize = true;
-            this.aCheckBoxAllowDupeMachines.Checked = true;
-            this.aCheckBoxAllowDupeMachines.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.aCheckBoxAllowDupeMachines.Location = new System.Drawing.Point(155, 91);
+            this.aCheckBoxAllowDupeMachines.Location = new System.Drawing.Point(155, 107);
             this.aCheckBoxAllowDupeMachines.Name = "aCheckBoxAllowDupeMachines";
             this.aCheckBoxAllowDupeMachines.Size = new System.Drawing.Size(174, 17);
             this.aCheckBoxAllowDupeMachines.TabIndex = 18;
@@ -148,13 +147,27 @@
             this.toolTip1.SetToolTip(this.aCheckBoxAllowDupeMachines, "Allows multiple machines, regardless of who owns them, to have the same name. \r\n\r" +
         "\nWarning: Once this is enabled it cannot be disabled!");
             this.aCheckBoxAllowDupeMachines.UseVisualStyleBackColor = true;
+            this.aCheckBoxAllowDupeMachines.CheckStateChanged += new System.EventHandler(this.aCheckBoxAllowDupeMachines_CheckStateChanged);
+            // 
+            // aCheckBoxAllowDupeClients
+            // 
+            this.aCheckBoxAllowDupeClients.AutoSize = true;
+            this.aCheckBoxAllowDupeClients.Location = new System.Drawing.Point(155, 89);
+            this.aCheckBoxAllowDupeClients.Name = "aCheckBoxAllowDupeClients";
+            this.aCheckBoxAllowDupeClients.Size = new System.Drawing.Size(130, 17);
+            this.aCheckBoxAllowDupeClients.TabIndex = 19;
+            this.aCheckBoxAllowDupeClients.Text = "Allow duplicate clients";
+            this.toolTip1.SetToolTip(this.aCheckBoxAllowDupeClients, resources.GetString("aCheckBoxAllowDupeClients.ToolTip"));
+            this.aCheckBoxAllowDupeClients.UseVisualStyleBackColor = true;
+            this.aCheckBoxAllowDupeClients.CheckStateChanged += new System.EventHandler(this.aCheckBoxAllowDupeClients_CheckStateChanged);
             // 
             // CreateDatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(623, 115);
+            this.ClientSize = new System.Drawing.Size(623, 136);
+            this.Controls.Add(this.aCheckBoxAllowDupeClients);
             this.Controls.Add(this.aCheckBoxAllowDupeMachines);
             this.Controls.Add(this.aLabelHelp);
             this.Controls.Add(this.aLabeldotmdf);
@@ -192,5 +205,6 @@
         private System.Windows.Forms.Label aLabelHelp;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox aCheckBoxAllowDupeMachines;
+        private System.Windows.Forms.CheckBox aCheckBoxAllowDupeClients;
     }
 }

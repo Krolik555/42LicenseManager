@@ -90,7 +90,7 @@ namespace _42LicenseManager.Forms
 
         private void aButtonAdd_Click(object sender, EventArgs e)
         {
-            ConfigForm _configform = new ConfigForm(false);
+            ConfigForm _configform = new ConfigForm();
             DialogResult _Configform = _configform.ShowDialog();
             if (_Configform == DialogResult.OK)
             {

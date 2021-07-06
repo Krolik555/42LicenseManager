@@ -46,6 +46,7 @@ namespace _42LicenseManager.Class_Library
                     tw.WriteLine($"DBDIR={_ConfigData.DBDir_Name}");
                     tw.WriteLine($"TimeToRenew={_ConfigData.TimeToRenew}");
                     tw.WriteLine($"InstalledDirectory={_ConfigData.InstalledDirectory}");
+                    tw.WriteLine($"AllowDuplicateClients={_ConfigData.AllowDuplicateClients}");
                     tw.WriteLine($"AllowDuplicateMachines={_ConfigData.AllowDuplicateMachines}");
                     tw.WriteLine($"BackupTarget={_ConfigData.BackupTarget_PathOnly}");
                     tw.WriteLine($"AutoBackup={_ConfigData.AutoBackup}");
@@ -87,12 +88,13 @@ namespace _42LicenseManager.Class_Library
                             Config.DBDir_Name = Conf[0].Contains("DBDIR=") && Conf[0] != "" ? Conf[0].Remove(0, 6) : ""; // Remove "DBDIR=" text
                             Config.TimeToRenew = Conf[1].Contains("TimeToRenew=") && Conf[1] != "" ? Conf[1].Remove(0, 12) : ""; // Remove "TimeToRenew=" text
                             Config.InstalledDirectory = Conf[2].Contains("InstalledDirectory=") && Conf[2] != "" ? Conf[2].Remove(0, 19) : ""; // Remove "InstallDir=" text
-                            Config.AllowDuplicateMachines = Conf[3].Contains("AllowDuplicateMachines=") && Conf[3] != "" ? Convert.ToBoolean(Conf[3].Remove(0, 23)) : Convert.ToBoolean("");
-                            Config.BackupTarget_PathOnly = Conf[4].Contains("BackupTarget=") && Conf[4] != "" ? Conf[4].Remove(0, 13) : ""; // Remove "BackupTarget=" text
-                            Config.AutoBackup = Conf[5].Contains("AutoBackup=") && Conf[5] != "" ? Convert.ToBoolean(Conf[5].Remove(0, 11)) : Convert.ToBoolean(""); // remove "AutoBackup=" text
-                            Config.BackupSchedule = Conf[6].Contains("BackupSchedule=") && Conf[6] != "" ? Convert.ToInt32(Conf[6].Remove(0, 15)) : Convert.ToInt32("");
-                            Config.BackupExpiration = Conf[7].Contains("BackupExpiration=") && Conf[7] != "" ? Convert.ToInt32(Conf[7].Remove(0, 17)) : Convert.ToInt32("");
-                            Config.LastBackup = Conf[8].Contains("LastBackup=") && Conf[8] != "" ? Convert.ToDateTime(Conf[8].Remove(0, 11)) : Convert.ToDateTime("");
+                            Config.AllowDuplicateClients = Conf[3].Contains("AllowDuplicateClients=") && Conf[3] != "" ? Convert.ToBoolean(Conf[3].Remove(0, 22)) : Convert.ToBoolean("");
+                            Config.AllowDuplicateMachines = Conf[4].Contains("AllowDuplicateMachines=") && Conf[4] != "" ? Convert.ToBoolean(Conf[4].Remove(0, 23)) : Convert.ToBoolean("");
+                            Config.BackupTarget_PathOnly = Conf[5].Contains("BackupTarget=") && Conf[5] != "" ? Conf[5].Remove(0, 13) : ""; // Remove "BackupTarget=" text
+                            Config.AutoBackup = Conf[6].Contains("AutoBackup=") && Conf[6] != "" ? Convert.ToBoolean(Conf[6].Remove(0, 11)) : Convert.ToBoolean(""); // remove "AutoBackup=" text
+                            Config.BackupSchedule = Conf[7].Contains("BackupSchedule=") && Conf[7] != "" ? Convert.ToInt32(Conf[7].Remove(0, 15)) : Convert.ToInt32("");
+                            Config.BackupExpiration = Conf[8].Contains("BackupExpiration=") && Conf[8] != "" ? Convert.ToInt32(Conf[8].Remove(0, 17)) : Convert.ToInt32("");
+                            Config.LastBackup = Conf[9].Contains("LastBackup=") && Conf[9] != "" ? Convert.ToDateTime(Conf[9].Remove(0, 11)) : Convert.ToDateTime("");
                         }
                         catch (Exception error)
                         {
@@ -110,7 +112,7 @@ namespace _42LicenseManager.Class_Library
                 { // NO CONFIG DATA FOUND. ASK CREATE NEW.
                     if (MessageBox.Show("Database settings are not configured or missing. Configure now?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        ConfigForm CF = new ConfigForm(Config, false);
+                        ConfigForm CF = new ConfigForm(Config);
 
                         DialogResult _cf = CF.ShowDialog();
                         if (_cf == DialogResult.OK)

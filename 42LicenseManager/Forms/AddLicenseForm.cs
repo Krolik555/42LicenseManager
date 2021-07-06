@@ -82,28 +82,107 @@ namespace _42LicenseManager
             error = Utilities.VerifyNotNull_ComboBox(aComboboxReviewStatus, error);
             error = Utilities.VerifyNotNull_DateTimePicker(aDateTimePickerExpirationDate, error);
 
-            if (error != true)
+            // DETERMINE IF CLIENT IS DUPLICATE HERE. Logic goes like this: 
+            // If client doesn't exist, add it. 
+            // If Client exists but is deactivated then reactivate it or offer to reactivate it
+            // If Client exists and is active, maybe notify user? but basically do nothing.
+
+            bool Close = false;
+
+            do
             {
-                // Save data to output license
-                ChangedLicense.CompanyName = aTextBoxCompanyName.Text;
-                ChangedLicense.FirstName = aTextBoxFirstName.Text;
-                ChangedLicense.LastName = aTextBoxLastName.Text;
-                ChangedLicense.ReviewStatus = aComboboxReviewStatus.SelectedItem.ToString();
-                ChangedLicense.ExpirationDate = aDateTimePickerExpirationDate.Value;
-                ChangedLicense.PCCount = 0;
-                ChangedLicense.RenewalStatus = aComboboxRenewalStatus.SelectedItem.ToString();
-                if (aComboboxActive.SelectedItem.ToString() == "False")
+                // Get current user if exists and store in 'ExistingUser'
+                List<License> ExistingUser = new List<License>();
+                License newClient = new License();
+                newClient.CompanyName = aTextBoxCompanyName.Text;
+                newClient.FirstName = aTextBoxFirstName.Text;
+                newClient.LastName = aTextBoxLastName.Text;
+                if (Utilities.ClientExists(newClient, Class_Library.Settings.SelectedDatabaseFilePath, true, out ExistingUser))
                 {
-                    ChangedLicense.Active = false;
+                    do
+                    {
+                        ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+
+                        // Are duplicate clients allowed?
+                        if (Config.AllowDuplicateClients) // yes
+                        {
+                            // Get user input
+                            if (MessageBox.Show("This client already exists. \n \n Would you like to create the client anyway?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                // create client like normal
+                                break;
+                            }
+                            else // if user says no (user doesn't want to create client)
+                            {
+                                // cancel save
+                                return;
+                            }
+                        }
+                        else // no
+                        {
+                            if (MessageBox.Show("This client already exists. \n \n Would you like to view that client now?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+
+                                // GET Duplicate LICENSE info FROM DB VIA ID
+                                try
+                                {
+                                    ChangedLicense = DataAccess_GDataTable.GetByID(ExistingUser[0].Id, Config.DBDir_Name);
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Error getting Client data");
+                                    return;
+                                }
+                                // Mark program to close. I can't close it at this level.
+                                Close = true;
+                                break;
+
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                    } while (false);
                 }
                 else
                 {
-                    ChangedLicense.Active = true;
+                    // Continue with normal procedure
                 }
-                ChangedLicense.Notes = aTextBoxNotes.Text;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+
+                if (Close == true)
+                {
+                    // Tell Dashboard to load edit form with the dupe customer's info
+                    this.DialogResult = DialogResult.Abort;
+                    break;
+                }
+
+                // Save data to OutputLicense which will be sent back to Dashboard to be added to the DB
+                if (error != true)
+                {
+                    ChangedLicense.CompanyName = aTextBoxCompanyName.Text;
+                    ChangedLicense.FirstName = aTextBoxFirstName.Text;
+                    ChangedLicense.LastName = aTextBoxLastName.Text;
+                    ChangedLicense.ReviewStatus = aComboboxReviewStatus.SelectedItem.ToString();
+                    ChangedLicense.ExpirationDate = aDateTimePickerExpirationDate.Value;
+                    ChangedLicense.PCCount = 0;
+                    ChangedLicense.RenewalStatus = aComboboxRenewalStatus.SelectedItem.ToString();
+                    if (aComboboxActive.SelectedItem.ToString() == "False")
+                    {
+                        ChangedLicense.Active = false;
+                    }
+                    else
+                    {
+                        ChangedLicense.Active = true;
+                    }
+                    ChangedLicense.Notes = aTextBoxNotes.Text;
+                    this.DialogResult = DialogResult.OK;
+                    
+                }
             }
+            while (false);
+
+            this.Close();
         }
 
         public License OutputLicense()
