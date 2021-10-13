@@ -147,7 +147,19 @@ namespace _42LicenseManager
 
             // open connection, run command, close connection.
             sqlConnection1.Open();
-            reader = command.ExecuteReader();
+            try
+            {
+                reader = command.ExecuteReader();
+            }
+            catch (System.Data.SqlClient.SqlException err)
+            {
+                if (err.Message.Contains("String or binary data would be truncated"))
+                {
+                    MessageBox.Show("Client name is too long.");
+                }
+                return;
+            }
+            
             sqlConnection1.Close();
         }
 

@@ -115,6 +115,7 @@
             // 
             this.aTextBoxLastName.Location = new System.Drawing.Point(107, 69);
             this.aTextBoxLastName.Margin = new System.Windows.Forms.Padding(4);
+            this.aTextBoxLastName.MaxLength = 50;
             this.aTextBoxLastName.Name = "aTextBoxLastName";
             this.aTextBoxLastName.ReadOnly = true;
             this.aTextBoxLastName.Size = new System.Drawing.Size(263, 20);
@@ -144,6 +145,7 @@
             // 
             this.aTextBoxFirstName.Location = new System.Drawing.Point(107, 41);
             this.aTextBoxFirstName.Margin = new System.Windows.Forms.Padding(4);
+            this.aTextBoxFirstName.MaxLength = 50;
             this.aTextBoxFirstName.Name = "aTextBoxFirstName";
             this.aTextBoxFirstName.ReadOnly = true;
             this.aTextBoxFirstName.Size = new System.Drawing.Size(263, 20);
@@ -294,6 +296,7 @@
             // 
             this.aTextBoxCompanyName.Location = new System.Drawing.Point(107, 13);
             this.aTextBoxCompanyName.Margin = new System.Windows.Forms.Padding(4);
+            this.aTextBoxCompanyName.MaxLength = 50;
             this.aTextBoxCompanyName.Name = "aTextBoxCompanyName";
             this.aTextBoxCompanyName.ReadOnly = true;
             this.aTextBoxCompanyName.Size = new System.Drawing.Size(263, 20);

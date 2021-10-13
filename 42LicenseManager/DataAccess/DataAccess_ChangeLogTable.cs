@@ -68,10 +68,17 @@ namespace _42LicenseManager
                     sqlConnection1.Close();
                     attempts = 10; // Success!
                 }
-                catch (SqlException error) // Typically means the DB service hasn't finished closing yet or isn't started.
+                catch (SqlException error) // Typically means the DB service hasn't finished closing yet or isn't started. Or the string is too long.
                 {
-                    Thread.Sleep(500);
-                    Error = error.Message.ToString();
+                    if (error.Message.Contains("String or binary data would be truncated"))
+                    {
+                        Error = "Client name is too long.";
+                    }
+                    else
+                    {
+                        Thread.Sleep(500);
+                        Error = error.Message.ToString();
+                    }
                 }
                 catch (Exception error)
                 {

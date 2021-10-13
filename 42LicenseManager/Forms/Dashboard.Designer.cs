@@ -30,24 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.aLabelSearch = new System.Windows.Forms.Label();
             this.aTextBoxNotes = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.aButtonEdit = new System.Windows.Forms.Button();
             this.aDataGridViewLicenses = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expirationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.renewalStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.activeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aComboboxSortBy = new System.Windows.Forms.ComboBox();
             this.aTextBoxSearch = new System.Windows.Forms.TextBox();
             this.aButtonTest = new System.Windows.Forms.Button();
@@ -61,6 +51,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importLicensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,11 +67,20 @@
             this.aButtonRefresh = new System.Windows.Forms.Button();
             this.aButtonSearch = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.importLicensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expirationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.renewalStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.activeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // aLabelSearch
@@ -88,7 +88,7 @@
             this.aLabelSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aLabelSearch.AutoSize = true;
             this.aLabelSearch.Enabled = false;
-            this.aLabelSearch.Location = new System.Drawing.Point(620, 93);
+            this.aLabelSearch.Location = new System.Drawing.Point(626, 93);
             this.aLabelSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.aLabelSearch.Name = "aLabelSearch";
             this.aLabelSearch.Size = new System.Drawing.Size(57, 17);
@@ -105,7 +105,7 @@
             this.aTextBoxNotes.Multiline = true;
             this.aTextBoxNotes.Name = "aTextBoxNotes";
             this.aTextBoxNotes.ReadOnly = true;
-            this.aTextBoxNotes.Size = new System.Drawing.Size(1167, 121);
+            this.aTextBoxNotes.Size = new System.Drawing.Size(1173, 121);
             this.aTextBoxNotes.TabIndex = 17;
             this.aTextBoxNotes.TabStop = false;
             // 
@@ -123,7 +123,7 @@
             // aButtonEdit
             // 
             this.aButtonEdit.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.aButtonEdit.Location = new System.Drawing.Point(1200, 139);
+            this.aButtonEdit.Location = new System.Drawing.Point(1206, 139);
             this.aButtonEdit.Name = "aButtonEdit";
             this.aButtonEdit.Size = new System.Drawing.Size(99, 37);
             this.aButtonEdit.TabIndex = 5;
@@ -159,12 +159,288 @@
             this.aDataGridViewLicenses.MultiSelect = false;
             this.aDataGridViewLicenses.Name = "aDataGridViewLicenses";
             this.aDataGridViewLicenses.ReadOnly = true;
-            this.aDataGridViewLicenses.Size = new System.Drawing.Size(1167, 262);
+            this.aDataGridViewLicenses.Size = new System.Drawing.Size(1173, 262);
             this.aDataGridViewLicenses.TabIndex = 4;
             this.aDataGridViewLicenses.TabStop = false;
             this.aDataGridViewLicenses.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewLicenses_CellDoubleClick);
             this.aDataGridViewLicenses.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewLicenses_CellEnter);
             this.aDataGridViewLicenses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.aDataGridViewLicenses_CellFormatting);
+            // 
+            // ReviewStatus
+            // 
+            this.ReviewStatus.DataPropertyName = "ReviewStatus";
+            this.ReviewStatus.HeaderText = "Review Status";
+            this.ReviewStatus.Name = "ReviewStatus";
+            this.ReviewStatus.ReadOnly = true;
+            // 
+            // aComboboxSortBy
+            // 
+            this.aComboboxSortBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aComboboxSortBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.aComboboxSortBy.FormattingEnabled = true;
+            this.aComboboxSortBy.Items.AddRange(new object[] {
+            "Opened Licenses",
+            "Search by Name\\Id",
+            "Search by Machine Name",
+            "All Licenses"});
+            this.aComboboxSortBy.Location = new System.Drawing.Point(691, 59);
+            this.aComboboxSortBy.Name = "aComboboxSortBy";
+            this.aComboboxSortBy.Size = new System.Drawing.Size(189, 24);
+            this.aComboboxSortBy.TabIndex = 1;
+            this.aComboboxSortBy.SelectedIndexChanged += new System.EventHandler(this.aComboboxSortBy_SelectedIndexChanged);
+            // 
+            // aTextBoxSearch
+            // 
+            this.aTextBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aTextBoxSearch.Enabled = false;
+            this.aTextBoxSearch.Location = new System.Drawing.Point(691, 90);
+            this.aTextBoxSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.aTextBoxSearch.Name = "aTextBoxSearch";
+            this.aTextBoxSearch.Size = new System.Drawing.Size(305, 23);
+            this.aTextBoxSearch.TabIndex = 3;
+            this.aTextBoxSearch.TextChanged += new System.EventHandler(this.ATextBoxSearch_TextChanged);
+            this.aTextBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ATextBoxSearch_KeyDown);
+            this.aTextBoxSearch.Leave += new System.EventHandler(this.ATextBoxSearch_Leave);
+            // 
+            // aButtonTest
+            // 
+            this.aButtonTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonTest.Location = new System.Drawing.Point(1225, 520);
+            this.aButtonTest.Name = "aButtonTest";
+            this.aButtonTest.Size = new System.Drawing.Size(75, 23);
+            this.aButtonTest.TabIndex = 27;
+            this.aButtonTest.TabStop = false;
+            this.aButtonTest.Text = "Test";
+            this.aButtonTest.UseVisualStyleBackColor = true;
+            this.aButtonTest.Click += new System.EventHandler(this.aButtonTest_Click);
+            // 
+            // aButtonAddLicense
+            // 
+            this.aButtonAddLicense.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.aButtonAddLicense.Location = new System.Drawing.Point(1206, 182);
+            this.aButtonAddLicense.Name = "aButtonAddLicense";
+            this.aButtonAddLicense.Size = new System.Drawing.Size(99, 37);
+            this.aButtonAddLicense.TabIndex = 6;
+            this.aButtonAddLicense.Text = "Add License";
+            this.aButtonAddLicense.UseVisualStyleBackColor = true;
+            this.aButtonAddLicense.Click += new System.EventHandler(this.aButtonAddLicense_Click);
+            // 
+            // aButtonDelete
+            // 
+            this.aButtonDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.aButtonDelete.Location = new System.Drawing.Point(1206, 256);
+            this.aButtonDelete.Name = "aButtonDelete";
+            this.aButtonDelete.Size = new System.Drawing.Size(99, 37);
+            this.aButtonDelete.TabIndex = 7;
+            this.aButtonDelete.Text = "Delete";
+            this.aButtonDelete.UseVisualStyleBackColor = true;
+            this.aButtonDelete.Click += new System.EventHandler(this.aButtonDelete_Click);
+            // 
+            // aLabelLicenseFoundLabel
+            // 
+            this.aLabelLicenseFoundLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.aLabelLicenseFoundLabel.Location = new System.Drawing.Point(1081, 385);
+            this.aLabelLicenseFoundLabel.Name = "aLabelLicenseFoundLabel";
+            this.aLabelLicenseFoundLabel.Size = new System.Drawing.Size(68, 17);
+            this.aLabelLicenseFoundLabel.TabIndex = 30;
+            this.aLabelLicenseFoundLabel.Text = "Showing:";
+            // 
+            // aLabelLicenseFoundInt
+            // 
+            this.aLabelLicenseFoundInt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.aLabelLicenseFoundInt.AutoSize = true;
+            this.aLabelLicenseFoundInt.Location = new System.Drawing.Point(1155, 385);
+            this.aLabelLicenseFoundInt.Name = "aLabelLicenseFoundInt";
+            this.aLabelLicenseFoundInt.Size = new System.Drawing.Size(16, 17);
+            this.aLabelLicenseFoundInt.TabIndex = 31;
+            this.aLabelLicenseFoundInt.Text = "0";
+            // 
+            // aButtonCheckForExpires
+            // 
+            this.aButtonCheckForExpires.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonCheckForExpires.Location = new System.Drawing.Point(1053, 89);
+            this.aButtonCheckForExpires.Name = "aButtonCheckForExpires";
+            this.aButtonCheckForExpires.Size = new System.Drawing.Size(142, 28);
+            this.aButtonCheckForExpires.TabIndex = 4;
+            this.aButtonCheckForExpires.Text = "Check for Expires";
+            this.aToolTip.SetToolTip(this.aButtonCheckForExpires, "Haven\'t restarted the program within the last day? \r\nThis will update licenses th" +
+        "at expire within 21 days \r\nfrom today and set them to \'Open\'.");
+            this.aButtonCheckForExpires.UseVisualStyleBackColor = true;
+            this.aButtonCheckForExpires.Click += new System.EventHandler(this.aButtonCheckForExpires_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1318, 24);
+            this.menuStrip1.TabIndex = 33;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backupNowToolStripMenuItem,
+            this.selectDatabaseToolStripMenuItem,
+            this.importLicensesToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // backupNowToolStripMenuItem
+            // 
+            this.backupNowToolStripMenuItem.Name = "backupNowToolStripMenuItem";
+            this.backupNowToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.backupNowToolStripMenuItem.Text = "Backup Now";
+            this.backupNowToolStripMenuItem.Click += new System.EventHandler(this.backupNowToolStripMenuItem_Click);
+            // 
+            // selectDatabaseToolStripMenuItem
+            // 
+            this.selectDatabaseToolStripMenuItem.Name = "selectDatabaseToolStripMenuItem";
+            this.selectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.selectDatabaseToolStripMenuItem.Text = "Select Database";
+            this.selectDatabaseToolStripMenuItem.Click += new System.EventHandler(this.selectDatabaseToolStripMenuItem_Click);
+            // 
+            // importLicensesToolStripMenuItem
+            // 
+            this.importLicensesToolStripMenuItem.Name = "importLicensesToolStripMenuItem";
+            this.importLicensesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.importLicensesToolStripMenuItem.Text = "Import Licenses";
+            this.importLicensesToolStripMenuItem.Click += new System.EventHandler(this.importLicensesToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setDatabaseToolStripMenuItem,
+            this.configureBackupToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // setDatabaseToolStripMenuItem
+            // 
+            this.setDatabaseToolStripMenuItem.Name = "setDatabaseToolStripMenuItem";
+            this.setDatabaseToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.setDatabaseToolStripMenuItem.Text = "Configure Database";
+            this.setDatabaseToolStripMenuItem.Click += new System.EventHandler(this.setDatabaseToolStripMenuItem_Click);
+            // 
+            // configureBackupToolStripMenuItem
+            // 
+            this.configureBackupToolStripMenuItem.Name = "configureBackupToolStripMenuItem";
+            this.configureBackupToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.configureBackupToolStripMenuItem.Text = "Configure Backup";
+            this.configureBackupToolStripMenuItem.Click += new System.EventHandler(this.configureBackupToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkForUpdatesToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // aButtonViewAllLogs
+            // 
+            this.aButtonViewAllLogs.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.aButtonViewAllLogs.Location = new System.Drawing.Point(1206, 326);
+            this.aButtonViewAllLogs.Name = "aButtonViewAllLogs";
+            this.aButtonViewAllLogs.Size = new System.Drawing.Size(99, 37);
+            this.aButtonViewAllLogs.TabIndex = 8;
+            this.aButtonViewAllLogs.Text = "View All Logs";
+            this.aButtonViewAllLogs.UseVisualStyleBackColor = true;
+            this.aButtonViewAllLogs.Click += new System.EventHandler(this.aButtonViewAllLogs_Click);
+            // 
+            // aLabelView
+            // 
+            this.aLabelView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aLabelView.AutoSize = true;
+            this.aLabelView.Location = new System.Drawing.Point(642, 59);
+            this.aLabelView.Name = "aLabelView";
+            this.aLabelView.Size = new System.Drawing.Size(41, 17);
+            this.aLabelView.TabIndex = 34;
+            this.aLabelView.Text = "View:";
+            // 
+            // aStatusStripDashboard
+            // 
+            this.aStatusStripDashboard.Location = new System.Drawing.Point(0, 536);
+            this.aStatusStripDashboard.Name = "aStatusStripDashboard";
+            this.aStatusStripDashboard.Size = new System.Drawing.Size(1318, 22);
+            this.aStatusStripDashboard.TabIndex = 36;
+            this.aStatusStripDashboard.Text = "statusStrip1";
+            // 
+            // backgroundWorkerBackup
+            // 
+            this.backgroundWorkerBackup.WorkerReportsProgress = true;
+            this.backgroundWorkerBackup.WorkerSupportsCancellation = true;
+            this.backgroundWorkerBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerBackup_DoWork);
+            this.backgroundWorkerBackup.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerBackup_ProgressChanged);
+            this.backgroundWorkerBackup.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerBackup_RunWorkerCompleted);
+            // 
+            // backgroundWorkerAutoBackup
+            // 
+            this.backgroundWorkerAutoBackup.WorkerSupportsCancellation = true;
+            this.backgroundWorkerAutoBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAutoBackup_DoWork);
+            // 
+            // aButtonRefresh
+            // 
+            this.aButtonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonRefresh.Image = global::_42LicenseManager.Properties.Resources.Refresh;
+            this.aButtonRefresh.Location = new System.Drawing.Point(886, 59);
+            this.aButtonRefresh.Name = "aButtonRefresh";
+            this.aButtonRefresh.Size = new System.Drawing.Size(28, 24);
+            this.aButtonRefresh.TabIndex = 2;
+            this.aButtonRefresh.UseVisualStyleBackColor = true;
+            this.aButtonRefresh.Click += new System.EventHandler(this.AButtonRefresh_Click);
+            // 
+            // aButtonSearch
+            // 
+            this.aButtonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonSearch.Enabled = false;
+            this.aButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("aButtonSearch.Image")));
+            this.aButtonSearch.Location = new System.Drawing.Point(996, 89);
+            this.aButtonSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.aButtonSearch.Name = "aButtonSearch";
+            this.aButtonSearch.Size = new System.Drawing.Size(31, 25);
+            this.aButtonSearch.TabIndex = 3;
+            this.aButtonSearch.UseVisualStyleBackColor = true;
+            this.aButtonSearch.Visible = false;
+            this.aButtonSearch.Click += new System.EventHandler(this.aButtonSearch_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::_42LicenseManager.Properties.Resources._42logo_transparent___Copy300;
+            this.pictureBox1.Location = new System.Drawing.Point(22, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(335, 79);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -177,13 +453,6 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // ReviewStatus
-            // 
-            this.ReviewStatus.DataPropertyName = "ReviewStatus";
-            this.ReviewStatus.HeaderText = "Review Status";
-            this.ReviewStatus.Name = "ReviewStatus";
-            this.ReviewStatus.ReadOnly = true;
             // 
             // companyNameDataGridViewTextBoxColumn
             // 
@@ -253,281 +522,12 @@
             // 
             this.licenseBindingSource.DataSource = typeof(_42LicenseManager.License);
             // 
-            // aComboboxSortBy
-            // 
-            this.aComboboxSortBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aComboboxSortBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.aComboboxSortBy.FormattingEnabled = true;
-            this.aComboboxSortBy.Items.AddRange(new object[] {
-            "Opened Licenses",
-            "Search by Name\\Id",
-            "Search by Machine Name",
-            "All Licenses"});
-            this.aComboboxSortBy.Location = new System.Drawing.Point(685, 59);
-            this.aComboboxSortBy.Name = "aComboboxSortBy";
-            this.aComboboxSortBy.Size = new System.Drawing.Size(189, 24);
-            this.aComboboxSortBy.TabIndex = 1;
-            this.aComboboxSortBy.SelectedIndexChanged += new System.EventHandler(this.aComboboxSortBy_SelectedIndexChanged);
-            // 
-            // aTextBoxSearch
-            // 
-            this.aTextBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aTextBoxSearch.Enabled = false;
-            this.aTextBoxSearch.Location = new System.Drawing.Point(685, 90);
-            this.aTextBoxSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.aTextBoxSearch.Name = "aTextBoxSearch";
-            this.aTextBoxSearch.Size = new System.Drawing.Size(305, 23);
-            this.aTextBoxSearch.TabIndex = 3;
-            this.aTextBoxSearch.TextChanged += new System.EventHandler(this.ATextBoxSearch_TextChanged);
-            this.aTextBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ATextBoxSearch_KeyDown);
-            this.aTextBoxSearch.Leave += new System.EventHandler(this.ATextBoxSearch_Leave);
-            // 
-            // aButtonTest
-            // 
-            this.aButtonTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonTest.Location = new System.Drawing.Point(1219, 520);
-            this.aButtonTest.Name = "aButtonTest";
-            this.aButtonTest.Size = new System.Drawing.Size(75, 23);
-            this.aButtonTest.TabIndex = 27;
-            this.aButtonTest.TabStop = false;
-            this.aButtonTest.Text = "Test";
-            this.aButtonTest.UseVisualStyleBackColor = true;
-            this.aButtonTest.Click += new System.EventHandler(this.aButtonTest_Click);
-            // 
-            // aButtonAddLicense
-            // 
-            this.aButtonAddLicense.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.aButtonAddLicense.Location = new System.Drawing.Point(1200, 182);
-            this.aButtonAddLicense.Name = "aButtonAddLicense";
-            this.aButtonAddLicense.Size = new System.Drawing.Size(99, 37);
-            this.aButtonAddLicense.TabIndex = 6;
-            this.aButtonAddLicense.Text = "Add License";
-            this.aButtonAddLicense.UseVisualStyleBackColor = true;
-            this.aButtonAddLicense.Click += new System.EventHandler(this.aButtonAddLicense_Click);
-            // 
-            // aButtonDelete
-            // 
-            this.aButtonDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.aButtonDelete.Location = new System.Drawing.Point(1200, 256);
-            this.aButtonDelete.Name = "aButtonDelete";
-            this.aButtonDelete.Size = new System.Drawing.Size(99, 37);
-            this.aButtonDelete.TabIndex = 7;
-            this.aButtonDelete.Text = "Delete";
-            this.aButtonDelete.UseVisualStyleBackColor = true;
-            this.aButtonDelete.Click += new System.EventHandler(this.aButtonDelete_Click);
-            // 
-            // aLabelLicenseFoundLabel
-            // 
-            this.aLabelLicenseFoundLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.aLabelLicenseFoundLabel.Location = new System.Drawing.Point(1075, 385);
-            this.aLabelLicenseFoundLabel.Name = "aLabelLicenseFoundLabel";
-            this.aLabelLicenseFoundLabel.Size = new System.Drawing.Size(68, 17);
-            this.aLabelLicenseFoundLabel.TabIndex = 30;
-            this.aLabelLicenseFoundLabel.Text = "Showing:";
-            // 
-            // aLabelLicenseFoundInt
-            // 
-            this.aLabelLicenseFoundInt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.aLabelLicenseFoundInt.AutoSize = true;
-            this.aLabelLicenseFoundInt.Location = new System.Drawing.Point(1149, 385);
-            this.aLabelLicenseFoundInt.Name = "aLabelLicenseFoundInt";
-            this.aLabelLicenseFoundInt.Size = new System.Drawing.Size(16, 17);
-            this.aLabelLicenseFoundInt.TabIndex = 31;
-            this.aLabelLicenseFoundInt.Text = "0";
-            // 
-            // aButtonCheckForExpires
-            // 
-            this.aButtonCheckForExpires.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonCheckForExpires.Location = new System.Drawing.Point(1047, 89);
-            this.aButtonCheckForExpires.Name = "aButtonCheckForExpires";
-            this.aButtonCheckForExpires.Size = new System.Drawing.Size(142, 28);
-            this.aButtonCheckForExpires.TabIndex = 4;
-            this.aButtonCheckForExpires.Text = "Check for Expires";
-            this.aToolTip.SetToolTip(this.aButtonCheckForExpires, "Haven\'t restarted the program within the last day? \r\nThis will update licenses th" +
-        "at expire within 21 days \r\nfrom today and set them to \'Open\'.");
-            this.aButtonCheckForExpires.UseVisualStyleBackColor = true;
-            this.aButtonCheckForExpires.Click += new System.EventHandler(this.aButtonCheckForExpires_Click);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1312, 24);
-            this.menuStrip1.TabIndex = 33;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.backupNowToolStripMenuItem,
-            this.selectDatabaseToolStripMenuItem,
-            this.importLicensesToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // backupNowToolStripMenuItem
-            // 
-            this.backupNowToolStripMenuItem.Name = "backupNowToolStripMenuItem";
-            this.backupNowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.backupNowToolStripMenuItem.Text = "Backup Now";
-            this.backupNowToolStripMenuItem.Click += new System.EventHandler(this.backupNowToolStripMenuItem_Click);
-            // 
-            // selectDatabaseToolStripMenuItem
-            // 
-            this.selectDatabaseToolStripMenuItem.Name = "selectDatabaseToolStripMenuItem";
-            this.selectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.selectDatabaseToolStripMenuItem.Text = "Select Database";
-            this.selectDatabaseToolStripMenuItem.Click += new System.EventHandler(this.selectDatabaseToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setDatabaseToolStripMenuItem,
-            this.configureBackupToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // setDatabaseToolStripMenuItem
-            // 
-            this.setDatabaseToolStripMenuItem.Name = "setDatabaseToolStripMenuItem";
-            this.setDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.setDatabaseToolStripMenuItem.Text = "Configure Database";
-            this.setDatabaseToolStripMenuItem.Click += new System.EventHandler(this.setDatabaseToolStripMenuItem_Click);
-            // 
-            // configureBackupToolStripMenuItem
-            // 
-            this.configureBackupToolStripMenuItem.Name = "configureBackupToolStripMenuItem";
-            this.configureBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.configureBackupToolStripMenuItem.Text = "Configure Backup";
-            this.configureBackupToolStripMenuItem.Click += new System.EventHandler(this.configureBackupToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkForUpdatesToolStripMenuItem,
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // checkForUpdatesToolStripMenuItem
-            // 
-            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.checkForUpdatesToolStripMenuItem.Text = "Check For Updates";
-            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // aButtonViewAllLogs
-            // 
-            this.aButtonViewAllLogs.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.aButtonViewAllLogs.Location = new System.Drawing.Point(1200, 326);
-            this.aButtonViewAllLogs.Name = "aButtonViewAllLogs";
-            this.aButtonViewAllLogs.Size = new System.Drawing.Size(99, 37);
-            this.aButtonViewAllLogs.TabIndex = 8;
-            this.aButtonViewAllLogs.Text = "View All Logs";
-            this.aButtonViewAllLogs.UseVisualStyleBackColor = true;
-            this.aButtonViewAllLogs.Click += new System.EventHandler(this.aButtonViewAllLogs_Click);
-            // 
-            // aLabelView
-            // 
-            this.aLabelView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aLabelView.AutoSize = true;
-            this.aLabelView.Location = new System.Drawing.Point(636, 59);
-            this.aLabelView.Name = "aLabelView";
-            this.aLabelView.Size = new System.Drawing.Size(41, 17);
-            this.aLabelView.TabIndex = 34;
-            this.aLabelView.Text = "View:";
-            // 
-            // aStatusStripDashboard
-            // 
-            this.aStatusStripDashboard.Location = new System.Drawing.Point(0, 536);
-            this.aStatusStripDashboard.Name = "aStatusStripDashboard";
-            this.aStatusStripDashboard.Size = new System.Drawing.Size(1312, 22);
-            this.aStatusStripDashboard.TabIndex = 36;
-            this.aStatusStripDashboard.Text = "statusStrip1";
-            // 
-            // backgroundWorkerBackup
-            // 
-            this.backgroundWorkerBackup.WorkerReportsProgress = true;
-            this.backgroundWorkerBackup.WorkerSupportsCancellation = true;
-            this.backgroundWorkerBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerBackup_DoWork);
-            this.backgroundWorkerBackup.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerBackup_ProgressChanged);
-            this.backgroundWorkerBackup.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerBackup_RunWorkerCompleted);
-            // 
-            // backgroundWorkerAutoBackup
-            // 
-            this.backgroundWorkerAutoBackup.WorkerSupportsCancellation = true;
-            this.backgroundWorkerAutoBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAutoBackup_DoWork);
-            // 
-            // aButtonRefresh
-            // 
-            this.aButtonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonRefresh.Image = global::_42LicenseManager.Properties.Resources.Refresh;
-            this.aButtonRefresh.Location = new System.Drawing.Point(880, 59);
-            this.aButtonRefresh.Name = "aButtonRefresh";
-            this.aButtonRefresh.Size = new System.Drawing.Size(28, 24);
-            this.aButtonRefresh.TabIndex = 2;
-            this.aButtonRefresh.UseVisualStyleBackColor = true;
-            this.aButtonRefresh.Click += new System.EventHandler(this.AButtonRefresh_Click);
-            // 
-            // aButtonSearch
-            // 
-            this.aButtonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonSearch.Enabled = false;
-            this.aButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("aButtonSearch.Image")));
-            this.aButtonSearch.Location = new System.Drawing.Point(990, 89);
-            this.aButtonSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.aButtonSearch.Name = "aButtonSearch";
-            this.aButtonSearch.Size = new System.Drawing.Size(31, 25);
-            this.aButtonSearch.TabIndex = 3;
-            this.aButtonSearch.UseVisualStyleBackColor = true;
-            this.aButtonSearch.Visible = false;
-            this.aButtonSearch.Click += new System.EventHandler(this.aButtonSearch_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::_42LicenseManager.Properties.Resources._42logo_transparent___Copy300;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(335, 79);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 35;
-            this.pictureBox1.TabStop = false;
-            // 
-            // importLicensesToolStripMenuItem
-            // 
-            this.importLicensesToolStripMenuItem.Name = "importLicensesToolStripMenuItem";
-            this.importLicensesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.importLicensesToolStripMenuItem.Text = "Import Licenses";
-            this.importLicensesToolStripMenuItem.Click += new System.EventHandler(this.importLicensesToolStripMenuItem_Click);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1312, 558);
+            this.ClientSize = new System.Drawing.Size(1318, 558);
             this.Controls.Add(this.aStatusStripDashboard);
             this.Controls.Add(this.aButtonRefresh);
             this.Controls.Add(this.aLabelView);
@@ -559,10 +559,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dashboard_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
