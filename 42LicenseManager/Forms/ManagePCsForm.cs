@@ -42,10 +42,18 @@ namespace _42LicenseManager
         private void aButtonAdd_Click(object sender, EventArgs e)
         {
             AddMachinesForm AddForm = new AddMachinesForm();
-            AddForm.LicenseID = InputLicense.Id; // Set License to be passed in
+            AddForm.InputLicense = InputLicense; // Set License to be passed in
             DialogResult _form = AddForm.ShowDialog();
             if (_form == DialogResult.OK) // When editform.Savebutton is clicked
             {
+
+                // GET CHANGES MADE
+                List<string> ChangesMade = new List<string>();
+                ChangesMade.Add($"Machine added to {InputLicense.Identifiable_Name} account: '{AddForm.NewMachine.MachineName}'");
+
+                // CREATE LOG OF DELETED MACHINE
+                Utilities.CreateLog(ChangesMade, InputLicense.Id);
+
                 RefreshDataGridViewTable();
             }
         }
@@ -103,7 +111,7 @@ namespace _42LicenseManager
                 {
                     // GET CHANGES MADE
                     List<string> ChangesMade = new List<string>();
-                    ChangesMade.Add($"Deleted {SelectedMachines_ID.Count} machines.");
+                    ChangesMade.Add($"Machine(s) removed from {InputLicense.Identifiable_Name} account: {SelectedMachines_ID.Count}");
 
                     // CREATE LOG OF DELETED MACHINE
                     Utilities.CreateLog(ChangesMade, InputLicense.Id);
@@ -121,7 +129,7 @@ namespace _42LicenseManager
                 {
                     // GET CHANGES MADE
                     List<string> ChangesMade = new List<string>();
-                    ChangesMade.Add($"Deleted Machine: '{MachineName}'");
+                    ChangesMade.Add($"Machine removed from {InputLicense.Identifiable_Name} account: {MachineName}");
 
                     // CREATE LOG OF DELETED MACHINE
                     Utilities.CreateLog(ChangesMade, InputLicense.Id);

@@ -57,6 +57,7 @@
             this.aTextBoxMachineName.Name = "aTextBoxMachineName";
             this.aTextBoxMachineName.Size = new System.Drawing.Size(361, 20);
             this.aTextBoxMachineName.TabIndex = 1;
+            this.aTextBoxMachineName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.aTextBoxMachineName_KeyPress);
             // 
             // label1
             // 
@@ -101,6 +102,7 @@
             this.aDateTimePickerInstalled.Name = "aDateTimePickerInstalled";
             this.aDateTimePickerInstalled.Size = new System.Drawing.Size(113, 20);
             this.aDateTimePickerInstalled.TabIndex = 2;
+            this.aDateTimePickerInstalled.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.aDateTimePickerInstalled_KeyPress);
             // 
             // aButtonCancel
             // 
@@ -124,6 +126,7 @@
             this.aCheckBoxUseDate.Text = "Use Date";
             this.aCheckBoxUseDate.UseVisualStyleBackColor = true;
             this.aCheckBoxUseDate.CheckedChanged += new System.EventHandler(this.ACheckBoxUseDate_CheckedChanged);
+            this.aCheckBoxUseDate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.aCheckBoxUseDate_KeyPress);
             // 
             // AddMachinesForm
             // 

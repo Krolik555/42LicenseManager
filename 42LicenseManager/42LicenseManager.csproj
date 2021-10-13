@@ -76,16 +76,35 @@
     <Reference Include="Equin.ApplicationFramework.BindingListView, Version=1.4.5222.35545, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Equin.ApplicationFramework.BindingListView.1.4.5222.35545\lib\net40-Client\Equin.ApplicationFramework.BindingListView.dll</HintPath>
     </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <HintPath>..\packages\LumenWorksCsvReader.4.0.0\lib\net461\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
     <Reference Include="SplashScreen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SplashScreen.Winforms.1.0.0\lib\SplashScreen.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
     </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlLocalDb, Version=1.15.0.0, Culture=neutral, PublicKeyToken=9a192a7522c9e1a0, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SqlLocalDb.1.15.0\lib\net40\System.Data.SqlLocalDb.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -106,6 +125,8 @@
     <Compile Include="Class Library\DataGridView\DGVUtilities.cs" />
     <Compile Include="Class Library\Config.cs" />
     <Compile Include="Class Library\ErrorLogs.cs" />
+    <Compile Include="Class Library\Import License\CSV.cs" />
+    <Compile Include="Class Library\Import License\CustomerNamingLogic.cs" />
     <Compile Include="Class Library\Settings.cs" />
     <Compile Include="Class Library\Updates.cs" />
     <Compile Include="Forms\BackupForm.cs">
@@ -173,6 +194,12 @@
     </Compile>
     <Compile Include="Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Import License\ImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Import License\ImportForm.Designer.cs">
+      <DependentUpon>ImportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ProRate\ProRateForm.cs">
       <SubType>Form</SubType>
@@ -243,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Import License\ImportForm.resx">
+      <DependentUpon>ImportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoadingScreen.resx">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
@@ -323,5 +353,6 @@
     <None Include="Resources\Magnify.png" />
     <None Include="Resources\42logo-transparent - Copy300.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

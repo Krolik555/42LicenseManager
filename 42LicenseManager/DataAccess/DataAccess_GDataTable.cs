@@ -122,8 +122,7 @@ namespace _42LicenseManager
         {
             Cursor.Current = Cursors.WaitCursor;
             License CorrectedLicense = new License();
-            // CorrectAprostopheForSQL will take ' and change it to '' so that it imports into the DB correctly.
-            // Example: "Nathan's" is changed to "Nathan''s" so that it imports like "Nathan's".
+            // SET DATA INTO TEMP LICENSE and verify data is in correct format.
             CorrectedLicense.CompanyName = Utilities.CorrectApostropheForSQL(NewLicense.CompanyName);
             CorrectedLicense.FirstName = Utilities.CorrectApostropheForSQL(NewLicense.FirstName);
             CorrectedLicense.LastName = Utilities.CorrectApostropheForSQL(NewLicense.LastName);
@@ -137,7 +136,7 @@ namespace _42LicenseManager
             CorrectedLicense.ChkBxWillCancel = NewLicense.ChkBxWillCancel;
             CorrectedLicense.ChkBxUninstalled = NewLicense.ChkBxUninstalled;
             CorrectedLicense.ChkBxDeleted = NewLicense.ChkBxDeleted;
-            // Create command for SQL server
+            // Create INSERT command for SQL server (This saves data to the SQL DB)
             SqlConnection sqlConnection1 = new SqlConnection((Helper.CnnValCustom(DBDIR_Name)));
             SqlDataReader reader;
             SqlCommand command = new SqlCommand();

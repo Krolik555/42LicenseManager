@@ -71,6 +71,7 @@ namespace _42LicenseManager
 
         private void aButtonSave_Click(object sender, EventArgs e)
         {
+            #region Verify Fields
             // VERIFY FIELDS
             bool error = false;
             if (aTextBoxCompanyName.Text == "" && (aTextBoxFirstName.Text == "" || aTextBoxLastName.Text == ""))
@@ -81,7 +82,10 @@ namespace _42LicenseManager
             error = Utilities.VerifyNotNull_ComboBox(aComboboxActive, error);
             error = Utilities.VerifyNotNull_ComboBox(aComboboxReviewStatus, error);
             error = Utilities.VerifyNotNull_DateTimePicker(aDateTimePickerExpirationDate, error);
+            #endregion Verify Fields
 
+
+            #region Check Duplicate Client
             // DETERMINE IF CLIENT IS DUPLICATE HERE. Logic goes like this: 
             // If client doesn't exist, add it. 
             // If Client exists but is deactivated then reactivate it or offer to reactivate it
@@ -93,11 +97,7 @@ namespace _42LicenseManager
             {
                 // Get current user if exists and store in 'ExistingUser'
                 List<License> ExistingUser = new List<License>();
-                License newClient = new License();
-                newClient.CompanyName = aTextBoxCompanyName.Text;
-                newClient.FirstName = aTextBoxFirstName.Text;
-                newClient.LastName = aTextBoxLastName.Text;
-                if (Utilities.ClientExists(newClient, Class_Library.Settings.SelectedDatabaseFilePath, true, out ExistingUser))
+                if (Utilities.ClientExists(ChangedLicense, Class_Library.Settings.SelectedDatabaseFilePath, true, out ExistingUser))
                 {
                     do
                     {
@@ -122,10 +122,10 @@ namespace _42LicenseManager
                         {
                             if (MessageBox.Show("This client already exists. \n \n Would you like to view that client now?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-
                                 // GET Duplicate LICENSE info FROM DB VIA ID
                                 try
                                 {
+                                    // This data will be used to load the EditForm
                                     ChangedLicense = DataAccess_GDataTable.GetByID(ExistingUser[0].Id, Config.DBDir_Name);
                                 }
                                 catch
@@ -136,7 +136,6 @@ namespace _42LicenseManager
                                 // Mark program to close. I can't close it at this level.
                                 Close = true;
                                 break;
-
                             }
                             else
                             {
@@ -149,6 +148,7 @@ namespace _42LicenseManager
                 {
                     // Continue with normal procedure
                 }
+                #endregion Check Duplicate Client
 
                 if (Close == true)
                 {

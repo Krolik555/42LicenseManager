@@ -23,11 +23,31 @@ namespace _42LicenseManager
         public bool ChkBxDeleted { get; set; }
 
 
-        public string BasicInfo
+        public string Firstname_LastName
         {
             get
             {
                 return $"{FirstName} {LastName}";
+            }
+        }
+
+        /// <summary>
+        /// Gets Company name if exists else First and Last name.
+        /// </summary>
+        public string Identifiable_Name
+        {
+            get
+            {
+                string _IdentifiableName = "";
+                if (CompanyName != "")
+                {
+                    _IdentifiableName = CompanyName;
+                }
+                else
+                {
+                    _IdentifiableName = FirstName + " " + LastName;
+                }
+                return _IdentifiableName;
             }
         }
 

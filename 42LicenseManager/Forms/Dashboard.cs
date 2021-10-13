@@ -289,7 +289,7 @@ namespace _42LicenseManager
             #region SAVE AND ADD MACHINES BUTTON
             if (_form == DialogResult.Yes) 
             {
-                // GET NEW LICENSE INFO from add license form
+                // GET NEW LICENSE INFO from AddLicenseForm
                 NewLicense = _AddLicenseForm.OutputLicense();
 
                 // ADD NEW LICENSE TO SQL DB
@@ -350,8 +350,7 @@ namespace _42LicenseManager
                 }
 
                 // GET LICENSE CREATED FROM DB
-                List<License> NewLicense2 = new List<License>();
-                NewLicense2 = DataAccess_GDataTable.GetLatestEntry(Config.DBDir_Name);
+                List<License> NewLicense2 = DataAccess_GDataTable.GetLatestEntry(Config.DBDir_Name);
 
                 // LOG LICENSE CREATION DATE
                 List<string> changesmade = new List<string>();
@@ -770,8 +769,62 @@ namespace _42LicenseManager
             }
         }
 
+
         #endregion
 
+        private void importLicensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Launch ImportForm
+            Forms.Import_License.ImportForm Importfrm = new Forms.Import_License.ImportForm();
+            DialogResult DR = Importfrm.ShowDialog();
+            // If user submits data to the database
+            if (DR == DialogResult.Yes)
+            {
+                List<License> ImportedLicenses = new List<License>();
+                List<License> DuplicateLicenses = new List<License>();
 
+                // Foreach verified license
+                foreach(License NewLicense in Importfrm.VerifiedLicenses)
+                {
+                    // Set license as active
+                    NewLicense.Active = true;
+
+                    // Check if Client does not exist
+                    if (!Utilities.ClientExists(NewLicense, Class_Library.Settings.SelectedDatabaseFilePath, true, out List<License> junk))
+                    {
+                        // Update DB using Verified License
+                        if (NewLicense != null)
+                        {
+                            DataAccess_GDataTable.CreateNewLicense(NewLicense, Config.DBDir_Name);
+                        }
+
+                        // GET LICENSE CREATED FROM DB for use with logs
+                        List<License> NewLicense2 = DataAccess_GDataTable.GetLatestEntry(Config.DBDir_Name);
+
+                        // LOG LICENSE CREATION DATE
+                        List<string> changesmade = new List<string>();
+                        if (NewLicense.CompanyName == "")
+                        {
+                            changesmade.Add($"License Created for '{NewLicense2[0].FirstName} {NewLicense2[0].LastName}'");
+                        }
+                        else
+                        {
+                            changesmade.Add($"License Created for '{NewLicense2[0].CompanyName}'");
+                        }
+                        Utilities.CreateLog(changesmade, NewLicense2[0].Id);
+
+                        InitializeLicensesTTR();
+                        RefreshDashboard(this, e);
+                    }
+                    else //Client exists
+                    {
+                        DuplicateLicenses = junk;
+                    }
+                    
+                }
+
+                
+            }
+        }
     }
 }

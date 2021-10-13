@@ -102,6 +102,7 @@ namespace _42LicenseManager
 
         private void aButtonSave_Click(object sender, EventArgs e)
         {
+            #region Verify Fields
             bool error = false;
             // VERIFY REQUIRED FIELDS ARE FILLED
             if (aTextBoxCompanyName.Text == "" && (aTextBoxFirstName.Text == "" || aTextBoxLastName.Text == ""))
@@ -122,68 +123,90 @@ namespace _42LicenseManager
                 }
             }
 
+            if (aComboboxRenewalStatus.SelectedItem.ToString() == "Renewed" && aComboboxReviewStatus.SelectedItem.ToString() == "Open")
+            {
+                MessageBox.Show("You have marked this license as Renewed but it is still open for review. Would you like to close the review status of this license?", "Possible Problem");
+            }
+            {
+
+            }
+            #endregion Verify Fields
+
+            #region Check Duplicate Clients
             bool Close = false;
             do
             {
 
-                // Get current user if exists and store in 'ExistingUser'
-                List<License> ExistingUser = new List<License>();
-                License newClient = new License();
-                newClient.CompanyName = aTextBoxCompanyName.Text;
-                newClient.FirstName = aTextBoxFirstName.Text;
-                newClient.LastName = aTextBoxLastName.Text;
-                if (Utilities.ClientExists(newClient, Class_Library.Settings.SelectedDatabaseFilePath, true, out ExistingUser))
+                
+                License ModifiedClient = new License();
+                ModifiedClient.CompanyName = aTextBoxCompanyName.Text;
+                ModifiedClient.FirstName = aTextBoxFirstName.Text;
+                ModifiedClient.LastName = aTextBoxLastName.Text;
+
+                // Check if any names have been modified (Company, first, Last)
+                if (
+                    ModifiedClient.CompanyName != InputLicense.CompanyName || 
+                    ModifiedClient.FirstName != InputLicense.FirstName || 
+                    ModifiedClient.LastName != InputLicense.LastName
+                    )
                 {
-                    do
+                    // Get current user if exists and store in 'ExistingUser'
+                    List<License> ExistingUser = new List<License>();
+                    if (Utilities.ClientExists(ModifiedClient, Class_Library.Settings.SelectedDatabaseFilePath, true, out ExistingUser))
                     {
-                        ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
-
-                        // Are duplicate clients allowed?
-                        if (Config.AllowDuplicateClients) // yes
+                        do
                         {
-                            // Get user input
-                            if (MessageBox.Show("This client already exists. \n \n Would you like to create the client anyway?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                // create client like normal
-                                break;
-                            }
-                            else // if user says no (user doesn't want to create client)
-                            {
-                                // cancel save
-                                return;
-                            }
-                        }
-                        else // no
-                        {
-                            if (MessageBox.Show("This client already exists. \n \n Would you like to view that client now?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
+                            ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
-                                // GET Duplicate LICENSE info FROM DB VIA ID
-                                try
+                            // Are duplicate clients allowed?
+                            if (Config.AllowDuplicateClients) // yes
+                            {
+                                // Get user input
+                                if (MessageBox.Show("This client already exists. \n \n Would you like to create the client anyway?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
-                                    ChangedLicense = DataAccess_GDataTable.GetByID(ExistingUser[0].Id, Config.DBDir_Name);
+                                    // create client like normal
+                                    break;
                                 }
-                                catch
+                                else // if user says no (user doesn't want to create client)
                                 {
-                                    MessageBox.Show("Error getting Client data");
+                                    // cancel save
                                     return;
                                 }
-                                // Mark program to close. I can't close it at this level.
-                                Close = true;
-                                break;
-
                             }
-                            else
+                            else // no
                             {
-                                return;
+                                if (MessageBox.Show("This client already exists. \n \n Would you like to view that client now?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+
+                                    // GET Duplicate LICENSE info FROM DB VIA ID
+                                    try
+                                    {
+                                        ChangedLicense = DataAccess_GDataTable.GetByID(ExistingUser[0].Id, Config.DBDir_Name);
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Error getting Client data");
+                                        return;
+                                    }
+                                    // Mark program to close. Can't close it at this level.
+                                    Close = true;
+                                    break;
+
+                                }
+                                else
+                                {
+                                    return;
+                                }
                             }
-                        }
-                    } while (false);
+                        } while (false);
+                    }
+                    else
+                    {
+                        // Continue with normal procedure
+                    }
                 }
-                else
-                {
-                    // Continue with normal procedure
-                }
+
+                
 
                 if (Close == true)
                 {
@@ -191,7 +214,10 @@ namespace _42LicenseManager
                     this.DialogResult = DialogResult.Abort;
                     break;
                 }
+                #endregion Check Cuplicate Client
 
+
+                #region Edit DB with inputed Client data
                 // Save data to OutputLicense which will be sent back to Dashboard to be added to the DB
                 if (!error)
                 {
@@ -222,6 +248,7 @@ namespace _42LicenseManager
             while (false);
 
             this.Close();
+            #endregion Edit Client with inputed data
 
         }
 
@@ -252,13 +279,13 @@ namespace _42LicenseManager
             {
                 aCheckBoxDeleted.Enabled = true;
                 aCheckBoxUninstalled.Enabled = true;
-                aCheckBoxWillCancel.Enabled = true;
+                //aCheckBoxWillCancel.Enabled = true;
             }
             else
             {
                 aCheckBoxDeleted.Enabled = false;
                 aCheckBoxUninstalled.Enabled = false;
-                aCheckBoxWillCancel.Enabled = false;
+                //aCheckBoxWillCancel.Enabled = false;
             }
         }
 
@@ -290,6 +317,27 @@ namespace _42LicenseManager
             aComboboxReviewStatus.SelectedIndex = 1;
             aComboboxActive.SelectedIndex = 1;
             aComboboxRenewalStatus.SelectedIndex = 4;
+        }
+
+        private void aCheckBoxAdvanced_CheckStateChanged(object sender, EventArgs e)
+        {
+            bool isVisible = false;
+            bool isReadOnly = true;
+            if (aCheckBoxAdvanced.Checked)
+            {
+                isVisible = true;
+                isReadOnly = false;
+            }
+            //aLabelCompanyName.Enabled = result;
+            //aLabelFirstName.Enabled = result;
+            //aLabelLastName.Enabled = result;
+            aTextBoxCompanyName.ReadOnly = isReadOnly;
+            aTextBoxFirstName.ReadOnly = isReadOnly;
+            aTextBoxLastName.ReadOnly = isReadOnly;
+            //aLabelReviewStatus.Visible = isVisible;
+            //aComboboxReviewStatus.Visible = isVisible;
+            aLabelActive.Visible = isVisible;
+            aComboboxActive.Visible = isVisible;
         }
     }
 }

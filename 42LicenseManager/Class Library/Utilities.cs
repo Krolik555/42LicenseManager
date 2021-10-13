@@ -29,27 +29,41 @@ namespace _42LicenseManager
             p.Start();
         }
 
+        /// <summary>
+        ///CorrectAprostopheForSQL will take ' and change it to '' so that it imports into the DB correctly. 
+        /// Example: "Nathan's" is changed to "Nathan''s" so that it imports like "Nathan's".
+        /// </summary>
+        /// <param name="_StringToCorrect"></param>
+        /// <returns></returns>
         public static string CorrectApostropheForSQL (string _StringToCorrect) // In SQL '' = '
         {
-            string corrected = _StringToCorrect;
-
-            try // FOR OTHER ERRORS
+            if (_StringToCorrect != null)
             {
-                // DOWORK
-                if (_StringToCorrect.Contains("'"))
+                string corrected = _StringToCorrect;
+
+                try // FOR OTHER ERRORS
                 {
-                    corrected = _StringToCorrect.Replace("'", "''");
+                    // DOWORK
+                    if (_StringToCorrect.Contains("'"))
+                    {
+                        corrected = _StringToCorrect.Replace("'", "''");
+                    }
                 }
-            }
-            catch (NullReferenceException)
-            {
+                catch (NullReferenceException)
+                {
 
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show($"Error in text. Please correct and try again. {e.ToString()}");
+                }
+                return corrected;
             }
-            catch (Exception e)
+            else
             {
-                MessageBox.Show($"Error in text. Please correct and try again. {e.ToString()}");
+                return _StringToCorrect;
             }
-            return corrected;
+            
         }
 
         public static void CreateLog(List<string> ChangesMade, int AccountIdentifier)
@@ -110,7 +124,16 @@ namespace _42LicenseManager
         /// <returns></returns>
         public static List<string> FindChanges(License OriginalLicense, License ChangedLicense)
         {
-            string Format = $"(License: {OriginalLicense.Id})";
+            string OriginalLicenseNameForLog = "";
+            if (OriginalLicense.CompanyName != "")
+            {
+                OriginalLicenseNameForLog = OriginalLicense.CompanyName;
+            }
+            else
+            {
+                OriginalLicenseNameForLog = OriginalLicense.FirstName + " " + OriginalLicense.LastName;
+            }
+            string Format = $"[{OriginalLicense.Id}]  {OriginalLicenseNameForLog}:";
             List<string> Changes = new List<string>();
             // COMPANY NAME
             if (OriginalLicense.CompanyName != ChangedLicense.CompanyName)
@@ -169,11 +192,11 @@ namespace _42LicenseManager
             {
                 if (ChangedLicense.ChkBxWillCancel)
                 {
-                    Changes.Add($"{Format} 'Will Cancel' checked");
+                    Changes.Add($"{Format} Auto-Renew Enabled");
                 }
                 else
                 {
-                    Changes.Add($"{Format} 'Will Cancel' unchecked");
+                    Changes.Add($"{Format} Auto-Renew Disabled");
                 }
             }
             // CHKBOX UNINSTALLED
@@ -440,9 +463,9 @@ namespace _42LicenseManager
         /// <param name="DBDIR_Name"></param>
         /// <param name="licenseFound"></param>
         /// <returns></returns>
-        public static bool ClientExists(License Client, string DBDIR_Name, bool AllNamesMustBeIdentical, out List<License> licenseFound)
+        public static bool ClientExists(License ClientToCompare, string DBDIR_Name, bool AllNamesMustBeIdentical, out List<License> licenseFound)
         {
-            licenseFound = DataAccess_GDataTable.GetByName($"{Client.CompanyName} {Client.FirstName} {Client.LastName}", DBDIR_Name);
+            licenseFound = DataAccess_GDataTable.GetByName($"{ClientToCompare.CompanyName} {ClientToCompare.FirstName} {ClientToCompare.LastName}", DBDIR_Name);
 
             #region Names Must Be Idental
             if (AllNamesMustBeIdentical)
@@ -452,7 +475,7 @@ namespace _42LicenseManager
                 foreach(License dblicense in licenseFound)
                 {
                     // If License == Client then Client is exact duplicate.
-                    if ($"{dblicense.CompanyName} {dblicense.FirstName} {dblicense.LastName}".ToLower() == $"{Client.CompanyName} {Client.FirstName} {Client.LastName}".ToLower())
+                    if ($"{dblicense.CompanyName} {dblicense.FirstName} {dblicense.LastName}".ToLower() == $"{ClientToCompare.CompanyName} {ClientToCompare.FirstName} {ClientToCompare.LastName}".ToLower())
                     {
                         // Add duplicate client to list of duplicates
                         identicalLicenseFound.Add(dblicense);
@@ -478,6 +501,8 @@ namespace _42LicenseManager
                 return false;
             }
         }
+
+        
 
         /// <summary>
         /// Verify machine doesn't already exist in Database

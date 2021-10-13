@@ -12,7 +12,11 @@ namespace _42LicenseManager
 {
     public partial class AddMachinesForm : Form
     {
-        public int LicenseID { get; set; }
+        // License that is currently being modified.
+        public License InputLicense { get; set; }
+        // New machine added
+        public LicensedMachines NewMachine { get; set; }
+        // Database info
         ConfigClass Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
         public AddMachinesForm()
@@ -32,7 +36,8 @@ namespace _42LicenseManager
             }
             else
             {
-                LicensedMachines NewMachine = new LicensedMachines();
+                //LicensedMachines NewMachine = new LicensedMachines();
+                NewMachine = new LicensedMachines();
 
                 // IF DATE INSTALLED IS ENABLED GET DATE
                 NewMachine.InstallDate = aDateTimePickerInstalled.Enabled ? aDateTimePickerInstalled.Value.ToShortDateString() : null;
@@ -40,21 +45,12 @@ namespace _42LicenseManager
                 // GET THE REST OF THE DATA
                 NewMachine.MachineName = aTextBoxMachineName.Text;
                 NewMachine.MachineNotes = aTextBoxNotes.Text;
-                NewMachine.LicenseId = LicenseID;
+                NewMachine.LicenseId = InputLicense.Id;
 
-                // UPDATE DATABASE
+                // Add to DATABASE
                 DataAccess_LicensedMachinesTable.AddLicensedMachines(NewMachine, Config.DBDir_Name);
 
-                // CREATE NEW MACHINE LOG
-                LogClass NewLog = new LogClass();
-                NewLog.LicenseId = LicenseID; // Identify which account had the changes.
-                DateTime dt = DateTime.Now; // Get current date/time
-                NewLog.Date = dt;
-                NewLog.Log = $"New Machine added: '{NewMachine.MachineName}'";
 
-                // SAVE NEW MACHINE LOG TO LOG DATABASE
-                DataAccess_ChangeLogTable.CreateNewLog(NewLog, Config.DBDir_Name);
-                Utilities.CloseSQLConnection();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -74,6 +70,30 @@ namespace _42LicenseManager
             else
             {
                 aDateTimePickerInstalled.Enabled = false;
+            }
+        }
+
+        private void aTextBoxMachineName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                aButtonSave_Click(sender, e);
+            }
+        }
+
+        private void aDateTimePickerInstalled_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                aButtonSave_Click(sender, e);
+            }
+        }
+
+        private void aCheckBoxUseDate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                aButtonSave_Click(sender, e);
             }
         }
     }
