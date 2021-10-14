@@ -66,32 +66,41 @@ namespace _42LicenseManager.Class_Library.Import_License
                 for (int i = 0; i < csvTable.Rows.Count; i++)
                 {
                     License NewLicense = new License();
-                    // If Subscription IS for AntiVirus
-                    if (csvTable.Rows[i][1].ToString().ToLower() == "antivirus")
+                    // If subscription contains 1 or more licenses
+                    if (Convert.ToInt32(csvTable.Rows[i][2]) > 0)
                     {
-                        // Get License Name Info
-                        Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
-                        // If License has expiration date
-                        if (csvTable.Rows[i][3].ToString().Contains("Prepaid"))
+                        // If Subscription IS for AntiVirus
+                        if (csvTable.Rows[i][1].ToString().ToLower() == "antivirus")
                         {
-                            NewLicense.ExpirationDate = Convert.ToDateTime(csvTable.Rows[i][4]);
-                            VerifiedLicenses.Add(NewLicense);
+                            // Get License Name Info
+                            Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
+                            // If License has expiration date
+                            if (csvTable.Rows[i][3].ToString().Contains("Prepaid"))
+                            {
+                                NewLicense.ExpirationDate = Convert.ToDateTime(csvTable.Rows[i][4]);
+                                VerifiedLicenses.Add(NewLicense);
+                            }
+                            else // NO EXPIRATION DATE
+                            {
+                                //note: At this point the NewLicense has only a name.
+                                NewLicense.Notes = "License rejected: Does not have an expiration date (Monthly subscription).";
+                                FailedLicenses.Add(NewLicense);
+                            }
                         }
-                        else // NO EXPIRATION DATE
+                        // Subscription is NOT ANTIVIRUS
+                        else
                         {
-                            //note: At this point the NewLicense has only a name.
-                            NewLicense.Notes = "License rejected: Does not have an expiration date (Monthly subscription).";
+                            // Get license name for use with failed license list
+                            Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
+                            NewLicense.Notes = $"License rejected: Subscription is for {csvTable.Rows[i][1].ToString()}, not Antivirus.";
                             FailedLicenses.Add(NewLicense);
                         }
                     }
-                    // Subscription is NOT ANTIVIRUS
-                    else
+                    else // Subscription contains no paid licenses. Do nothing with it.
                     {
-                        // Get license name for use with failed license list
-                        Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
-                        NewLicense.Notes = $"License rejected: Subscription is for {csvTable.Rows[i][1].ToString()}, not Antivirus.";
-                        FailedLicenses.Add(NewLicense);
+
                     }
+                    
                 }
             }
         }
