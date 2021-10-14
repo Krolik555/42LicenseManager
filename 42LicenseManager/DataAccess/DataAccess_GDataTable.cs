@@ -75,6 +75,14 @@ namespace _42LicenseManager
         //
         // Manual Procedures
         // 
+
+        /// <summary>
+        /// Will update an item in the SQL DB using the 'SelectedLicense' passed in based on the 'SelectedLicense' ID. 
+        /// This will surely break things if there is no ID or the ID is incorrect.
+        /// The ID must be in SelectedLicense.Id
+        /// </summary>
+        /// <param name="SelectedLicense"></param>
+        /// <param name="DBDIR_Name"></param>
         public static void UpdateLicenseData(License SelectedLicense, string DBDIR_Name)
         {
             Cursor.Current = Cursors.WaitCursor;

@@ -777,25 +777,26 @@ namespace _42LicenseManager
             // Launch ImportForm
             Forms.Import_License.ImportForm Importfrm = new Forms.Import_License.ImportForm();
             DialogResult DR = Importfrm.ShowDialog();
-            // If user submits data to the database
+            // If user submits data from the ImportForm (dialogresult == yes)
             if (DR == DialogResult.Yes)
             {
-                List<License> ImportedLicenses = new List<License>();
-                List<License> DuplicateLicenses = new List<License>();
+                // Get valid licenses from ImportForm
+                List<License> LicensesQueuedForImport = new List<License>();
+                LicensesQueuedForImport = Importfrm.VerifiedLicenses;
 
-                // Foreach verified license
-                foreach(License NewLicense in Importfrm.VerifiedLicenses)
+                #region License is Not a duplicate
+                foreach (License VerifiedLicense in LicensesQueuedForImport)
                 {
                     // Set license as active
-                    NewLicense.Active = true;
+                    VerifiedLicense.Active = true;
 
-                    // Check if Client does not exist
-                    if (!Utilities.ClientExists(NewLicense, Class_Library.Settings.SelectedDatabaseFilePath, true, out List<License> junk))
+                    // If License is NOT a duplicate
+                    if (!Utilities.ClientExists(VerifiedLicense, Class_Library.Settings.SelectedDatabaseFilePath, true, out List<License> DuplicatefromSQLDB))
                     {
                         // Update DB using Verified License
-                        if (NewLicense != null)
+                        if (VerifiedLicense != null)
                         {
-                            DataAccess_GDataTable.CreateNewLicense(NewLicense, Config.DBDir_Name);
+                            DataAccess_GDataTable.CreateNewLicense(VerifiedLicense, Config.DBDir_Name);
                         }
 
                         // GET LICENSE CREATED FROM DB for use with logs
@@ -803,7 +804,7 @@ namespace _42LicenseManager
 
                         // LOG LICENSE CREATION DATE
                         List<string> changesmade = new List<string>();
-                        if (NewLicense.CompanyName == "")
+                        if (VerifiedLicense.CompanyName == "")
                         {
                             changesmade.Add($"License Created for '{NewLicense2[0].FirstName} {NewLicense2[0].LastName}'");
                         }
@@ -812,18 +813,46 @@ namespace _42LicenseManager
                             changesmade.Add($"License Created for '{NewLicense2[0].CompanyName}'");
                         }
                         Utilities.CreateLog(changesmade, NewLicense2[0].Id);
-
-                        InitializeLicensesTTR();
-                        RefreshDashboard(this, e);
                     }
-                    else //Client exists
+                    #endregion License is Not a duplicate
+
+                    #region License IS a duplicate
+                    // If license IS a duplicate
+                    else
                     {
-                        DuplicateLicenses = junk;
-                    }
-                    
-                }
+                        // If duplicates NOT allowed
+                        if (!Config.AllowDuplicateClients)
+                        {
+                            try
+                            {
+                                // There should only be one license
+                                // Set imported license ID to that of the duplicate in the SQL DB.
+                                VerifiedLicense.Id = DuplicatefromSQLDB[0].Id;
+                                VerifiedLicense.ReviewStatus = DuplicatefromSQLDB[0].ReviewStatus;
+                                VerifiedLicense.RenewalStatus = DuplicatefromSQLDB[0].RenewalStatus.ToString() != "Cancelled" ? DuplicatefromSQLDB[0].RenewalStatus : "Renewed";
+                                //VerifiedLicense.Active = true; License is set to Active before duplicate check.
+                                VerifiedLicense.Notes = DuplicatefromSQLDB[0].Notes;
+                                VerifiedLicense.PCCount = DuplicatefromSQLDB[0].PCCount;
+                                DataAccess_GDataTable.UpdateLicenseData(VerifiedLicense, Config.DBDir_Name);
+                            }
+                            catch (Exception err)
+                            {
+                                MessageBox.Show(err.Message);
+                            }
 
-                
+                        }
+                        else
+                        {
+
+                        }
+
+                    }
+                    #endregion License IS a duplicate
+
+                }
+                InitializeLicensesTTR();
+                RefreshDashboard(this, e);
+
             }
         }
     }

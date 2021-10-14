@@ -20,17 +20,29 @@ namespace _42LicenseManager.Class_Library.Import_License
         /// <returns></returns>
         public static DataTable Read(string csv_FilePath)
         {
-            // Step 1 - remove blank column
-            RemoveBlankColumn(csv_FilePath);
-
-            // Step 2 - collect the data
-            var csvTable = new DataTable();
-            using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(csv_FilePath)), true))
+            try
             {
-                csvTable.Load(csvReader);
+                // Step 1 - remove blank column
+                RemoveBlankColumn(csv_FilePath);
+
+                // Step 2 - collect the data
+                var csvTable = new DataTable();
+                using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(csv_FilePath)), true))
+                {
+                    csvTable.Load(csvReader);
+                }
+                // step 3 - return collected data
+                return csvTable;
             }
-            // step 3 - return collected data
-            return csvTable;
+            catch (IOException err)
+            {
+                if (err.Message.Contains("is being used by another process"))
+                {
+                    MessageBox.Show($"{err.Message} \n Please close the process using the file and try again.");
+                }
+                return null;
+            }
+            
         }
 
         /// <summary>
@@ -67,7 +79,7 @@ namespace _42LicenseManager.Class_Library.Import_License
                         }
                         else // NO EXPIRATION DATE
                         {
-                            //At this point the NewLicense has a name.
+                            //note: At this point the NewLicense has only a name.
                             NewLicense.Notes = "License rejected: Does not have an expiration date (Monthly subscription).";
                             FailedLicenses.Add(NewLicense);
                         }
@@ -86,22 +98,27 @@ namespace _42LicenseManager.Class_Library.Import_License
 
         private static void RemoveBlankColumn(string csv_FilePath)
         {
-            // Clear blank columns
-            string[] data = File.ReadAllLines(csv_FilePath);
-            if (data[0].Contains(",\"\""))
+            try
             {
-                data[0] = (data[0].Remove((data[0].Length - 4), 3));
+                // Clear blank columns
+                string[] data = File.ReadAllLines(csv_FilePath);
+                if (data[0].Contains(",\"\""))
+                {
+                    data[0] = (data[0].Remove((data[0].Length - 4), 3));
 
+                }
+                // clear the contents of the old file.
+                File.WriteAllText(csv_FilePath, "");
+                // save the new contents to the old file.
+                File.AppendAllLines(csv_FilePath, data);
             }
-            // clear the contents of the old file.
-            File.WriteAllText(csv_FilePath, "");
-            // save the new contents to the old file.
-            File.AppendAllLines(csv_FilePath, data);
-            //for (int i = 0; i< data.Length; i++)
-            //{
-                
-            //    File.appe(csv_FilePath, data[i]);
-            //}
+            catch (IOException err)
+            {
+                if (err.Message.Contains("is being used by another process"))
+                {
+                    throw new IOException(err.Message);
+                }
+            }
             
         }
 

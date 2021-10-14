@@ -46,8 +46,14 @@ namespace _42LicenseManager.Forms.Import_License
             {
                 // Read CSV file
                 DataTable csvTable = Class_Library.Import_License.CSV.Read(aTextBoxSource.Text);
+                if (csvTable == null)
+                {
+                    return;
+                }
 
                 // Translate previously read data and convert to "License" format.
+                // During this coversion it will put incompatible licenses into the FailedLicenses list. The rest go in VerifiedLicenses list.
+                // Note: This does not compare current data with SQL data in search of duplicates.
                 Class_Library.Import_License.CSV.TranslateData(csvTable, VerifiedLicenses, FailedLicenses);
 
                 // Add data to verified DGV table
