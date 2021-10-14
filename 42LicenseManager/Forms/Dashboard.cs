@@ -179,8 +179,19 @@ namespace _42LicenseManager
             // GET DATA BY NAME
             if (aComboboxSortBy.SelectedItem.ToString() == @"Search by Name\Id")
             {
+                // Get licenses by name
                 LicensesDGV = DataAccess_GDataTable.GetByName(aTextBoxSearch.Text, Config.DBDir_Name);
-                //LicensesDGV.Add()
+                // Get licenses by ID
+                if (int.TryParse(aTextBoxSearch.Text, out int value))
+                {
+                    List<License> LicensesByID = DataAccess_GDataTable.GetByID(Convert.ToInt32(aTextBoxSearch.Text), Config.DBDir_Name);
+                    foreach (License _license in LicensesByID)
+                    {
+                        LicensesDGV.Add(_license);
+                    }
+                }
+                
+
             }
             // OR GET DATA BY MACHINE NAME
             else if (aComboboxSortBy.SelectedItem.ToString() == "Search by Machine Name")
