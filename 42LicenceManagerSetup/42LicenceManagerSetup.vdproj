@@ -57,6 +57,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7E689CEE3276A3D3715F75AAAF73F47C"
+        "OwnerKey" = "8:_D8EE3C247A294F1FA63F0BDAA36D6ED2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D847850E1E5B4CEE93587C6B47623508"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -83,6 +89,12 @@
         {
         "MsmKey" = "8:_E77BE16D420F4A428927A0FFA028B5BB"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F3779B92C5C2F4BCA8DF875FB02E875F"
+        "OwnerKey" = "8:_D8EE3C247A294F1FA63F0BDAA36D6ED2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -119,6 +131,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E59E89D22AD945BC9C51F143C64893FC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7E689CEE3276A3D3715F75AAAF73F47C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F3779B92C5C2F4BCA8DF875FB02E875F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -201,6 +225,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -337,7 +369,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_59548ECA90BC5B62B2DCE39FE614ACBC"
@@ -404,6 +436,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E689CEE3276A3D3715F75AAAF73F47C"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SplashScreen, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_7E689CEE3276A3D3715F75AAAF73F47C"
+                    {
+                    "Name" = "8:SplashScreen.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SplashScreen.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CFDEE0196E8D42B985B14B8DB4E85955"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D847850E1E5B4CEE93587C6B47623508"
             {
             "SourcePath" = "8:..\\42LicenseManager\\bin\\Debug\\42LicenseManager.exe.config"
@@ -428,7 +491,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:42LicenseManager, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:42LicenseManager, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D8EE3C247A294F1FA63F0BDAA36D6ED2"
@@ -479,7 +542,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_E59E89D22AD945BC9C51F143C64893FC"
@@ -535,6 +598,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F3779B92C5C2F4BCA8DF875FB02E875F"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:LumenWorks.Framework.IO, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F3779B92C5C2F4BCA8DF875FB02E875F"
+                    {
+                    "Name" = "8:LumenWorks.Framework.IO.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:LumenWorks.Framework.IO.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CFDEE0196E8D42B985B14B8DB4E85955"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F61F5BA41E61488BBCDCBA7684E5EB8A"
@@ -655,15 +749,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:42LicenceManagerSetup"
-        "ProductCode" = "8:{4048B3B9-52D4-4ACB-831C-A078F93F44DB}"
-        "PackageCode" = "8:{99DCB197-2A6E-4D73-A853-6B9736972CFD}"
+        "ProductCode" = "8:{3C844B6A-B589-4505-9D6A-49D5FE53607B}"
+        "PackageCode" = "8:{7A5E11EC-668E-44DA-8971-4F629BE06F96}"
         "UpgradeCode" = "8:{7330FA14-90A3-4D95-A4E5-E5661FCFF39E}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.0.0.0"
+        "ProductVersion" = "8:2.1.0.0"
         "Manufacturer" = "8:42 Tech Solutions, Inc."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
