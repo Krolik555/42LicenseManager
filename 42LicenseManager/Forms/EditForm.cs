@@ -289,6 +289,14 @@ namespace _42LicenseManager
             }
         }
 
+        private void aButtonRenew_Click(object sender, EventArgs e)
+        {
+            aComboboxReviewStatus.SelectedIndex = 1;
+            aComboboxActive.SelectedIndex = 0;
+            aComboboxRenewalStatus.SelectedIndex = 0;
+            RenewClicked = true;
+        }
+
         private void AButtonRenewOneYear_Click(object sender, EventArgs e)
         {
             bool cancel = false;
@@ -321,6 +329,8 @@ namespace _42LicenseManager
 
         private void aCheckBoxAdvanced_CheckStateChanged(object sender, EventArgs e)
         {
+            MessageBox.Show("Warning: If you import your licenses from another system, the names in 42LicenseManager and your other system need to remain identical. \n" +
+                "If one gets changed but not the other, the next time you import licenses, it will create a new license resulting in potential duplicates.");
             bool isVisible = false;
             bool isReadOnly = true;
             if (aCheckBoxAdvanced.Checked)
@@ -339,5 +349,7 @@ namespace _42LicenseManager
             aLabelActive.Visible = isVisible;
             aComboboxActive.Visible = isVisible;
         }
+
+
     }
 }

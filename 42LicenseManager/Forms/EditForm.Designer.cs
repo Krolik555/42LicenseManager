@@ -58,6 +58,7 @@
             this.aButtonRenewOneYear = new System.Windows.Forms.Button();
             this.aButtonCancelLicense = new System.Windows.Forms.Button();
             this.aCheckBoxAdvanced = new System.Windows.Forms.CheckBox();
+            this.aButtonRenew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // aTextBoxNotes
@@ -336,7 +337,7 @@
             // 
             // aButtonRenewOneYear
             // 
-            this.aButtonRenewOneYear.Location = new System.Drawing.Point(107, 510);
+            this.aButtonRenewOneYear.Location = new System.Drawing.Point(106, 509);
             this.aButtonRenewOneYear.Name = "aButtonRenewOneYear";
             this.aButtonRenewOneYear.Size = new System.Drawing.Size(97, 41);
             this.aButtonRenewOneYear.TabIndex = 73;
@@ -365,11 +366,22 @@
             this.aCheckBoxAdvanced.UseVisualStyleBackColor = true;
             this.aCheckBoxAdvanced.CheckStateChanged += new System.EventHandler(this.aCheckBoxAdvanced_CheckStateChanged);
             // 
+            // aButtonRenew
+            // 
+            this.aButtonRenew.Location = new System.Drawing.Point(106, 476);
+            this.aButtonRenew.Name = "aButtonRenew";
+            this.aButtonRenew.Size = new System.Drawing.Size(97, 28);
+            this.aButtonRenew.TabIndex = 76;
+            this.aButtonRenew.Text = "Renew";
+            this.aButtonRenew.UseVisualStyleBackColor = true;
+            this.aButtonRenew.Click += new System.EventHandler(this.aButtonRenew_Click);
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(577, 562);
+            this.Controls.Add(this.aButtonRenew);
             this.Controls.Add(this.aCheckBoxAdvanced);
             this.Controls.Add(this.aButtonCancelLicense);
             this.Controls.Add(this.aButtonRenewOneYear);
@@ -443,5 +455,6 @@
         private System.Windows.Forms.Button aButtonRenewOneYear;
         private System.Windows.Forms.Button aButtonCancelLicense;
         private System.Windows.Forms.CheckBox aCheckBoxAdvanced;
+        private System.Windows.Forms.Button aButtonRenew;
     }
 }
