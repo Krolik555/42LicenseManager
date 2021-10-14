@@ -380,7 +380,7 @@ namespace _42LicenseManager
         public static void GetMachineCount_UpdateDB(int idOfLicense, string DBDir_Name)
         {
             // get license
-            License SourceLicense = DataAccess_GDataTable.GetByID(idOfLicense, DBDir_Name);
+            License SourceLicense = (DataAccess_GDataTable.GetByID(idOfLicense, DBDir_Name)[0]);
             // get license machines
             List<LicensedMachines> sourceLicenseMachines = DataAccess_LicensedMachinesTable.GetByLicenseID(SourceLicense.Id, DBDir_Name);
             // count license machines

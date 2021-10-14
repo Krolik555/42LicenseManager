@@ -180,6 +180,7 @@ namespace _42LicenseManager
             if (aComboboxSortBy.SelectedItem.ToString() == @"Search by Name\Id")
             {
                 LicensesDGV = DataAccess_GDataTable.GetByName(aTextBoxSearch.Text, Config.DBDir_Name);
+                //LicensesDGV.Add()
             }
             // OR GET DATA BY MACHINE NAME
             else if (aComboboxSortBy.SelectedItem.ToString() == "Search by Machine Name")
@@ -191,8 +192,8 @@ namespace _42LicenseManager
                     List<License> TempLicensesDGV = new List<License>();
                     foreach (LicensedMachines _Lic in LicenseFound)
                     {
-                        // COMPILE LIST FOR DGV
-                        TempLicensesDGV.Add(DataAccess_GDataTable.GetByID(_Lic.LicenseId, Config.DBDir_Name));
+                        // COMPILE LIST FOR DGV. Get licenses by ID but only add the 1st found.
+                        TempLicensesDGV.Add((DataAccess_GDataTable.GetByID(_Lic.LicenseId, Config.DBDir_Name))[0]);
                     }
                     // MOVE LIST TO DGV
                     LicensesDGV = TempLicensesDGV;
@@ -238,11 +239,12 @@ namespace _42LicenseManager
             License SelectedLicense = new License();
             License SelectedLicense_Changed = new License();
             EditForm _editForm = new EditForm();
+            
             // GET DATA
             try
             {
                 // GET SELECTED LICENSE FROM DB VIA ID
-                SelectedLicense = DataAccess_GDataTable.GetByID(Convert.ToInt32(aDataGridViewLicenses[0, aDataGridViewLicenses.CurrentCell.RowIndex].FormattedValue), Config.DBDir_Name);
+                SelectedLicense = (DataAccess_GDataTable.GetByID(Convert.ToInt32(aDataGridViewLicenses[0, aDataGridViewLicenses.CurrentCell.RowIndex].FormattedValue), Config.DBDir_Name)[0]);
             }
             catch
             {
@@ -271,6 +273,32 @@ namespace _42LicenseManager
                     }
                     RefreshDashboard(this, e);
                 }
+
+                #region Open Duplicate Client Account
+
+                if (_form == DialogResult.Abort)
+                {
+                    _editForm.InputLicense = _editForm.ChangedLicense; // Set License to be passed in
+                    DialogResult _form2 = _editForm.ShowDialog();
+                    if (_form2 == DialogResult.OK) // When editform.Savebutton is clicked
+                    {
+                        SelectedLicense_Changed = _editForm.OutputLicense(); // launch Edit form and return values to SelectedLicense_Changed
+
+                        if (SelectedLicense_Changed != SelectedLicense)
+                        {
+                            // Update SQL DB using changed License
+                            DataAccess_GDataTable.UpdateLicenseData(SelectedLicense_Changed, Config.DBDir_Name);
+
+                            // FIND CHANGES
+                            List<string> ChangesMade = Utilities.FindChanges(SelectedLicense, SelectedLicense_Changed);
+                            // CREATE/SAVE LOGS
+                            Utilities.CreateLog(ChangesMade, SelectedLicense.Id);
+                        }
+                        RefreshDashboard(this, e);
+                    }
+                }
+                #endregion Open Duplicate Client Account
+
             }
             else
             {

@@ -181,7 +181,7 @@ namespace _42LicenseManager
                                     // GET Duplicate LICENSE info FROM DB VIA ID
                                     try
                                     {
-                                        ChangedLicense = DataAccess_GDataTable.GetByID(ExistingUser[0].Id, Config.DBDir_Name);
+                                        ChangedLicense = (DataAccess_GDataTable.GetByID(ExistingUser[0].Id, Config.DBDir_Name)[0]);
                                     }
                                     catch
                                     {

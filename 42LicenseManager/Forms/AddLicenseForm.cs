@@ -84,6 +84,23 @@ namespace _42LicenseManager
             error = Utilities.VerifyNotNull_DateTimePicker(aDateTimePickerExpirationDate, error);
             #endregion Verify Fields
 
+            // Create a license with current info
+            ChangedLicense.CompanyName = aTextBoxCompanyName.Text;
+            ChangedLicense.FirstName = aTextBoxFirstName.Text;
+            ChangedLicense.LastName = aTextBoxLastName.Text;
+            ChangedLicense.ReviewStatus = aComboboxReviewStatus.SelectedItem.ToString();
+            ChangedLicense.ExpirationDate = aDateTimePickerExpirationDate.Value;
+            ChangedLicense.PCCount = 0;
+            ChangedLicense.RenewalStatus = aComboboxRenewalStatus.SelectedItem.ToString();
+            if (aComboboxActive.SelectedItem.ToString() == "False")
+            {
+                ChangedLicense.Active = false;
+            }
+            else
+            {
+                ChangedLicense.Active = true;
+            }
+            ChangedLicense.Notes = aTextBoxNotes.Text;
 
             #region Check Duplicate Client
             // DETERMINE IF CLIENT IS DUPLICATE HERE. Logic goes like this: 
@@ -126,7 +143,7 @@ namespace _42LicenseManager
                                 try
                                 {
                                     // This data will be used to load the EditForm
-                                    ChangedLicense = DataAccess_GDataTable.GetByID(ExistingUser[0].Id, Config.DBDir_Name);
+                                    ChangedLicense = (DataAccess_GDataTable.GetByID(ExistingUser[0].Id, Config.DBDir_Name)[0]);
                                 }
                                 catch
                                 {
@@ -160,22 +177,22 @@ namespace _42LicenseManager
                 // Save data to OutputLicense which will be sent back to Dashboard to be added to the DB
                 if (error != true)
                 {
-                    ChangedLicense.CompanyName = aTextBoxCompanyName.Text;
-                    ChangedLicense.FirstName = aTextBoxFirstName.Text;
-                    ChangedLicense.LastName = aTextBoxLastName.Text;
-                    ChangedLicense.ReviewStatus = aComboboxReviewStatus.SelectedItem.ToString();
-                    ChangedLicense.ExpirationDate = aDateTimePickerExpirationDate.Value;
-                    ChangedLicense.PCCount = 0;
-                    ChangedLicense.RenewalStatus = aComboboxRenewalStatus.SelectedItem.ToString();
-                    if (aComboboxActive.SelectedItem.ToString() == "False")
-                    {
-                        ChangedLicense.Active = false;
-                    }
-                    else
-                    {
-                        ChangedLicense.Active = true;
-                    }
-                    ChangedLicense.Notes = aTextBoxNotes.Text;
+                    //ChangedLicense.CompanyName = aTextBoxCompanyName.Text;
+                    //ChangedLicense.FirstName = aTextBoxFirstName.Text;
+                    //ChangedLicense.LastName = aTextBoxLastName.Text;
+                    //ChangedLicense.ReviewStatus = aComboboxReviewStatus.SelectedItem.ToString();
+                    //ChangedLicense.ExpirationDate = aDateTimePickerExpirationDate.Value;
+                    //ChangedLicense.PCCount = 0;
+                    //ChangedLicense.RenewalStatus = aComboboxRenewalStatus.SelectedItem.ToString();
+                    //if (aComboboxActive.SelectedItem.ToString() == "False")
+                    //{
+                    //    ChangedLicense.Active = false;
+                    //}
+                    //else
+                    //{
+                    //    ChangedLicense.Active = true;
+                    //}
+                    //ChangedLicense.Notes = aTextBoxNotes.Text;
                     this.DialogResult = DialogResult.OK;
                     
                 }

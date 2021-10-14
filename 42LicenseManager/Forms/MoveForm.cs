@@ -75,10 +75,10 @@ namespace _42LicenseManager
             {
                 // GET ID OF DESTINATION LICENSE
                 int DestinationLicenseID = (Convert.ToInt32(aDataGridViewLicenses[0, aDataGridViewLicenses.CurrentCell.RowIndex].FormattedValue));
-                License DestinationLicense = DataAccess_GDataTable.GetByID(DestinationLicenseID, Config.DBDir_Name);
+                License DestinationLicense = (DataAccess_GDataTable.GetByID(DestinationLicenseID, Config.DBDir_Name)[0]);
                 // GET OLD LICENSE ID FOR UPDATING PURPOSES
                 int SourceLicenseID = SelectedMachines_Input[0].LicenseId;
-                License SourceLicense = DataAccess_GDataTable.GetByID(SourceLicenseID, Config.DBDir_Name);
+                License SourceLicense = (DataAccess_GDataTable.GetByID(SourceLicenseID, Config.DBDir_Name)[0]);
 
                 // UPDATE LICENSED MACHINES DATABASE
                 foreach (LicensedMachines machine in SelectedMachines_Input)

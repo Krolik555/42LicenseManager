@@ -36,14 +36,14 @@ namespace _42LicenseManager
                 return connection.Query<License>("dbo.GDataDB_GetByName @Name", new {Name = searchTerm}).ToList();
             }
         }
-        public static License GetByID(int Id, string DBDIR_Name)
+        public static List<License> GetByID(int Id, string DBDIR_Name)
         {
             Cursor.Current = Cursors.WaitCursor;
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnValCustom(DBDIR_Name)))
             {
-                List<License> licenses = connection.Query<License>("dbo.GDataDB_GetById @MyID", new { MyID = Id }).ToList();
-                //return connection.Query<License>("dbo.GDataDB_GetById @MyID", new { MyID = Id }).ToList();
-                return licenses[0];
+                //List<License> licenses = connection.Query<License>("dbo.GDataDB_GetById @MyID", new { MyID = Id }).ToList();
+                return connection.Query<License>("dbo.GDataDB_GetById @MyID", new { MyID = Id }).ToList();
+                //return licenses[0];
             }
         }
         public static List<License> GetAllData(string DBDIR_Name)
