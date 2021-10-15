@@ -59,10 +59,10 @@ namespace _42LicenseManager.Class_Library.Import_License
             {
                 FileFormat.Add(column.ColumnName);
             }
+            // If file structure is compatible, continue.
             if (SupportedFormat(FileFormat))
             {
-                // If file structure is compatible, continue.
-
+                // for each row
                 for (int i = 0; i < csvTable.Rows.Count; i++)
                 {
                     License NewLicense = new License();
@@ -72,7 +72,7 @@ namespace _42LicenseManager.Class_Library.Import_License
                         // If Subscription IS for AntiVirus
                         if (csvTable.Rows[i][1].ToString().ToLower() == "antivirus")
                         {
-                            // Get License Name Info
+                            // Get License Name Info - figure out what is a company name, first name and last name.
                             Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
                             // If License has expiration date
                             if (csvTable.Rows[i][3].ToString().Contains("Prepaid"))

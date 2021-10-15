@@ -42,7 +42,8 @@ namespace _42LicenseManager.Class_Library
                 // Update config file with new data
                 Class_Library.Config.Update(config);
 
-                MessageBox.Show("Backup Complete!");
+                //Thread.Sleep(2000);
+                MessageBox.Show(new Form { TopMost = true }, "Backup Complete!");
             }
             else
             {
@@ -116,15 +117,13 @@ namespace _42LicenseManager.Class_Library
                     Directory.CreateDirectory(DestFolderName);
                 }
 
-                //FileInfo file = new FileInfo(SourceDir_FileName);
                 // Create the path to the new copy of the file.
                 string temppath = Path.Combine(DestFolderName, DestFileName);
 
                 // Copy the file.
-                //file.CopyTo(temppath, true);
                 File.Copy(SourceDir_FileName, temppath);
-                temppath = temppath.Remove(temppath.Length - 4) + "_log.ldf";
-                File.Copy(SourceDir_FileName, temppath);
+                //temppath = temppath.Remove(temppath.Length - 4) + "_log.ldf";
+                //File.Copy(SourceDir_FileName, temppath);
 
                 return true; // no need to re-run the backup
 

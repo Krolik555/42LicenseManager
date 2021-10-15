@@ -88,8 +88,12 @@ namespace _42LicenseManager
 
                 DGVUtilities.SetSortationDefault(5, SortOrder.Descending, aDataGridViewLicenses);
 
+                // Determine if db has ever been backed up. (if it hasn't then the backupExpiration date will be 1/1/0001
+                string test = DateTime.Now.AddYears(-10).ToString();
+                string LastBackup = Config.LastBackup < DateTime.Now.AddYears(-10) ? "Never" : Config.LastBackup.ToString();
                 // Set Title Name
-                this.Text += $" v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})";
+                this.Text += $" v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})" +
+                    $" | Last backup: {LastBackup}";
 
                 backgroundWorkerAutoBackup.RunWorkerAsync();
 
@@ -828,6 +832,7 @@ namespace _42LicenseManager
                 {
                     // Set license as active
                     VerifiedLicense.Active = true;
+                    VerifiedLicense.RenewalStatus = "Renewed";
 
                     // If License is NOT a duplicate
                     if (!Utilities.ClientExists(VerifiedLicense, Class_Library.Settings.SelectedDatabaseFilePath, true, out List<License> DuplicatefromSQLDB))
@@ -862,7 +867,7 @@ namespace _42LicenseManager
                         // If duplicates NOT allowed
                         if (!Config.AllowDuplicateClients)
                         {
-                            try
+                            try // Merge dupe licenses with current licenses.
                             {
                                 // There should only be one license
                                 // Set imported license ID to that of the duplicate in the SQL DB.
