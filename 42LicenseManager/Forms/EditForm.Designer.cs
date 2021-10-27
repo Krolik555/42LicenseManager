@@ -418,7 +418,6 @@
             this.Name = "EditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit License Information";
-            this.Load += new System.EventHandler(this.EditForm_Load);
             this.Shown += new System.EventHandler(this.EditForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

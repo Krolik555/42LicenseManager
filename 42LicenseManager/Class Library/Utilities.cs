@@ -188,9 +188,9 @@ namespace _42LicenseManager
                 Changes.Add($"{Format} Notes changed.");
             }
             // CHKBOX WILL CANCEL
-            if (OriginalLicense.ChkBxWillCancel != ChangedLicense.ChkBxWillCancel)
+            if (OriginalLicense.ChkBxAutoRenew != ChangedLicense.ChkBxAutoRenew)
             {
-                if (ChangedLicense.ChkBxWillCancel)
+                if (ChangedLicense.ChkBxAutoRenew)
                 {
                     Changes.Add($"{Format} Auto-Renew Enabled");
                 }

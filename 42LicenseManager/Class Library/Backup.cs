@@ -22,15 +22,24 @@ namespace _42LicenseManager.Class_Library
             bool BackupSuccessful = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
 
             // If first attempt failed, try again 2 more times.
+            string errMsg = "";
             while (BackupSuccessful == false && BackupAttempts < 2)
             {
+
                 System.Threading.Thread.Sleep(10000);
-                BackupSuccessful = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
-                BackupAttempts++;
+                try
+                {
+                    BackupSuccessful = fileCopy(SourceDir_FileName, DateTime.Now.ToString("yyyyMMdd-HHmm ") + DestFileName, DestFolderName);
+                    BackupAttempts++;
+                }
+                catch(Exception err)
+                {
+                    errMsg = err.Message;
+                }
             }
             if (BackupSuccessful == false && BackupAttempts >= 3)
             {
-                ErrorLogs.Create($"Backup failed after 3 attempts. \nDatabase: {SourceDir_FileName}");
+                ErrorLogs.Create($"Backup failed after 3 attempts. \nDatabase: {SourceDir_FileName} \n\n{errMsg}");
             }
 
             if (BackupSuccessful)
@@ -42,12 +51,17 @@ namespace _42LicenseManager.Class_Library
                 // Update config file with new data
                 Class_Library.Config.Update(config);
 
-                //Thread.Sleep(2000);
-                MessageBox.Show(new Form { TopMost = true }, "Backup Complete!");
+                Thread.Sleep(2000);
+                Forms.ConfirmationForm confirmForm = new Forms.ConfirmationForm("Backup Complete!");
+                confirmForm.StartPosition = FormStartPosition.CenterParent;
+                confirmForm.TopMost = true;
+                confirmForm.ShowDialog();
+
+                //MessageBox.Show(new Form { TopMost = true }, "Backup Complete!");
             }
             else
             {
-                MessageBox.Show("Backup Failed after 3 attempts.");
+                ErrorLogs.Create($"Backup failed after 3 attempts. \nDatabase: {SourceDir_FileName} \n\n{errMsg}");
             }
 
             // Reset cursor

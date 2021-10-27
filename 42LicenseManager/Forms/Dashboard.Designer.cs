@@ -33,11 +33,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.aLabelSearch = new System.Windows.Forms.Label();
-            this.aTextBoxNotes = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.aButtonEdit = new System.Windows.Forms.Button();
             this.aDataGridViewLicenses = new System.Windows.Forms.DataGridView();
-            this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aComboboxSortBy = new System.Windows.Forms.ComboBox();
             this.aTextBoxSearch = new System.Windows.Forms.TextBox();
             this.aButtonTest = new System.Windows.Forms.Button();
@@ -67,7 +64,12 @@
             this.aButtonRefresh = new System.Windows.Forms.Button();
             this.aButtonSearch = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.aCheckBoxAutoRenew = new System.Windows.Forms.CheckBox();
+            this.aTextBoxNotes = new System.Windows.Forms.TextBox();
+            this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +78,7 @@
             this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ChkBxAutoRenew = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,45 +87,19 @@
             // 
             // aLabelSearch
             // 
-            this.aLabelSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aLabelSearch.AutoSize = true;
             this.aLabelSearch.Enabled = false;
-            this.aLabelSearch.Location = new System.Drawing.Point(626, 93);
+            this.aLabelSearch.Location = new System.Drawing.Point(413, 90);
             this.aLabelSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.aLabelSearch.Name = "aLabelSearch";
             this.aLabelSearch.Size = new System.Drawing.Size(57, 17);
             this.aLabelSearch.TabIndex = 3;
             this.aLabelSearch.Text = "Search:";
             // 
-            // aTextBoxNotes
-            // 
-            this.aTextBoxNotes.AcceptsReturn = true;
-            this.aTextBoxNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.aTextBoxNotes.Location = new System.Drawing.Point(22, 411);
-            this.aTextBoxNotes.Margin = new System.Windows.Forms.Padding(4);
-            this.aTextBoxNotes.Multiline = true;
-            this.aTextBoxNotes.Name = "aTextBoxNotes";
-            this.aTextBoxNotes.ReadOnly = true;
-            this.aTextBoxNotes.Size = new System.Drawing.Size(1173, 121);
-            this.aTextBoxNotes.TabIndex = 17;
-            this.aTextBoxNotes.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 390);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 17);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Notes:";
-            // 
             // aButtonEdit
             // 
-            this.aButtonEdit.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.aButtonEdit.Location = new System.Drawing.Point(1206, 139);
+            this.aButtonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonEdit.Location = new System.Drawing.Point(1197, 123);
             this.aButtonEdit.Name = "aButtonEdit";
             this.aButtonEdit.Size = new System.Drawing.Size(99, 37);
             this.aButtonEdit.TabIndex = 5;
@@ -152,30 +128,23 @@
             this.renewalStatusDataGridViewTextBoxColumn,
             this.pCCountDataGridViewTextBoxColumn,
             this.activeDataGridViewCheckBoxColumn,
-            this.notesDataGridViewTextBoxColumn});
+            this.notesDataGridViewTextBoxColumn,
+            this.ChkBxAutoRenew});
             this.aDataGridViewLicenses.DataSource = this.licenseBindingSource;
             this.aDataGridViewLicenses.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
-            this.aDataGridViewLicenses.Location = new System.Drawing.Point(22, 120);
+            this.aDataGridViewLicenses.Location = new System.Drawing.Point(14, 120);
             this.aDataGridViewLicenses.MultiSelect = false;
             this.aDataGridViewLicenses.Name = "aDataGridViewLicenses";
             this.aDataGridViewLicenses.ReadOnly = true;
-            this.aDataGridViewLicenses.Size = new System.Drawing.Size(1173, 262);
+            this.aDataGridViewLicenses.Size = new System.Drawing.Size(1177, 317);
             this.aDataGridViewLicenses.TabIndex = 4;
             this.aDataGridViewLicenses.TabStop = false;
             this.aDataGridViewLicenses.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewLicenses_CellDoubleClick);
             this.aDataGridViewLicenses.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewLicenses_CellEnter);
             this.aDataGridViewLicenses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.aDataGridViewLicenses_CellFormatting);
             // 
-            // ReviewStatus
-            // 
-            this.ReviewStatus.DataPropertyName = "ReviewStatus";
-            this.ReviewStatus.HeaderText = "Review Status";
-            this.ReviewStatus.Name = "ReviewStatus";
-            this.ReviewStatus.ReadOnly = true;
-            // 
             // aComboboxSortBy
             // 
-            this.aComboboxSortBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aComboboxSortBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.aComboboxSortBy.FormattingEnabled = true;
             this.aComboboxSortBy.Items.AddRange(new object[] {
@@ -183,7 +152,7 @@
             "Search by Name\\Id",
             "Search by Machine Name",
             "All Licenses"});
-            this.aComboboxSortBy.Location = new System.Drawing.Point(691, 59);
+            this.aComboboxSortBy.Location = new System.Drawing.Point(478, 56);
             this.aComboboxSortBy.Name = "aComboboxSortBy";
             this.aComboboxSortBy.Size = new System.Drawing.Size(189, 24);
             this.aComboboxSortBy.TabIndex = 1;
@@ -191,9 +160,8 @@
             // 
             // aTextBoxSearch
             // 
-            this.aTextBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aTextBoxSearch.Enabled = false;
-            this.aTextBoxSearch.Location = new System.Drawing.Point(691, 90);
+            this.aTextBoxSearch.Location = new System.Drawing.Point(478, 87);
             this.aTextBoxSearch.Margin = new System.Windows.Forms.Padding(4);
             this.aTextBoxSearch.Name = "aTextBoxSearch";
             this.aTextBoxSearch.Size = new System.Drawing.Size(305, 23);
@@ -205,9 +173,9 @@
             // aButtonTest
             // 
             this.aButtonTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonTest.Location = new System.Drawing.Point(1225, 520);
+            this.aButtonTest.Location = new System.Drawing.Point(1220, 475);
             this.aButtonTest.Name = "aButtonTest";
-            this.aButtonTest.Size = new System.Drawing.Size(75, 23);
+            this.aButtonTest.Size = new System.Drawing.Size(75, 68);
             this.aButtonTest.TabIndex = 27;
             this.aButtonTest.TabStop = false;
             this.aButtonTest.Text = "Test";
@@ -217,8 +185,8 @@
             // 
             // aButtonAddLicense
             // 
-            this.aButtonAddLicense.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.aButtonAddLicense.Location = new System.Drawing.Point(1206, 182);
+            this.aButtonAddLicense.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonAddLicense.Location = new System.Drawing.Point(1197, 166);
             this.aButtonAddLicense.Name = "aButtonAddLicense";
             this.aButtonAddLicense.Size = new System.Drawing.Size(99, 37);
             this.aButtonAddLicense.TabIndex = 6;
@@ -228,8 +196,8 @@
             // 
             // aButtonDelete
             // 
-            this.aButtonDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.aButtonDelete.Location = new System.Drawing.Point(1206, 256);
+            this.aButtonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonDelete.Location = new System.Drawing.Point(1197, 299);
             this.aButtonDelete.Name = "aButtonDelete";
             this.aButtonDelete.Size = new System.Drawing.Size(99, 37);
             this.aButtonDelete.TabIndex = 7;
@@ -239,8 +207,8 @@
             // 
             // aLabelLicenseFoundLabel
             // 
-            this.aLabelLicenseFoundLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.aLabelLicenseFoundLabel.Location = new System.Drawing.Point(1081, 385);
+            this.aLabelLicenseFoundLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aLabelLicenseFoundLabel.Location = new System.Drawing.Point(1083, 97);
             this.aLabelLicenseFoundLabel.Name = "aLabelLicenseFoundLabel";
             this.aLabelLicenseFoundLabel.Size = new System.Drawing.Size(68, 17);
             this.aLabelLicenseFoundLabel.TabIndex = 30;
@@ -248,9 +216,9 @@
             // 
             // aLabelLicenseFoundInt
             // 
-            this.aLabelLicenseFoundInt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.aLabelLicenseFoundInt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aLabelLicenseFoundInt.AutoSize = true;
-            this.aLabelLicenseFoundInt.Location = new System.Drawing.Point(1155, 385);
+            this.aLabelLicenseFoundInt.Location = new System.Drawing.Point(1148, 97);
             this.aLabelLicenseFoundInt.Name = "aLabelLicenseFoundInt";
             this.aLabelLicenseFoundInt.Size = new System.Drawing.Size(16, 17);
             this.aLabelLicenseFoundInt.TabIndex = 31;
@@ -259,11 +227,12 @@
             // aButtonCheckForExpires
             // 
             this.aButtonCheckForExpires.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonCheckForExpires.Location = new System.Drawing.Point(1053, 89);
+            this.aButtonCheckForExpires.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aButtonCheckForExpires.Location = new System.Drawing.Point(1197, 210);
             this.aButtonCheckForExpires.Name = "aButtonCheckForExpires";
-            this.aButtonCheckForExpires.Size = new System.Drawing.Size(142, 28);
+            this.aButtonCheckForExpires.Size = new System.Drawing.Size(99, 46);
             this.aButtonCheckForExpires.TabIndex = 4;
-            this.aButtonCheckForExpires.Text = "Check for Expires";
+            this.aButtonCheckForExpires.Text = "Check for Expiring Licenses";
             this.aToolTip.SetToolTip(this.aButtonCheckForExpires, "Haven\'t restarted the program within the last day? \r\nThis will update licenses th" +
         "at expire within 21 days \r\nfrom today and set them to \'Open\'.");
             this.aButtonCheckForExpires.UseVisualStyleBackColor = true;
@@ -277,7 +246,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1318, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1307, 24);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -369,8 +338,8 @@
             // 
             // aButtonViewAllLogs
             // 
-            this.aButtonViewAllLogs.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.aButtonViewAllLogs.Location = new System.Drawing.Point(1206, 326);
+            this.aButtonViewAllLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonViewAllLogs.Location = new System.Drawing.Point(1197, 342);
             this.aButtonViewAllLogs.Name = "aButtonViewAllLogs";
             this.aButtonViewAllLogs.Size = new System.Drawing.Size(99, 37);
             this.aButtonViewAllLogs.TabIndex = 8;
@@ -380,9 +349,8 @@
             // 
             // aLabelView
             // 
-            this.aLabelView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aLabelView.AutoSize = true;
-            this.aLabelView.Location = new System.Drawing.Point(642, 59);
+            this.aLabelView.Location = new System.Drawing.Point(429, 56);
             this.aLabelView.Name = "aLabelView";
             this.aLabelView.Size = new System.Drawing.Size(41, 17);
             this.aLabelView.TabIndex = 34;
@@ -390,9 +358,9 @@
             // 
             // aStatusStripDashboard
             // 
-            this.aStatusStripDashboard.Location = new System.Drawing.Point(0, 536);
+            this.aStatusStripDashboard.Location = new System.Drawing.Point(0, 594);
             this.aStatusStripDashboard.Name = "aStatusStripDashboard";
-            this.aStatusStripDashboard.Size = new System.Drawing.Size(1318, 22);
+            this.aStatusStripDashboard.Size = new System.Drawing.Size(1307, 22);
             this.aStatusStripDashboard.TabIndex = 36;
             this.aStatusStripDashboard.Text = "statusStrip1";
             // 
@@ -411,9 +379,8 @@
             // 
             // aButtonRefresh
             // 
-            this.aButtonRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aButtonRefresh.Image = global::_42LicenseManager.Properties.Resources.Refresh;
-            this.aButtonRefresh.Location = new System.Drawing.Point(886, 59);
+            this.aButtonRefresh.Location = new System.Drawing.Point(673, 56);
             this.aButtonRefresh.Name = "aButtonRefresh";
             this.aButtonRefresh.Size = new System.Drawing.Size(28, 24);
             this.aButtonRefresh.TabIndex = 2;
@@ -422,10 +389,9 @@
             // 
             // aButtonSearch
             // 
-            this.aButtonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aButtonSearch.Enabled = false;
             this.aButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("aButtonSearch.Image")));
-            this.aButtonSearch.Location = new System.Drawing.Point(996, 89);
+            this.aButtonSearch.Location = new System.Drawing.Point(783, 86);
             this.aButtonSearch.Margin = new System.Windows.Forms.Padding(4);
             this.aButtonSearch.Name = "aButtonSearch";
             this.aButtonSearch.Size = new System.Drawing.Size(31, 25);
@@ -444,6 +410,47 @@
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 454);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 17);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Notes:";
+            // 
+            // aCheckBoxAutoRenew
+            // 
+            this.aCheckBoxAutoRenew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.aCheckBoxAutoRenew.AutoSize = true;
+            this.aCheckBoxAutoRenew.Location = new System.Drawing.Point(1087, 454);
+            this.aCheckBoxAutoRenew.Name = "aCheckBoxAutoRenew";
+            this.aCheckBoxAutoRenew.Size = new System.Drawing.Size(104, 21);
+            this.aCheckBoxAutoRenew.TabIndex = 71;
+            this.aCheckBoxAutoRenew.Text = "Auto-Renew";
+            this.aCheckBoxAutoRenew.UseVisualStyleBackColor = true;
+            this.aCheckBoxAutoRenew.Click += new System.EventHandler(this.aCheckBoxAutoRenew_Click);
+            // 
+            // aTextBoxNotes
+            // 
+            this.aTextBoxNotes.AcceptsReturn = true;
+            this.aTextBoxNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.aTextBoxNotes.Location = new System.Drawing.Point(14, 475);
+            this.aTextBoxNotes.Margin = new System.Windows.Forms.Padding(4);
+            this.aTextBoxNotes.Multiline = true;
+            this.aTextBoxNotes.Name = "aTextBoxNotes";
+            this.aTextBoxNotes.ReadOnly = true;
+            this.aTextBoxNotes.Size = new System.Drawing.Size(1177, 115);
+            this.aTextBoxNotes.TabIndex = 17;
+            this.aTextBoxNotes.TabStop = false;
+            // 
+            // licenseBindingSource
+            // 
+            this.licenseBindingSource.DataSource = typeof(_42LicenseManager.License);
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -455,6 +462,13 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // ReviewStatus
+            // 
+            this.ReviewStatus.DataPropertyName = "ReviewStatus";
+            this.ReviewStatus.HeaderText = "Review Status";
+            this.ReviewStatus.Name = "ReviewStatus";
+            this.ReviewStatus.ReadOnly = true;
             // 
             // companyNameDataGridViewTextBoxColumn
             // 
@@ -520,16 +534,23 @@
             this.notesDataGridViewTextBoxColumn.ReadOnly = true;
             this.notesDataGridViewTextBoxColumn.Visible = false;
             // 
-            // licenseBindingSource
+            // ChkBxAutoRenew
             // 
-            this.licenseBindingSource.DataSource = typeof(_42LicenseManager.License);
+            this.ChkBxAutoRenew.DataPropertyName = "ChkBxAutoRenew";
+            this.ChkBxAutoRenew.HeaderText = "ChkBxAutoRenew";
+            this.ChkBxAutoRenew.Name = "ChkBxAutoRenew";
+            this.ChkBxAutoRenew.ReadOnly = true;
+            this.ChkBxAutoRenew.Visible = false;
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1318, 558);
+            this.ClientSize = new System.Drawing.Size(1307, 616);
+            this.Controls.Add(this.aTextBoxNotes);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.aCheckBoxAutoRenew);
             this.Controls.Add(this.aStatusStripDashboard);
             this.Controls.Add(this.aButtonRefresh);
             this.Controls.Add(this.aLabelView);
@@ -544,8 +565,6 @@
             this.Controls.Add(this.aComboboxSortBy);
             this.Controls.Add(this.aDataGridViewLicenses);
             this.Controls.Add(this.aButtonEdit);
-            this.Controls.Add(this.aTextBoxNotes);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.aLabelSearch);
             this.Controls.Add(this.aButtonSearch);
             this.Controls.Add(this.menuStrip1);
@@ -572,8 +591,6 @@
 
         #endregion
         private System.Windows.Forms.Label aLabelSearch;
-        private System.Windows.Forms.TextBox aTextBoxNotes;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button aButtonEdit;
         private System.Windows.Forms.DataGridView aDataGridViewLicenses;
         private System.Windows.Forms.ComboBox aComboboxSortBy;
@@ -597,6 +614,18 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.BindingSource licenseBindingSource;
         private System.Windows.Forms.Button aButtonRefresh;
+        private System.Windows.Forms.Button aButtonSearch;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configureBackupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backupNowToolStripMenuItem;
+        public System.Windows.Forms.StatusStrip aStatusStripDashboard;
+        private System.Windows.Forms.ToolStripMenuItem selectDatabaseToolStripMenuItem;
+        public System.ComponentModel.BackgroundWorker backgroundWorkerBackup;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerAutoBackup;
+        private System.Windows.Forms.ToolStripMenuItem importLicensesToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox aCheckBoxAutoRenew;
+        private System.Windows.Forms.TextBox aTextBoxNotes;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReviewStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn companyNameDataGridViewTextBoxColumn;
@@ -607,15 +636,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn pCCountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn activeDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button aButtonSearch;
-        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configureBackupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem backupNowToolStripMenuItem;
-        public System.Windows.Forms.StatusStrip aStatusStripDashboard;
-        private System.Windows.Forms.ToolStripMenuItem selectDatabaseToolStripMenuItem;
-        public System.ComponentModel.BackgroundWorker backgroundWorkerBackup;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerAutoBackup;
-        private System.Windows.Forms.ToolStripMenuItem importLicensesToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ChkBxAutoRenew;
     }
 }
 

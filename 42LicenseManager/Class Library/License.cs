@@ -18,7 +18,7 @@ namespace _42LicenseManager
         public int PCCount { get; set; }
         public bool Active { get; set; }
         public string Notes { get; set; }
-        public bool ChkBxWillCancel { get; set; }
+        public bool ChkBxAutoRenew { get; set; }
         public bool ChkBxUninstalled { get; set; }
         public bool ChkBxDeleted { get; set; }
 

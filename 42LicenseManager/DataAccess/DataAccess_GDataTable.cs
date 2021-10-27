@@ -100,14 +100,14 @@ namespace _42LicenseManager
                 bool _Active = SelectedLicense.Active;
                 string _Notes = Utilities.CorrectApostropheForSQL(SelectedLicense.Notes);
                 int _ID = SelectedLicense.Id;
-                bool _ChkBxWillCancel = SelectedLicense.ChkBxWillCancel;
+                bool _ChkBxAutoRenew = SelectedLicense.ChkBxAutoRenew;
                 bool _ChkBxUninstalled = SelectedLicense.ChkBxUninstalled;
                 bool _ChkBxDeleted = SelectedLicense.ChkBxDeleted;
                 // Create command for SQL server
                 SqlConnection sqlConnection1 = new SqlConnection((Helper.CnnValCustom(DBDIR_Name)));
                 SqlDataReader reader;
                 SqlCommand command = new SqlCommand();
-                command.CommandText = $"UPDATE GDataTable SET ReviewStatus = '{_ReviewStatus}', CompanyName = '{_CompanyName}', FirstName = '{_FirstName}', LastName = '{_LastName}', ExpirationDate = '{ExpDate}', PCCount = '{_PCCount}', RenewalStatus = '{_RenewalStatus}', Active = '{_Active}', Notes = '{_Notes}', ChkBxWillCancel = '{_ChkBxWillCancel}', ChkBxUninstalled = '{_ChkBxUninstalled}', ChkBxDeleted = '{_ChkBxDeleted}' WHERE Id = '{_ID}'";
+                command.CommandText = $"UPDATE GDataTable SET ReviewStatus = '{_ReviewStatus}', CompanyName = '{_CompanyName}', FirstName = '{_FirstName}', LastName = '{_LastName}', ExpirationDate = '{ExpDate}', PCCount = '{_PCCount}', RenewalStatus = '{_RenewalStatus}', Active = '{_Active}', Notes = '{_Notes}', ChkBxAutoRenew = '{_ChkBxAutoRenew}', ChkBxUninstalled = '{_ChkBxUninstalled}', ChkBxDeleted = '{_ChkBxDeleted}' WHERE Id = '{_ID}'";
                 command.CommandType = CommandType.Text;
                 command.Connection = sqlConnection1;
 
@@ -141,14 +141,14 @@ namespace _42LicenseManager
             CorrectedLicense.Active = NewLicense.Active;
             CorrectedLicense.Notes = Utilities.CorrectApostropheForSQL(NewLicense.Notes);
             CorrectedLicense.Id = NewLicense.Id;
-            CorrectedLicense.ChkBxWillCancel = NewLicense.ChkBxWillCancel;
+            CorrectedLicense.ChkBxAutoRenew = NewLicense.ChkBxAutoRenew;
             CorrectedLicense.ChkBxUninstalled = NewLicense.ChkBxUninstalled;
             CorrectedLicense.ChkBxDeleted = NewLicense.ChkBxDeleted;
             // Create INSERT command for SQL server (This saves data to the SQL DB)
             SqlConnection sqlConnection1 = new SqlConnection((Helper.CnnValCustom(DBDIR_Name)));
             SqlDataReader reader;
             SqlCommand command = new SqlCommand();
-            command.CommandText = $"INSERT INTO GDataTable (ReviewStatus, CompanyName, FirstName, LastName, ExpirationDate, PCCount, RenewalStatus, Active, Notes, ChkBxWillCancel, ChkBxUninstalled, ChkBxDeleted) VALUES ('{CorrectedLicense.ReviewStatus}', '{CorrectedLicense.CompanyName}', '{CorrectedLicense.FirstName}', '{CorrectedLicense.LastName}', '{CorrectedLicense.ExpirationDate}', '{CorrectedLicense.PCCount}', '{CorrectedLicense.RenewalStatus}', '{CorrectedLicense.Active}', '{CorrectedLicense.Notes}','{CorrectedLicense.ChkBxWillCancel}','{CorrectedLicense.ChkBxUninstalled}','{CorrectedLicense.ChkBxDeleted}')";
+            command.CommandText = $"INSERT INTO GDataTable (ReviewStatus, CompanyName, FirstName, LastName, ExpirationDate, PCCount, RenewalStatus, Active, Notes, ChkBxAutoRenew, ChkBxUninstalled, ChkBxDeleted) VALUES ('{CorrectedLicense.ReviewStatus}', '{CorrectedLicense.CompanyName}', '{CorrectedLicense.FirstName}', '{CorrectedLicense.LastName}', '{CorrectedLicense.ExpirationDate}', '{CorrectedLicense.PCCount}', '{CorrectedLicense.RenewalStatus}', '{CorrectedLicense.Active}', '{CorrectedLicense.Notes}','{CorrectedLicense.ChkBxAutoRenew}','{CorrectedLicense.ChkBxUninstalled}','{CorrectedLicense.ChkBxDeleted}')";
 
             command.CommandType = CommandType.Text;
             command.Connection = sqlConnection1;
@@ -233,7 +233,7 @@ namespace _42LicenseManager
                         bool _Active = _Lic.Active;
                         string _Notes = Utilities.CorrectApostropheForSQL(_Lic.Notes);
                         int _ID = _Lic.Id;
-                        bool _ChkBxWillCancel = _Lic.ChkBxWillCancel;
+                        bool _ChkBxAutoRenew = _Lic.ChkBxAutoRenew;
                         bool _ChkBxUninstalled = _Lic.ChkBxUninstalled;
                         bool _ChkBxDeleted = _Lic.ChkBxDeleted;
 
@@ -241,7 +241,7 @@ namespace _42LicenseManager
                         SqlConnection sqlConnection1 = new SqlConnection((Helper.CnnValCustom(NewDBDir)));
                         SqlDataReader reader;
                         SqlCommand command = new SqlCommand();
-                        command.CommandText = $"INSERT INTO GDataTable (ReviewStatus, CompanyName, FirstName, LastName, ExpirationDate, PCCount, RenewalStatus, Active, Notes) VALUES ('{_ReviewStatus}', '{_CompanyName}', '{_FirstName}', '{_LastName}', '{ExpDate}', '{_PCCount}', '{_RenewalStatus}', '{_Active}', '{_Notes}','{_ChkBxWillCancel}','{_ChkBxUninstalled}','{_ChkBxDeleted}')";
+                        command.CommandText = $"INSERT INTO GDataTable (ReviewStatus, CompanyName, FirstName, LastName, ExpirationDate, PCCount, RenewalStatus, Active, Notes) VALUES ('{_ReviewStatus}', '{_CompanyName}', '{_FirstName}', '{_LastName}', '{ExpDate}', '{_PCCount}', '{_RenewalStatus}', '{_Active}', '{_Notes}','{_ChkBxAutoRenew}','{_ChkBxUninstalled}','{_ChkBxDeleted}')";
                         command.CommandType = CommandType.Text;
                         command.Connection = sqlConnection1;
 

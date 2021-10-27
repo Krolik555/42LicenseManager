@@ -38,12 +38,6 @@ namespace _42LicenseManager
         Version CurrentVer = Assembly.GetExecutingAssembly().GetName().Version;
 
 
-        //PendingActionForm paForm = new PendingActionForm*/("Backing up your database.", "...");
-        
-
-
-
-
         public Dashboard()
         {
             
@@ -559,7 +553,10 @@ namespace _42LicenseManager
         
         private void aDataGridViewLicenses_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            // Get notes from selected license (Local data, not from SQL)
             aTextBoxNotes.Text = (aDataGridViewLicenses[9, aDataGridViewLicenses.CurrentCell.RowIndex].FormattedValue.ToString());
+            // Get auto-renew state from selected license (Local data, not from SQL)
+            aCheckBoxAutoRenew.Checked = (Convert.ToBoolean(aDataGridViewLicenses[10, aDataGridViewLicenses.CurrentCell.RowIndex].FormattedValue));
         }
 
         private void setDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -700,7 +697,7 @@ namespace _42LicenseManager
             if (DR == DialogResult.OK)
             {
                 Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
-                if (Config.AutoBackup)
+                if (Config.AutoBackup && !backgroundWorkerAutoBackup.IsBusy)
                 {
                     //If autoBackup was just turned off that means the background worker is dead.
                     // Start the background worker back up.
@@ -772,6 +769,7 @@ namespace _42LicenseManager
             frm.AppName = "Backup In Progress";
             frm.ShowIcon = false;
             frm.ShowInTaskbar = false;
+            frm.StartPosition = FormStartPosition.CenterScreen;
 
             Application.Run(frm);
         }
@@ -898,6 +896,20 @@ namespace _42LicenseManager
                 RefreshDashboard(this, e);
 
             }
+        }
+
+        private void aCheckBoxAutoRenew_Click(object sender, EventArgs e)
+        {
+            #region Work-around used to make the checkbox read-only.
+            if (aCheckBoxAutoRenew.Checked)
+            {
+                aCheckBoxAutoRenew.Checked = false;
+            }
+            else
+            {
+                aCheckBoxAutoRenew.Checked = true;
+            }
+            #endregion
         }
     }
 }

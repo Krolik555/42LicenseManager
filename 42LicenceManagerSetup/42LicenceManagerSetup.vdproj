@@ -491,7 +491,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:42LicenseManager, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:42LicenseManager, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D8EE3C247A294F1FA63F0BDAA36D6ED2"
@@ -749,15 +749,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:42LicenceManagerSetup"
-        "ProductCode" = "8:{54E2C6E1-011C-48A0-845F-0F8C7BFA71A0}"
-        "PackageCode" = "8:{A2A4F5E6-A708-4CF0-A938-5380BC56CCE2}"
+        "ProductCode" = "8:{8419EFB5-FE7C-4823-A7E3-F2A3D7103B07}"
+        "PackageCode" = "8:{3FF7DAC7-11FC-4F67-A410-46DE651C1C55}"
         "UpgradeCode" = "8:{7330FA14-90A3-4D95-A4E5-E5661FCFF39E}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.1.2"
+        "ProductVersion" = "8:2.1.3"
         "Manufacturer" = "8:42 Tech Solutions, Inc."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

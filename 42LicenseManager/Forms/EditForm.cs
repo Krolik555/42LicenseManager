@@ -24,11 +24,6 @@ namespace _42LicenseManager
 
         }
 
-        private void EditForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void EditForm_Shown(object sender, EventArgs e)
         {
             WireupForm();
@@ -68,7 +63,7 @@ namespace _42LicenseManager
             {
                 aComboboxRenewalStatus.SelectedText = "";
             }
-            aCheckBoxWillCancel.Checked = InputLicense.ChkBxWillCancel;
+            aCheckBoxWillCancel.Checked = InputLicense.ChkBxAutoRenew;
             aCheckBoxUninstalled.Checked = InputLicense.ChkBxUninstalled;
             aCheckBoxDeleted.Checked = InputLicense.ChkBxDeleted;
             Utilities.GetMachineCount_toLabel(InputLicense.Id, Config.DBDir_Name, aLabelMachinesCount);
@@ -238,7 +233,7 @@ namespace _42LicenseManager
                         ChangedLicense.Active = true;
                     }
                     ChangedLicense.Notes = aTextBoxNotes.Text;
-                    ChangedLicense.ChkBxWillCancel = aCheckBoxWillCancel.Checked;
+                    ChangedLicense.ChkBxAutoRenew = aCheckBoxWillCancel.Checked;
                     ChangedLicense.ChkBxUninstalled = aCheckBoxUninstalled.Checked;
                     ChangedLicense.ChkBxDeleted = aCheckBoxDeleted.Checked;
 
@@ -329,8 +324,12 @@ namespace _42LicenseManager
 
         private void aCheckBoxAdvanced_CheckStateChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Warning: If you import your licenses from another system, the names in 42LicenseManager and your other system need to remain identical. \n" +
+            if (aCheckBoxAdvanced.Checked) // Only display this warning if Advanced is being turned on.
+            {
+                MessageBox.Show("Warning: If you import your licenses from another system, the names in 42LicenseManager and your other system need to remain identical. \n" +
                 "If one gets changed but not the other, the next time you import licenses, it will create a new license resulting in potential duplicates.");
+            }
+            
             bool isVisible = false;
             bool isReadOnly = true;
             if (aCheckBoxAdvanced.Checked)
