@@ -52,17 +52,20 @@ namespace _42LicenseManager.Forms
             this.aDGVDatabases.Size = new System.Drawing.Size(844, 152);
             this.aDGVDatabases.TabIndex = 0;
             this.aDGVDatabases.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDGVDatabases_CellDoubleClick);
+            this.aDGVDatabases.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.aDGVDatabases_CellFormatting);
             // 
             // dbName
             // 
             this.dbName.HeaderText = "Name";
             this.dbName.Name = "dbName";
+            this.dbName.ReadOnly = true;
             this.dbName.Width = 200;
             // 
             // dbDir
             // 
             this.dbDir.HeaderText = "Directory";
             this.dbDir.Name = "dbDir";
+            this.dbDir.ReadOnly = true;
             this.dbDir.Width = 600;
             // 
             // aButtonSelect

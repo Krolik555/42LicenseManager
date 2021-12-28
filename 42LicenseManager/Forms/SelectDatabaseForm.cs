@@ -39,7 +39,13 @@ namespace _42LicenseManager.Forms
             dbNames.Clear();
             foreach(string line in dbLibrary)
             {
-                dbNames.Add(Path.GetFileName(line));
+                string _dbName = Path.GetFileName(line);
+                if (!File.Exists(line))
+                {
+                    _dbName = $"Missing! - {_dbName}";
+                }
+
+                dbNames.Add(_dbName);
             }
 
             // clear datagridview if contains content
@@ -62,29 +68,39 @@ namespace _42LicenseManager.Forms
             {
                 MessageBox.Show("No database selected");
             }
-            else // If row is selected > load database
+            else // If row is selected then load database
             {
                 // Return selected values
                 returnSelectedDatabaseName = (string)aDGVDatabases[0, aDGVDatabases.CurrentCell.RowIndex].Value;
                 returnSelectedDatabaseFilePath = (string)aDGVDatabases[1, aDGVDatabases.CurrentCell.RowIndex].Value;
                 
-
-                // if database file is included in path, remove it.
-                if (returnSelectedDatabaseFilePath.EndsWith(".mdf"))
+                // Detect if DB file is missing or directory has been changed.
+                if (!returnSelectedDatabaseName.Contains("Missing!"))
                 {
-                    returnSelectedDatabaseDirectory_Only = Path.GetDirectoryName(returnSelectedDatabaseFilePath) + @"\";
+                    // if database file is included in path, remove it.
+                    if (returnSelectedDatabaseFilePath.EndsWith(".mdf"))
+                    {
+                        returnSelectedDatabaseDirectory_Only = Path.GetDirectoryName(returnSelectedDatabaseFilePath) + @"\";
+                    }
+                    // Verify the directory ends with '\'
+                    if (!returnSelectedDatabaseDirectory_Only.EndsWith(@"\"))
+                    {
+                        returnSelectedDatabaseDirectory_Only += @"\";
+                    }
+                    // Add config file name to path
+                    returnSelectedDatabaseConfigFilePath = returnSelectedDatabaseDirectory_Only + "Config.txt";
+
+
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-                // Verify the directory ends with '\'
-                if (!returnSelectedDatabaseFilePath.EndsWith(@"\"))
+                else
                 {
-                    returnSelectedDatabaseDirectory_Only += @"\";
+                    // Notify user of missing DB file
+                    MessageBox.Show("This file is missing. Please delete this listing and add your database again.", "Alert!");
                 }
-                // Add config file name to path
-                returnSelectedDatabaseConfigFilePath = returnSelectedDatabaseDirectory_Only + "Config.txt";
 
-
-                DialogResult = DialogResult.OK;
-                this.Close();
+                
             }
         }
 
@@ -118,6 +134,14 @@ namespace _42LicenseManager.Forms
         private void aDGVDatabases_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             aButtonSelect_Click(sender, e);
+        }
+
+        private void aDGVDatabases_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value.ToString().Contains("Missing!"))
+            {
+                e.CellStyle.ForeColor = Color.Red;
+            }
         }
     }
 }

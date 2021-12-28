@@ -56,7 +56,7 @@ namespace _42LicenseManager
                 DialogResult selectedDB = dbLibraryForm.ShowDialog();
                 if (selectedDB == DialogResult.OK)
                 {
-                    // Set Database selected by user
+                    // Set the Database selected by user
                     Class_Library.Settings.SelectedDatabaseFilePath = dbLibraryForm.returnSelectedDatabaseFilePath;
                     Class_Library.Settings.SelectedDatabaseDirectory_Only = dbLibraryForm.returnSelectedDatabaseDirectory_Only;
                     Class_Library.Settings.SelectedDatabaseConfigFilePath = dbLibraryForm.returnSelectedDatabaseConfigFilePath;
