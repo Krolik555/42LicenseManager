@@ -114,7 +114,8 @@ namespace _42LicenseManager
                 DialogResult DResult = MessageBox.Show("You haven't changed the Renewal Status. Is this okay?", "Warning!", MessageBoxButtons.YesNo);
                 if (DResult == DialogResult.No)
                 {
-                    error = true;
+                    return;
+
                 }
             }
 
