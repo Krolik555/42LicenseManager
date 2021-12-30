@@ -13,13 +13,16 @@ namespace _42LicenseManager.Class_Library
     {
         
 
-        #region Edit Config File
+        #region Edit/Update Config File
         public static void Update(ConfigClass In_ConfigData)
         {
             // if Config exists, update config
             if (File.Exists(Class_Library.Settings.SelectedDatabaseConfigFilePath))
             {
+                // Create/Update config.txt file
                 createConfig(In_ConfigData);
+
+                
             }
             // If Config file is missing - Create new config file
             else
@@ -30,8 +33,8 @@ namespace _42LicenseManager.Class_Library
                 In_ConfigData.BackupSchedule = 24;
                 In_ConfigData.BackupExpiration = 6;
 
+                // Create Config.txt file
                 createConfig(In_ConfigData);
-                //Application.Restart();
                 
             }
 

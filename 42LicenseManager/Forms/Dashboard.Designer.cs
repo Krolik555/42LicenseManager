@@ -35,6 +35,8 @@
             this.aLabelSearch = new System.Windows.Forms.Label();
             this.aButtonEdit = new System.Windows.Forms.Button();
             this.aDataGridViewLicenses = new System.Windows.Forms.DataGridView();
+            this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChkBxAutoRenew = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.aComboboxSortBy = new System.Windows.Forms.ComboBox();
             this.aTextBoxSearch = new System.Windows.Forms.TextBox();
             this.aButtonTest = new System.Windows.Forms.Button();
@@ -67,9 +69,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.aCheckBoxAutoRenew = new System.Windows.Forms.CheckBox();
             this.aTextBoxNotes = new System.Windows.Forms.TextBox();
-            this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,7 +78,7 @@
             this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChkBxAutoRenew = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -143,6 +143,21 @@
             this.aDataGridViewLicenses.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewLicenses_CellEnter);
             this.aDataGridViewLicenses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.aDataGridViewLicenses_CellFormatting);
             // 
+            // ReviewStatus
+            // 
+            this.ReviewStatus.DataPropertyName = "ReviewStatus";
+            this.ReviewStatus.HeaderText = "Review Status";
+            this.ReviewStatus.Name = "ReviewStatus";
+            this.ReviewStatus.ReadOnly = true;
+            // 
+            // ChkBxAutoRenew
+            // 
+            this.ChkBxAutoRenew.DataPropertyName = "ChkBxAutoRenew";
+            this.ChkBxAutoRenew.HeaderText = "ChkBxAutoRenew";
+            this.ChkBxAutoRenew.Name = "ChkBxAutoRenew";
+            this.ChkBxAutoRenew.ReadOnly = true;
+            this.ChkBxAutoRenew.Visible = false;
+            // 
             // aComboboxSortBy
             // 
             this.aComboboxSortBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -180,7 +195,6 @@
             this.aButtonTest.TabStop = false;
             this.aButtonTest.Text = "Test";
             this.aButtonTest.UseVisualStyleBackColor = true;
-            this.aButtonTest.Visible = false;
             this.aButtonTest.Click += new System.EventHandler(this.aButtonTest_Click);
             // 
             // aButtonAddLicense
@@ -447,10 +461,6 @@
             this.aTextBoxNotes.TabIndex = 17;
             this.aTextBoxNotes.TabStop = false;
             // 
-            // licenseBindingSource
-            // 
-            this.licenseBindingSource.DataSource = typeof(_42LicenseManager.License);
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -462,13 +472,6 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // ReviewStatus
-            // 
-            this.ReviewStatus.DataPropertyName = "ReviewStatus";
-            this.ReviewStatus.HeaderText = "Review Status";
-            this.ReviewStatus.Name = "ReviewStatus";
-            this.ReviewStatus.ReadOnly = true;
             // 
             // companyNameDataGridViewTextBoxColumn
             // 
@@ -534,13 +537,9 @@
             this.notesDataGridViewTextBoxColumn.ReadOnly = true;
             this.notesDataGridViewTextBoxColumn.Visible = false;
             // 
-            // ChkBxAutoRenew
+            // licenseBindingSource
             // 
-            this.ChkBxAutoRenew.DataPropertyName = "ChkBxAutoRenew";
-            this.ChkBxAutoRenew.HeaderText = "ChkBxAutoRenew";
-            this.ChkBxAutoRenew.Name = "ChkBxAutoRenew";
-            this.ChkBxAutoRenew.ReadOnly = true;
-            this.ChkBxAutoRenew.Visible = false;
+            this.licenseBindingSource.DataSource = typeof(_42LicenseManager.License);
             // 
             // Dashboard
             // 
@@ -576,7 +575,7 @@
             this.MinimumSize = new System.Drawing.Size(1075, 450);
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "License Manager";
+            this.Text = "42 License Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dashboard_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).EndInit();

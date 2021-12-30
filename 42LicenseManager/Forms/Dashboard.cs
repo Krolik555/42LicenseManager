@@ -82,12 +82,10 @@ namespace _42LicenseManager
 
                 DGVUtilities.SetSortationDefault(5, SortOrder.Descending, aDataGridViewLicenses);
 
-                // Determine if db has ever been backed up. (if it hasn't then the backupExpiration date will be 1/1/0001
-                string test = DateTime.Now.AddYears(-10).ToString();
+                // Determine if db has ever been backed up. (if it hasn't then the backupExpiration date will be 1/1/0001)
                 string LastBackup = Config.LastBackup < DateTime.Now.AddYears(-10) ? "Never" : Config.LastBackup.ToString();
                 // Set Title Name
-                this.Text += $" v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})" +
-                    $" | Last backup: {LastBackup}";
+                UpdateTitleBar();
 
                 backgroundWorkerAutoBackup.RunWorkerAsync();
 
@@ -675,9 +673,7 @@ namespace _42LicenseManager
        
         private void aButtonTest_Click(object sender, EventArgs e)
         {
-            Forms.ProRate.ProRateForm pRForm = new Forms.ProRate.ProRateForm();
-
-            pRForm.Show();
+            UpdateTitleBar();
         }
 
         private void ATextBoxSearch_Leave(object sender, EventArgs e)
@@ -744,6 +740,7 @@ namespace _42LicenseManager
         }
 
         #region Backup async processes
+
         /// <summary>
         /// Last time program checked for backup
         /// </summary>
@@ -757,6 +754,10 @@ namespace _42LicenseManager
 
             Class_Library.Backup.Now(Config.DBDir_Name, Path.GetFileName(Config.DBDir_Name), Config.BackupTarget_PathOnly);
             Backup.ClearOldBackups(Config.BackupTarget_PathOnly);
+
+            // Update title bar with last backup date
+            UpdateTitleBar();
+
 
             t.Abort();
         }
@@ -782,7 +783,8 @@ namespace _42LicenseManager
 
         private void backgroundWorkerBackup_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            // Update Title with last backup date/time
+            UpdateTitleBar();
         }
 
 
@@ -801,6 +803,8 @@ namespace _42LicenseManager
                     // Backup
                     Class_Library.Backup.AutoBackup(config.DBDir_Name, Path.GetFileName(config.DBDir_Name), config.BackupTarget_PathOnly);
                     Class_Library.Backup.ClearOldBackups(config.BackupTarget_PathOnly);
+
+                    UpdateTitleBar();
                 }
                 else
                 {
@@ -910,6 +914,26 @@ namespace _42LicenseManager
                 aCheckBoxAutoRenew.Checked = true;
             }
             #endregion
+        }
+
+        private void UpdateTitleBar()
+        {
+            Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+            // InvokeRequired is used for cross-thread execution
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new ThreadStart(delegate
+                {
+                    this.Text = $"42 License Manager v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})" +
+                    $" | Last backup: {Config.LastBackup}";
+                }));
+            }
+            else //if no cross-threading, execute normally.
+            {
+                // Updates last backup time in Title bar
+                this.Text = $"42 License Manager v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})" +
+                        $" | Last backup: {Config.LastBackup}";
+            }
         }
     }
 }
