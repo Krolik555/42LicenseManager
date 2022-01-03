@@ -119,12 +119,14 @@ namespace _42LicenseManager
                 }
             }
 
+            // Resolve possible problem - License set to renewed but still open
             if (aComboboxRenewalStatus.SelectedItem.ToString() == "Renewed" && aComboboxReviewStatus.SelectedItem.ToString() == "Open")
             {
-                MessageBox.Show("You have marked this license as Renewed but it is still open for review. Would you like to close the review status of this license?", "Possible Problem");
-            }
-            {
-
+                if (MessageBox.Show("You have marked this license as Renewed but it is still open for review. Would you like to change the review status to close for this license?", "Possible Problem", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                {
+                    aComboboxReviewStatus.SelectedItem = "Closed";
+                }
+                
             }
             #endregion Verify Fields
 

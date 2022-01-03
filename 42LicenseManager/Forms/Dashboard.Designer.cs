@@ -35,8 +35,6 @@
             this.aLabelSearch = new System.Windows.Forms.Label();
             this.aButtonEdit = new System.Windows.Forms.Button();
             this.aDataGridViewLicenses = new System.Windows.Forms.DataGridView();
-            this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChkBxAutoRenew = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.aComboboxSortBy = new System.Windows.Forms.ComboBox();
             this.aTextBoxSearch = new System.Windows.Forms.TextBox();
             this.aButtonTest = new System.Windows.Forms.Button();
@@ -69,6 +67,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.aCheckBoxAutoRenew = new System.Windows.Forms.CheckBox();
             this.aTextBoxNotes = new System.Windows.Forms.TextBox();
+            this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ChkBxAutoRenew = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +77,6 @@
             this.expirationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.renewalStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.activeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).BeginInit();
@@ -127,7 +127,7 @@
             this.expirationDateDataGridViewTextBoxColumn,
             this.renewalStatusDataGridViewTextBoxColumn,
             this.pCCountDataGridViewTextBoxColumn,
-            this.activeDataGridViewCheckBoxColumn,
+            this.Active,
             this.notesDataGridViewTextBoxColumn,
             this.ChkBxAutoRenew});
             this.aDataGridViewLicenses.DataSource = this.licenseBindingSource;
@@ -142,21 +142,6 @@
             this.aDataGridViewLicenses.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewLicenses_CellDoubleClick);
             this.aDataGridViewLicenses.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewLicenses_CellEnter);
             this.aDataGridViewLicenses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.aDataGridViewLicenses_CellFormatting);
-            // 
-            // ReviewStatus
-            // 
-            this.ReviewStatus.DataPropertyName = "ReviewStatus";
-            this.ReviewStatus.HeaderText = "Review Status";
-            this.ReviewStatus.Name = "ReviewStatus";
-            this.ReviewStatus.ReadOnly = true;
-            // 
-            // ChkBxAutoRenew
-            // 
-            this.ChkBxAutoRenew.DataPropertyName = "ChkBxAutoRenew";
-            this.ChkBxAutoRenew.HeaderText = "ChkBxAutoRenew";
-            this.ChkBxAutoRenew.Name = "ChkBxAutoRenew";
-            this.ChkBxAutoRenew.ReadOnly = true;
-            this.ChkBxAutoRenew.Visible = false;
             // 
             // aComboboxSortBy
             // 
@@ -445,6 +430,7 @@
             this.aCheckBoxAutoRenew.TabIndex = 71;
             this.aCheckBoxAutoRenew.Text = "Auto-Renew";
             this.aCheckBoxAutoRenew.UseVisualStyleBackColor = true;
+            this.aCheckBoxAutoRenew.Visible = false;
             this.aCheckBoxAutoRenew.Click += new System.EventHandler(this.aCheckBoxAutoRenew_Click);
             // 
             // aTextBoxNotes
@@ -461,17 +447,40 @@
             this.aTextBoxNotes.TabIndex = 17;
             this.aTextBoxNotes.TabStop = false;
             // 
+            // ReviewStatus
+            // 
+            this.ReviewStatus.DataPropertyName = "ReviewStatus";
+            this.ReviewStatus.HeaderText = "Review Status";
+            this.ReviewStatus.Name = "ReviewStatus";
+            this.ReviewStatus.ReadOnly = true;
+            // 
+            // Active
+            // 
+            this.Active.DataPropertyName = "Active";
+            this.Active.HeaderText = "Active";
+            this.Active.Name = "Active";
+            this.Active.ReadOnly = true;
+            this.Active.Visible = false;
+            // 
+            // ChkBxAutoRenew
+            // 
+            this.ChkBxAutoRenew.DataPropertyName = "ChkBxAutoRenew";
+            this.ChkBxAutoRenew.HeaderText = "Auto Renew";
+            this.ChkBxAutoRenew.Name = "ChkBxAutoRenew";
+            this.ChkBxAutoRenew.ReadOnly = true;
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.Format = "N0";
             dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.idDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 75;
+            this.idDataGridViewTextBoxColumn.Width = 60;
             // 
             // companyNameDataGridViewTextBoxColumn
             // 
@@ -519,15 +528,7 @@
             this.pCCountDataGridViewTextBoxColumn.HeaderText = "PC Count";
             this.pCCountDataGridViewTextBoxColumn.Name = "pCCountDataGridViewTextBoxColumn";
             this.pCCountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pCCountDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // activeDataGridViewCheckBoxColumn
-            // 
-            this.activeDataGridViewCheckBoxColumn.DataPropertyName = "Active";
-            this.activeDataGridViewCheckBoxColumn.HeaderText = "Active";
-            this.activeDataGridViewCheckBoxColumn.Name = "activeDataGridViewCheckBoxColumn";
-            this.activeDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.activeDataGridViewCheckBoxColumn.Width = 60;
+            this.pCCountDataGridViewTextBoxColumn.Width = 60;
             // 
             // notesDataGridViewTextBoxColumn
             // 
@@ -633,7 +634,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn expirationDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn renewalStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pCCountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn activeDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Active;
         private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ChkBxAutoRenew;
     }

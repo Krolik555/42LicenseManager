@@ -61,6 +61,7 @@ namespace _42LicenseManager
             _license.ExpirationDate = ExpirationDate;
             _license.RenewalStatus = RenewalStatus;
             _license.PCCount = PCCount;
+            _license.ChkBxAutoRenew = ChkBxAutoRenew;
             _license.Active = Active;
             _license.Notes = Notes;
             
