@@ -32,15 +32,6 @@ namespace _42LicenseManager.Forms.Import_License
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -50,6 +41,15 @@ namespace _42LicenseManager.Forms.Import_License
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.aDGVFailed = new System.Windows.Forms.DataGridView();
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aLabelVerified = new System.Windows.Forms.Label();
@@ -61,9 +61,22 @@ namespace _42LicenseManager.Forms.Import_License
             this.aTextBoxSource = new System.Windows.Forms.TextBox();
             this.aBtnAnalyze = new System.Windows.Forms.Button();
             this.aDGVVerified = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.aTextBoxVerifiedNotes = new System.Windows.Forms.TextBox();
             this.aTextBoxFailedNotes = new System.Windows.Forms.TextBox();
+            this.aComboboxFormat = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.aLinkLabelTemplate = new System.Windows.Forms.LinkLabel();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reviewStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,16 +87,6 @@ namespace _42LicenseManager.Forms.Import_License
             this.renewalStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.aDGVFailed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aDGVVerified)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -96,9 +99,6 @@ namespace _42LicenseManager.Forms.Import_License
             this.aDGVFailed.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.aDGVFailed.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.aDGVFailed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.aDGVFailed.AutoGenerateColumns = false;
             this.aDGVFailed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aDGVFailed.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -114,11 +114,11 @@ namespace _42LicenseManager.Forms.Import_License
             this.Notes});
             this.aDGVFailed.DataSource = this.licenseBindingSource;
             this.aDGVFailed.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
-            this.aDGVFailed.Location = new System.Drawing.Point(17, 334);
+            this.aDGVFailed.Location = new System.Drawing.Point(12, 395);
             this.aDGVFailed.MultiSelect = false;
             this.aDGVFailed.Name = "aDGVFailed";
             this.aDGVFailed.ReadOnly = true;
-            this.aDGVFailed.Size = new System.Drawing.Size(762, 223);
+            this.aDGVFailed.Size = new System.Drawing.Size(762, 226);
             this.aDGVFailed.TabIndex = 5;
             this.aDGVFailed.TabStop = false;
             this.aDGVFailed.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDGVFailed_CellEnter);
@@ -135,7 +135,7 @@ namespace _42LicenseManager.Forms.Import_License
             // 
             this.aLabelVerified.AutoSize = true;
             this.aLabelVerified.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aLabelVerified.Location = new System.Drawing.Point(497, 56);
+            this.aLabelVerified.Location = new System.Drawing.Point(492, 117);
             this.aLabelVerified.Name = "aLabelVerified";
             this.aLabelVerified.Size = new System.Drawing.Size(71, 20);
             this.aLabelVerified.TabIndex = 6;
@@ -145,7 +145,7 @@ namespace _42LicenseManager.Forms.Import_License
             // 
             this.aLabelFailed.AutoSize = true;
             this.aLabelFailed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aLabelFailed.Location = new System.Drawing.Point(508, 311);
+            this.aLabelFailed.Location = new System.Drawing.Point(503, 372);
             this.aLabelFailed.Name = "aLabelFailed";
             this.aLabelFailed.Size = new System.Drawing.Size(60, 20);
             this.aLabelFailed.TabIndex = 7;
@@ -155,7 +155,7 @@ namespace _42LicenseManager.Forms.Import_License
             // 
             this.aLabelVerifiedCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aLabelVerifiedCount.ForeColor = System.Drawing.Color.LimeGreen;
-            this.aLabelVerifiedCount.Location = new System.Drawing.Point(559, 56);
+            this.aLabelVerifiedCount.Location = new System.Drawing.Point(554, 117);
             this.aLabelVerifiedCount.Name = "aLabelVerifiedCount";
             this.aLabelVerifiedCount.Size = new System.Drawing.Size(195, 20);
             this.aLabelVerifiedCount.TabIndex = 8;
@@ -165,7 +165,7 @@ namespace _42LicenseManager.Forms.Import_License
             // 
             this.aLabelFailedCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aLabelFailedCount.ForeColor = System.Drawing.Color.Firebrick;
-            this.aLabelFailedCount.Location = new System.Drawing.Point(559, 311);
+            this.aLabelFailedCount.Location = new System.Drawing.Point(554, 372);
             this.aLabelFailedCount.Name = "aLabelFailedCount";
             this.aLabelFailedCount.Size = new System.Drawing.Size(189, 20);
             this.aLabelFailedCount.TabIndex = 9;
@@ -174,7 +174,7 @@ namespace _42LicenseManager.Forms.Import_License
             // aButtonSubmit
             // 
             this.aButtonSubmit.Enabled = false;
-            this.aButtonSubmit.Location = new System.Drawing.Point(1135, 15);
+            this.aButtonSubmit.Location = new System.Drawing.Point(1130, 76);
             this.aButtonSubmit.Name = "aButtonSubmit";
             this.aButtonSubmit.Size = new System.Drawing.Size(68, 54);
             this.aButtonSubmit.TabIndex = 10;
@@ -184,6 +184,7 @@ namespace _42LicenseManager.Forms.Import_License
             // 
             // aBtnBrowse
             // 
+            this.aBtnBrowse.Enabled = false;
             this.aBtnBrowse.Location = new System.Drawing.Point(6, 19);
             this.aBtnBrowse.Name = "aBtnBrowse";
             this.aBtnBrowse.Size = new System.Drawing.Size(75, 23);
@@ -203,6 +204,7 @@ namespace _42LicenseManager.Forms.Import_License
             // 
             // aBtnAnalyze
             // 
+            this.aBtnAnalyze.Enabled = false;
             this.aBtnAnalyze.Location = new System.Drawing.Point(396, 19);
             this.aBtnAnalyze.Name = "aBtnAnalyze";
             this.aBtnAnalyze.Size = new System.Drawing.Size(75, 23);
@@ -217,9 +219,6 @@ namespace _42LicenseManager.Forms.Import_License
             this.aDGVVerified.AllowUserToDeleteRows = false;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.aDGVVerified.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
-            this.aDGVVerified.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.aDGVVerified.AutoGenerateColumns = false;
             this.aDGVVerified.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.aDGVVerified.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -235,21 +234,29 @@ namespace _42LicenseManager.Forms.Import_License
             this.dataGridViewTextBoxColumn9});
             this.aDGVVerified.DataSource = this.licenseBindingSource;
             this.aDGVVerified.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
-            this.aDGVVerified.Location = new System.Drawing.Point(17, 79);
+            this.aDGVVerified.Location = new System.Drawing.Point(12, 140);
             this.aDGVVerified.MultiSelect = false;
             this.aDGVVerified.Name = "aDGVVerified";
             this.aDGVVerified.ReadOnly = true;
-            this.aDGVVerified.Size = new System.Drawing.Size(762, 223);
+            this.aDGVVerified.Size = new System.Drawing.Size(762, 226);
             this.aDGVVerified.TabIndex = 14;
             this.aDGVVerified.TabStop = false;
             this.aDGVVerified.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDGVVerified_CellEnter);
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "Notes";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Notes";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Visible = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.aBtnBrowse);
             this.groupBox1.Controls.Add(this.aBtnAnalyze);
             this.groupBox1.Controls.Add(this.aTextBoxSource);
-            this.groupBox1.Location = new System.Drawing.Point(17, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 73);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(477, 50);
             this.groupBox1.TabIndex = 15;
@@ -259,7 +266,7 @@ namespace _42LicenseManager.Forms.Import_License
             // aTextBoxVerifiedNotes
             // 
             this.aTextBoxVerifiedNotes.AcceptsReturn = true;
-            this.aTextBoxVerifiedNotes.Location = new System.Drawing.Point(804, 79);
+            this.aTextBoxVerifiedNotes.Location = new System.Drawing.Point(799, 140);
             this.aTextBoxVerifiedNotes.Multiline = true;
             this.aTextBoxVerifiedNotes.Name = "aTextBoxVerifiedNotes";
             this.aTextBoxVerifiedNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -269,12 +276,152 @@ namespace _42LicenseManager.Forms.Import_License
             // aTextBoxFailedNotes
             // 
             this.aTextBoxFailedNotes.AcceptsReturn = true;
-            this.aTextBoxFailedNotes.Location = new System.Drawing.Point(804, 334);
+            this.aTextBoxFailedNotes.Location = new System.Drawing.Point(799, 395);
             this.aTextBoxFailedNotes.Multiline = true;
             this.aTextBoxFailedNotes.Name = "aTextBoxFailedNotes";
             this.aTextBoxFailedNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.aTextBoxFailedNotes.Size = new System.Drawing.Size(399, 223);
             this.aTextBoxFailedNotes.TabIndex = 17;
+            // 
+            // aComboboxFormat
+            // 
+            this.aComboboxFormat.FormattingEnabled = true;
+            this.aComboboxFormat.Items.AddRange(new object[] {
+            "Avast Business Cloud Care"});
+            this.aComboboxFormat.Location = new System.Drawing.Point(74, 36);
+            this.aComboboxFormat.Name = "aComboboxFormat";
+            this.aComboboxFormat.Size = new System.Drawing.Size(208, 21);
+            this.aComboboxFormat.TabIndex = 19;
+            this.aComboboxFormat.SelectionChangeCommitted += new System.EventHandler(this.aComboboxFormat_SelectionChangeCommitted);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(26, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Format:";
+            // 
+            // aLinkLabelTemplate
+            // 
+            this.aLinkLabelTemplate.AutoSize = true;
+            this.aLinkLabelTemplate.Location = new System.Drawing.Point(289, 43);
+            this.aLinkLabelTemplate.Name = "aLinkLabelTemplate";
+            this.aLinkLabelTemplate.Size = new System.Drawing.Size(51, 13);
+            this.aLinkLabelTemplate.TabIndex = 21;
+            this.aLinkLabelTemplate.TabStop = true;
+            this.aLinkLabelTemplate.Text = "Template";
+            this.aLinkLabelTemplate.Visible = false;
+            this.aLinkLabelTemplate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.aLinkLabelTemplate_LinkClicked);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = null;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ReviewStatus";
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle13.Format = "N0";
+            dataGridViewCellStyle13.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Review Status";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "CompanyName";
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle14.Format = "N0";
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Company Name";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 230;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "FirstName";
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle15.Format = "N0";
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn4.HeaderText = "First Name";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 190;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "LastName";
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle16.Format = "N0";
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Last Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 190;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ExpirationDate";
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle17.Format = "d";
+            dataGridViewCellStyle17.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Expiration Date";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "RenewalStatus";
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle18.Format = "N0";
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridViewTextBoxColumn7.HeaderText = "Renewal Status";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            this.dataGridViewTextBoxColumn7.Width = 115;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "PCCount";
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle19.Format = "N0";
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle19;
+            this.dataGridViewTextBoxColumn8.HeaderText = "PC Count";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Visible = false;
+            this.dataGridViewTextBoxColumn8.Width = 75;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Active";
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle20.Format = "N0";
+            dataGridViewCellStyle20.NullValue = false;
+            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle20;
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Active";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Visible = false;
+            this.dataGridViewCheckBoxColumn1.Width = 60;
             // 
             // licenseBindingSource
             // 
@@ -387,127 +534,14 @@ namespace _42LicenseManager.Forms.Import_License
             this.activeDataGridViewCheckBoxColumn.Visible = false;
             this.activeDataGridViewCheckBoxColumn.Width = 60;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle12.Format = "N0";
-            dataGridViewCellStyle12.NullValue = null;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "ReviewStatus";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle13.Format = "N0";
-            dataGridViewCellStyle13.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Review Status";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "CompanyName";
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle14.Format = "N0";
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Company Name";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 230;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "FirstName";
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle15.Format = "N0";
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridViewTextBoxColumn4.HeaderText = "First Name";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 190;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "LastName";
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle16.Format = "N0";
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle16;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Last Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 190;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle17.Format = "d";
-            dataGridViewCellStyle17.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle17;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Expiration Date";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "RenewalStatus";
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle18.Format = "N0";
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridViewTextBoxColumn7.HeaderText = "Renewal Status";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Visible = false;
-            this.dataGridViewTextBoxColumn7.Width = 115;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "PCCount";
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle19.Format = "N0";
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle19;
-            this.dataGridViewTextBoxColumn8.HeaderText = "PC Count";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Visible = false;
-            this.dataGridViewTextBoxColumn8.Width = 75;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Active";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle20.Format = "N0";
-            dataGridViewCellStyle20.NullValue = false;
-            this.dataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle20;
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Active";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Visible = false;
-            this.dataGridViewCheckBoxColumn1.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Notes";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Notes";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Visible = false;
-            // 
             // ImportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1215, 560);
+            this.ClientSize = new System.Drawing.Size(1215, 666);
+            this.Controls.Add(this.aLinkLabelTemplate);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.aComboboxFormat);
             this.Controls.Add(this.aTextBoxFailedNotes);
             this.Controls.Add(this.aTextBoxVerifiedNotes);
             this.Controls.Add(this.groupBox1);
@@ -570,5 +604,8 @@ namespace _42LicenseManager.Forms.Import_License
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.ComboBox aComboboxFormat;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel aLinkLabelTemplate;
     }
 }

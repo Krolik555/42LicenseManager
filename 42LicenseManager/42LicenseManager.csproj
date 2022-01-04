@@ -199,6 +199,12 @@
     <Compile Include="Forms\ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Import License\Format.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Import License\Format.Designer.cs">
+      <DependentUpon>Format.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Import License\ImportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Import License\Format.resx">
+      <DependentUpon>Format.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Import License\ImportForm.resx">
       <DependentUpon>ImportForm.cs</DependentUpon>

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.aLabelSearch = new System.Windows.Forms.Label();
             this.aButtonEdit = new System.Windows.Forms.Button();
             this.aDataGridViewLicenses = new System.Windows.Forms.DataGridView();
@@ -61,15 +61,13 @@
             this.aStatusStripDashboard = new System.Windows.Forms.StatusStrip();
             this.backgroundWorkerBackup = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerAutoBackup = new System.ComponentModel.BackgroundWorker();
-            this.aButtonRefresh = new System.Windows.Forms.Button();
-            this.aButtonSearch = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.aCheckBoxAutoRenew = new System.Windows.Forms.CheckBox();
             this.aTextBoxNotes = new System.Windows.Forms.TextBox();
             this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ChkBxAutoRenew = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.aButtonRefresh = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,10 +77,12 @@
             this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.aButtonSearch = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // aLabelSearch
@@ -180,6 +180,7 @@
             this.aButtonTest.TabStop = false;
             this.aButtonTest.Text = "Test";
             this.aButtonTest.UseVisualStyleBackColor = true;
+            this.aButtonTest.Visible = false;
             this.aButtonTest.Click += new System.EventHandler(this.aButtonTest_Click);
             // 
             // aButtonAddLicense
@@ -263,28 +264,28 @@
             // backupNowToolStripMenuItem
             // 
             this.backupNowToolStripMenuItem.Name = "backupNowToolStripMenuItem";
-            this.backupNowToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.backupNowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.backupNowToolStripMenuItem.Text = "Backup Now";
             this.backupNowToolStripMenuItem.Click += new System.EventHandler(this.backupNowToolStripMenuItem_Click);
             // 
             // selectDatabaseToolStripMenuItem
             // 
             this.selectDatabaseToolStripMenuItem.Name = "selectDatabaseToolStripMenuItem";
-            this.selectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.selectDatabaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.selectDatabaseToolStripMenuItem.Text = "Select Database";
             this.selectDatabaseToolStripMenuItem.Click += new System.EventHandler(this.selectDatabaseToolStripMenuItem_Click);
             // 
             // importLicensesToolStripMenuItem
             // 
             this.importLicensesToolStripMenuItem.Name = "importLicensesToolStripMenuItem";
-            this.importLicensesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.importLicensesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importLicensesToolStripMenuItem.Text = "Import Licenses";
             this.importLicensesToolStripMenuItem.Click += new System.EventHandler(this.importLicensesToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -376,39 +377,6 @@
             this.backgroundWorkerAutoBackup.WorkerSupportsCancellation = true;
             this.backgroundWorkerAutoBackup.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerAutoBackup_DoWork);
             // 
-            // aButtonRefresh
-            // 
-            this.aButtonRefresh.Image = global::_42LicenseManager.Properties.Resources.Refresh;
-            this.aButtonRefresh.Location = new System.Drawing.Point(673, 56);
-            this.aButtonRefresh.Name = "aButtonRefresh";
-            this.aButtonRefresh.Size = new System.Drawing.Size(28, 24);
-            this.aButtonRefresh.TabIndex = 2;
-            this.aButtonRefresh.UseVisualStyleBackColor = true;
-            this.aButtonRefresh.Click += new System.EventHandler(this.AButtonRefresh_Click);
-            // 
-            // aButtonSearch
-            // 
-            this.aButtonSearch.Enabled = false;
-            this.aButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("aButtonSearch.Image")));
-            this.aButtonSearch.Location = new System.Drawing.Point(783, 86);
-            this.aButtonSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.aButtonSearch.Name = "aButtonSearch";
-            this.aButtonSearch.Size = new System.Drawing.Size(31, 25);
-            this.aButtonSearch.TabIndex = 3;
-            this.aButtonSearch.UseVisualStyleBackColor = true;
-            this.aButtonSearch.Visible = false;
-            this.aButtonSearch.Click += new System.EventHandler(this.aButtonSearch_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::_42LicenseManager.Properties.Resources._42logo_transparent___Copy300;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(335, 79);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 35;
-            this.pictureBox1.TabStop = false;
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -468,6 +436,16 @@
             this.ChkBxAutoRenew.HeaderText = "Auto Renew";
             this.ChkBxAutoRenew.Name = "ChkBxAutoRenew";
             this.ChkBxAutoRenew.ReadOnly = true;
+            // 
+            // aButtonRefresh
+            // 
+            this.aButtonRefresh.Image = global::_42LicenseManager.Properties.Resources.Refresh;
+            this.aButtonRefresh.Location = new System.Drawing.Point(673, 56);
+            this.aButtonRefresh.Name = "aButtonRefresh";
+            this.aButtonRefresh.Size = new System.Drawing.Size(28, 24);
+            this.aButtonRefresh.TabIndex = 2;
+            this.aButtonRefresh.UseVisualStyleBackColor = true;
+            this.aButtonRefresh.Click += new System.EventHandler(this.AButtonRefresh_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -542,6 +520,29 @@
             // 
             this.licenseBindingSource.DataSource = typeof(_42LicenseManager.License);
             // 
+            // aButtonSearch
+            // 
+            this.aButtonSearch.Enabled = false;
+            this.aButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("aButtonSearch.Image")));
+            this.aButtonSearch.Location = new System.Drawing.Point(783, 86);
+            this.aButtonSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.aButtonSearch.Name = "aButtonSearch";
+            this.aButtonSearch.Size = new System.Drawing.Size(31, 25);
+            this.aButtonSearch.TabIndex = 3;
+            this.aButtonSearch.UseVisualStyleBackColor = true;
+            this.aButtonSearch.Visible = false;
+            this.aButtonSearch.Click += new System.EventHandler(this.aButtonSearch_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::_42LicenseManager.Properties.Resources._42logo_transparent___Copy300;
+            this.pictureBox1.Location = new System.Drawing.Point(22, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(335, 79);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -582,8 +583,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

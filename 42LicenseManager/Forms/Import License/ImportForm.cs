@@ -54,7 +54,7 @@ namespace _42LicenseManager.Forms.Import_License
                 // Translate previously read data and convert to "License" format.
                 // During this coversion it will put incompatible licenses into the FailedLicenses list. The rest go in VerifiedLicenses list.
                 // Note: This does not compare current data with SQL data in search of duplicates.
-                Class_Library.Import_License.CSV.TranslateData(csvTable, VerifiedLicenses, FailedLicenses);
+                Class_Library.Import_License.CSV.TranslateData(csvTable, VerifiedLicenses, FailedLicenses, aComboboxFormat.SelectedItem.ToString());
 
                 // Add data to verified DGV table
                 BindingListView<License> SortableLicensesVerified = new BindingListView<License>(VerifiedLicenses);
@@ -95,6 +95,45 @@ namespace _42LicenseManager.Forms.Import_License
         {
             this.DialogResult = DialogResult.Yes;
             this.Close();
+        }
+
+        private void aLinkLabelTemplate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Control destination of aLinkLabelTemplate
+            if (aComboboxFormat.SelectedItem.ToString() == "Avast Business Cloud Care")
+            {
+                System.Diagnostics.Process.Start("https://github.com/Krolik555/42LicenseManager_Instructions.git");
+            }
+            else
+            {
+                
+            }
+            
+        }
+
+        private void aComboboxFormat_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Control visibility of aLinkLabelTemplate
+            if (aComboboxFormat.SelectedItem.ToString() == "Avast Business Cloud Care")
+            {
+                aLinkLabelTemplate.Visible = true;
+            }
+            else
+            {
+                aLinkLabelTemplate.Visible = false;
+            }
+            if (aComboboxFormat.SelectedItem.ToString() == null)
+            {
+                aButtonSubmit.Enabled = false;
+                aBtnBrowse.Enabled = false;
+                aBtnAnalyze.Enabled = false;
+            }
+            else
+            {
+                aButtonSubmit.Enabled = true;
+                aBtnBrowse.Enabled = true;
+                aBtnAnalyze.Enabled = true;
+            }
         }
     }
 }

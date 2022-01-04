@@ -31,17 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewLogsForm));
             this.aDataGridViewLogs = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.licenseIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.logDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.logClassBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.aButtonDeleteLog = new System.Windows.Forms.Button();
             this.aButtonClose = new System.Windows.Forms.Button();
             this.aTextBoxSearch = new System.Windows.Forms.TextBox();
             this.aLabelSearch = new System.Windows.Forms.Label();
-            this.logClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.licenseIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.logDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.logClassBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.logClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logClassBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logClassBindingSource)).BeginInit();
@@ -69,14 +69,6 @@
             this.aDataGridViewLogs.TabIndex = 0;
             this.aDataGridViewLogs.TabStop = false;
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
             // Date
             // 
             this.Date.DataPropertyName = "Date";
@@ -84,26 +76,6 @@
             this.Date.Name = "Date";
             this.Date.ReadOnly = true;
             this.Date.Width = 110;
-            // 
-            // licenseIdDataGridViewTextBoxColumn
-            // 
-            this.licenseIdDataGridViewTextBoxColumn.DataPropertyName = "LicenseId";
-            this.licenseIdDataGridViewTextBoxColumn.HeaderText = "LicenseId";
-            this.licenseIdDataGridViewTextBoxColumn.Name = "licenseIdDataGridViewTextBoxColumn";
-            this.licenseIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.licenseIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // logDataGridViewTextBoxColumn
-            // 
-            this.logDataGridViewTextBoxColumn.DataPropertyName = "Log";
-            this.logDataGridViewTextBoxColumn.HeaderText = "Log";
-            this.logDataGridViewTextBoxColumn.Name = "logDataGridViewTextBoxColumn";
-            this.logDataGridViewTextBoxColumn.ReadOnly = true;
-            this.logDataGridViewTextBoxColumn.Width = 600;
-            // 
-            // logClassBindingSource1
-            // 
-            this.logClassBindingSource1.DataSource = typeof(_42LicenseManager.LogClass);
             // 
             // aButtonDeleteLog
             // 
@@ -129,9 +101,9 @@
             // 
             // aTextBoxSearch
             // 
-            this.aTextBoxSearch.Location = new System.Drawing.Point(0, 0);
+            this.aTextBoxSearch.Location = new System.Drawing.Point(480, 13);
             this.aTextBoxSearch.Name = "aTextBoxSearch";
-            this.aTextBoxSearch.Size = new System.Drawing.Size(100, 20);
+            this.aTextBoxSearch.Size = new System.Drawing.Size(207, 20);
             this.aTextBoxSearch.TabIndex = 6;
             this.aTextBoxSearch.Visible = false;
             // 
@@ -144,6 +116,35 @@
             this.aLabelSearch.TabIndex = 5;
             this.aLabelSearch.Text = "Search Logs:";
             this.toolTip1.SetToolTip(this.aLabelSearch, "Note: This does not search the \"Date\" column.");
+            this.aLabelSearch.Visible = false;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // licenseIdDataGridViewTextBoxColumn
+            // 
+            this.licenseIdDataGridViewTextBoxColumn.DataPropertyName = "LicenseId";
+            this.licenseIdDataGridViewTextBoxColumn.HeaderText = "LicenseId";
+            this.licenseIdDataGridViewTextBoxColumn.Name = "licenseIdDataGridViewTextBoxColumn";
+            this.licenseIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.licenseIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // logDataGridViewTextBoxColumn
+            // 
+            this.logDataGridViewTextBoxColumn.DataPropertyName = "Log";
+            this.logDataGridViewTextBoxColumn.HeaderText = "Log";
+            this.logDataGridViewTextBoxColumn.Name = "logDataGridViewTextBoxColumn";
+            this.logDataGridViewTextBoxColumn.ReadOnly = true;
+            this.logDataGridViewTextBoxColumn.Width = 600;
+            // 
+            // logClassBindingSource1
+            // 
+            this.logClassBindingSource1.DataSource = typeof(_42LicenseManager.LogClass);
             // 
             // logClassBindingSource
             // 

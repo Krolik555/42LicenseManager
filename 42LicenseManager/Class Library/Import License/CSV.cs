@@ -51,57 +51,82 @@ namespace _42LicenseManager.Class_Library.Import_License
         /// <param name="csvTable"></param>
         /// <param name="VerifiedLicenses"></param>
         /// <param name="FailedLicenses"></param>
-        public static void TranslateData(DataTable csvTable, List<License> VerifiedLicenses, List<License> FailedLicenses)
+        public static void TranslateData(DataTable csvTable, List<License> VerifiedLicenses, List<License> FailedLicenses, string Format)
         {
-            // Verify file structure is what the program expects.
-            List<string> FileFormat = new List<string>();
-            foreach (System.Data.DataColumn column in csvTable.Columns)
+            if (Format == "Avast Business Cloud Care")
             {
-                FileFormat.Add(column.ColumnName);
-            }
-            // If file structure is compatible, continue.
-            if (SupportedFormat(FileFormat))
-            {
-                // for each row
-                for (int i = 0; i < csvTable.Rows.Count; i++)
+                // Verify file structure is what the program expects.
+                List<string> VerifiedImportData = new List<string>();
+                foreach (System.Data.DataColumn column in csvTable.Columns)
                 {
-                    License NewLicense = new License();
-                    // If subscription contains 1 or more licenses
-                    if (Convert.ToInt32(csvTable.Rows[i][2]) > 0)
+                    VerifiedImportData.Add(column.ColumnName);
+                }
+                #region File Structure
+                // If file structure is compatible, continue.
+                if (SupportedFormat(VerifiedImportData))
+                {
+                    // for each row
+                    for (int i = 0; i < csvTable.Rows.Count; i++)
                     {
-                        // If Subscription IS for AntiVirus
-                        if (csvTable.Rows[i][1].ToString().ToLower() == "antivirus")
+                        License NewLicense = new License();
+
+                        #region License Count
+                        // If subscription contains more than 0 it is considered active.
+                        if (Convert.ToInt32(csvTable.Rows[i][2]) > 0)
                         {
-                            // Get License Name Info - figure out what is a company name, first name and last name.
-                            Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
-                            // If License has expiration date
-                            if (csvTable.Rows[i][3].ToString().Contains("Prepaid"))
+                            #region Service
+                            // If Subscription IS for AntiVirus
+                            if (csvTable.Rows[i][1].ToString().ToLower() == "antivirus")
                             {
-                                NewLicense.ExpirationDate = Convert.ToDateTime(csvTable.Rows[i][4]);
-                                VerifiedLicenses.Add(NewLicense);
+                                // Get License Name Info - figure out what is a company name, first name and last name.
+                                Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
+
+                                #region Subscription and Expireation/Renewal Date
+                                // If License has expiration date
+                                if (csvTable.Rows[i][3].ToString().Contains("Prepaid"))
+                                {
+                                    // Get expiration date
+                                    NewLicense.ExpirationDate = Convert.ToDateTime(csvTable.Rows[i][4]);
+                                    VerifiedLicenses.Add(NewLicense);
+
+                                    #region Auto-Renew
+                                    string _autorenew = csvTable.Rows[i][5].ToString();
+                                    // if value is yes, no, true or false
+                                    if (_autorenew == "Yes" || _autorenew == "No" || _autorenew == "True" || _autorenew == "False") 
+                                    { // convert to true or false
+                                        _autorenew = _autorenew == "Yes" ? "True" : "False";
+                                        // Write Auto-Renew result to new license
+                                        NewLicense.ChkBxAutoRenew = bool.Parse(_autorenew);
+                                    }
+                                    // If value is not yes or no, it is likely a "Monthly" subscription and if so, will be rejected.
+                                    #endregion Auto-Renew
+                                }
+                                else // NO EXPIRATION DATE
+                                {
+                                    //note: At this point the NewLicense has only a name.
+                                    NewLicense.Notes = "License rejected: Does not have an expiration date (Monthly subscription).";
+                                    FailedLicenses.Add(NewLicense);
+                                }
+                                #endregion Subscription and Expireation/Renewal Date
                             }
-                            else // NO EXPIRATION DATE
+                            // Subscription is NOT ANTIVIRUS
+                            else
                             {
-                                //note: At this point the NewLicense has only a name.
-                                NewLicense.Notes = "License rejected: Does not have an expiration date (Monthly subscription).";
+                                // Get license name for use with failed license list
+                                Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
+                                NewLicense.Notes = $"License rejected: Subscription is for {csvTable.Rows[i][1].ToString()}, not Antivirus.";
                                 FailedLicenses.Add(NewLicense);
                             }
+                            #endregion Service
                         }
-                        // Subscription is NOT ANTIVIRUS
-                        else
+                        else // Subscription contains no paid licenses. Do nothing with it.
                         {
-                            // Get license name for use with failed license list
-                            Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
-                            NewLicense.Notes = $"License rejected: Subscription is for {csvTable.Rows[i][1].ToString()}, not Antivirus.";
-                            FailedLicenses.Add(NewLicense);
-                        }
-                    }
-                    else // Subscription contains no paid licenses. Do nothing with it.
-                    {
 
+                        }
+                        #endregion License Count
                     }
-                    
                 }
+                #endregion File Structure
             }
         }
 
