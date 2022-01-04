@@ -174,9 +174,9 @@ namespace _42LicenseManager.Forms.Import_License
             // aButtonSubmit
             // 
             this.aButtonSubmit.Enabled = false;
-            this.aButtonSubmit.Location = new System.Drawing.Point(1130, 76);
+            this.aButtonSubmit.Location = new System.Drawing.Point(1029, 76);
             this.aButtonSubmit.Name = "aButtonSubmit";
-            this.aButtonSubmit.Size = new System.Drawing.Size(68, 54);
+            this.aButtonSubmit.Size = new System.Drawing.Size(169, 54);
             this.aButtonSubmit.TabIndex = 10;
             this.aButtonSubmit.Text = "Submit to Database";
             this.aButtonSubmit.UseVisualStyleBackColor = true;
