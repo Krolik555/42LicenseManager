@@ -89,7 +89,7 @@
             // aTextBoxMachineName
             // 
             this.aTextBoxMachineName.Location = new System.Drawing.Point(98, 51);
-            this.aTextBoxMachineName.MaxLength = 15;
+            this.aTextBoxMachineName.MaxLength = 30;
             this.aTextBoxMachineName.Name = "aTextBoxMachineName";
             this.aTextBoxMachineName.Size = new System.Drawing.Size(361, 20);
             this.aTextBoxMachineName.TabIndex = 1;
