@@ -896,6 +896,9 @@ namespace _42LicenseManager
                     #endregion License IS a duplicate
 
                 }
+                Config.LastDataImport = DateTime.Now;
+                Class_Library.Config.Update(Config);
+                UpdateTitleBar();
                 InitializeLicensesTTR();
                 RefreshDashboard(this, e);
 
@@ -925,14 +928,14 @@ namespace _42LicenseManager
                 this.Invoke(new ThreadStart(delegate
                 {
                     this.Text = $"42 License Manager v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})" +
-                    $" | Last backup: {Config.LastBackup}";
+                    $" | Last backup: {Config.LastBackup} | Last data import: {Config.LastDataImport}";
                 }));
             }
             else //if no cross-threading, execute normally.
             {
                 // Updates last backup time in Title bar
                 this.Text = $"42 License Manager v.{CurrentVer} (Current Database: {Path.GetFileName(Config.DBDir_Name)})" +
-                        $" | Last backup: {Config.LastBackup}";
+                        $" | Last backup: {Config.LastBackup} | Last data import: {Config.LastDataImport}";
             }
         }
     }

@@ -15,6 +15,7 @@ namespace _42LicenseManager
         /// </summary>
         public string DBDir_Name { get; set; }
         public string TimeToRenew { get; set; }
+
         /// <summary>
         /// Program Install Directory
         /// </summary>
@@ -28,6 +29,8 @@ namespace _42LicenseManager
         public int BackupSchedule { get; set; }
         public int BackupExpiration { get; set; }
         public DateTime LastBackup { get; set; }
+
+        public DateTime LastDataImport { get; set; }
 
     }
 

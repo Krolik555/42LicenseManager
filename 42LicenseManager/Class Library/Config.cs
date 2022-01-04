@@ -21,8 +21,6 @@ namespace _42LicenseManager.Class_Library
             {
                 // Create/Update config.txt file
                 createConfig(In_ConfigData);
-
-                
             }
             // If Config file is missing - Create new config file
             else
@@ -41,10 +39,10 @@ namespace _42LicenseManager.Class_Library
             // Private Method to Create or rewrite a config file.
             void createConfig(ConfigClass _ConfigData)
             {
-                // VERIFY DATABASE EXISTS BEFORE CLOSING
+                // VERIFY DATABASE EXISTS
                 if (Utilities.VerifyDatabaseExists(_ConfigData))
                 {
-                    // OVERWRITE/CREATE CONFIG FILE USING TEXT BOX DATA
+                    // OVERWRITE/CREATE CONFIG FILE USING TEXT FILE DATA
                     TextWriter tw = new StreamWriter($@"{Path.GetDirectoryName(In_ConfigData.DBDir_Name)}\Config.txt");
                     tw.WriteLine($"DBDIR={_ConfigData.DBDir_Name}");
                     tw.WriteLine($"TimeToRenew={_ConfigData.TimeToRenew}");
@@ -56,6 +54,7 @@ namespace _42LicenseManager.Class_Library
                     tw.WriteLine($"BackupSchedule={_ConfigData.BackupSchedule}");
                     tw.WriteLine($"BackupExpiration={_ConfigData.BackupExpiration}");
                     tw.WriteLine($"LastBackup={_ConfigData.LastBackup}");
+                    tw.WriteLine($"LastDataImport={_ConfigData.LastDataImport}");
                     tw.Close();
                 }
                 else
@@ -98,6 +97,7 @@ namespace _42LicenseManager.Class_Library
                             Config.BackupSchedule = Conf[7].Contains("BackupSchedule=") && Conf[7] != "" ? Convert.ToInt32(Conf[7].Remove(0, 15)) : Convert.ToInt32("");
                             Config.BackupExpiration = Conf[8].Contains("BackupExpiration=") && Conf[8] != "" ? Convert.ToInt32(Conf[8].Remove(0, 17)) : Convert.ToInt32("");
                             Config.LastBackup = Conf[9].Contains("LastBackup=") && Conf[9] != "" ? Convert.ToDateTime(Conf[9].Remove(0, 11)) : Convert.ToDateTime("");
+                            Config.LastDataImport = Conf[10].Contains("LastDataImport=") && Conf[10] != "" ? Convert.ToDateTime(Conf[10].Remove(0, 15)) : Convert.ToDateTime("");
                         }
                         catch (Exception error)
                         {
