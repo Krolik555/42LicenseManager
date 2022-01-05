@@ -346,16 +346,7 @@ namespace _42LicenseManager
                 }
 
                 // LOG LICENSE CREATION DATE
-                List<string> changesmade = new List<string>();
-                if (NewLicense.CompanyName == "")
-                {
-                    changesmade.Add($"License Created for '{LatestEntry[0].FirstName} {LatestEntry[0].LastName}'");
-                }
-                else
-                {
-                    changesmade.Add($"License Created for '{LatestEntry[0].CompanyName}'");
-                }
-                Utilities.CreateLog(changesmade, LatestEntry[0].Id);
+                LogLicenseCreationDate(LatestEntry);
 
                 
                 RefreshDashboard(this, e);
@@ -385,19 +376,10 @@ namespace _42LicenseManager
                 }
 
                 // GET LICENSE CREATED FROM DB
-                List<License> NewLicense2 = DataAccess_GDataTable.GetLatestEntry(Config.DBDir_Name);
+                List<License> LicenseFromDB = DataAccess_GDataTable.GetLatestEntry(Config.DBDir_Name);
 
                 // LOG LICENSE CREATION DATE
-                List<string> changesmade = new List<string>();
-                if (NewLicense.CompanyName == "")
-                {
-                    changesmade.Add($"License Created for '{NewLicense2[0].FirstName} {NewLicense2[0].LastName}'");
-                }
-                else
-                {
-                    changesmade.Add($"License Created for '{NewLicense2[0].CompanyName}'");
-                }
-                Utilities.CreateLog(changesmade, NewLicense2[0].Id);
+                LogLicenseCreationDate(LicenseFromDB);
 
                 InitializeLicensesTTR();
                 RefreshDashboard(this, e);
@@ -451,7 +433,24 @@ namespace _42LicenseManager
                 RefreshDashboard(this, e);
             }
             #endregion Open Duplicate Client Account
+
+            
         }
+
+        public void LogLicenseCreationDate(List<License> LicenseFromDB)
+            {
+                // LOG LICENSE CREATION DATE
+                List<string> changesmade = new List<string>();
+                if (LicenseFromDB[0].CompanyName == "")
+                {
+                    changesmade.Add($"License Created for '{LicenseFromDB[0].FirstName} {LicenseFromDB[0].LastName}'");
+                }
+                else
+                {
+                    changesmade.Add($"License Created for '{LicenseFromDB[0].CompanyName}'");
+                }
+                Utilities.CreateLog(changesmade, LicenseFromDB[0].Id);
+            }
 
         private void aButtonDelete_Click(object sender, EventArgs e)
         {
@@ -832,13 +831,14 @@ namespace _42LicenseManager
                 #region License is Not a duplicate
                 foreach (License VerifiedLicense in LicensesQueuedForImport)
                 {
-                    // Set license as active
-                    VerifiedLicense.Active = true;
-                    VerifiedLicense.RenewalStatus = "Renewed";
-
+                    
                     // If License is NOT a duplicate
                     if (!Utilities.ClientExists(VerifiedLicense, Class_Library.Settings.SelectedDatabaseFilePath, true, out List<License> DuplicatefromSQLDB))
                     {
+                        // Set license as active - it is freshly added so there won't be any previous settings.
+                        VerifiedLicense.Active = true;
+                        VerifiedLicense.RenewalStatus = "Renewed";
+
                         // Update DB using Verified License
                         if (VerifiedLicense != null)
                         {
@@ -846,19 +846,21 @@ namespace _42LicenseManager
                         }
 
                         // GET LICENSE CREATED FROM DB for use with logs
-                        List<License> NewLicense2 = DataAccess_GDataTable.GetLatestEntry(Config.DBDir_Name);
+                        List<License> LicenseFromDB = DataAccess_GDataTable.GetLatestEntry(Config.DBDir_Name);
 
                         // LOG LICENSE CREATION DATE
-                        List<string> changesmade = new List<string>();
-                        if (VerifiedLicense.CompanyName == "")
-                        {
-                            changesmade.Add($"License Created for '{NewLicense2[0].FirstName} {NewLicense2[0].LastName}'");
-                        }
-                        else
-                        {
-                            changesmade.Add($"License Created for '{NewLicense2[0].CompanyName}'");
-                        }
-                        Utilities.CreateLog(changesmade, NewLicense2[0].Id);
+                        LogLicenseCreationDate(LicenseFromDB);
+
+                        //List<string> changesmade = new List<string>();
+                        //if (VerifiedLicense.CompanyName == "")
+                        //{
+                        //    changesmade.Add($"License Created for '{NewLicense2[0].FirstName} {NewLicense2[0].LastName}'");
+                        //}
+                        //else
+                        //{
+                        //    changesmade.Add($"License Created for '{NewLicense2[0].CompanyName}'");
+                        //}
+                        //Utilities.CreateLog(changesmade, NewLicense2[0].Id);
                     }
                     #endregion License is Not a duplicate
 
