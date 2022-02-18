@@ -154,6 +154,7 @@ namespace _42LicenseManager
                     _License.RenewalStatus = "";
                     DataAccess_GDataTable.UpdateLicenseData(_License, Config.DBDir_Name);
                 }
+
             }
             Utilities.CloseSQLConnection();
         }
@@ -672,7 +673,29 @@ namespace _42LicenseManager
        
         private void aButtonTest_Click(object sender, EventArgs e)
         {
-            UpdateTitleBar();
+            // Convert all non cancelled licenses to true active status
+            List<License> AllLicenses = new List<License>();
+
+            try
+            {
+                AllLicenses = DataAccess_GDataTable.GetAllData(Config.DBDir_Name);
+            }
+            catch // GetAllData failed
+            {
+
+            }
+
+
+            foreach (License _License in AllLicenses)
+            {
+                if (_License.Active == false && _License.RenewalStatus != "Cancelled")
+                {
+                    _License.Active = true;
+                    DataAccess_GDataTable.UpdateLicenseData(_License, Config.DBDir_Name);
+                }
+
+            }
+            Utilities.CloseSQLConnection();
         }
 
         private void ATextBoxSearch_Leave(object sender, EventArgs e)

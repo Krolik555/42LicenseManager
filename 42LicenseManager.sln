@@ -1,24 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "42LicenseManager", "42LicenseManager\42LicenseManager.csproj", "{FC0085A5-B491-4CC3-9105-F94729F1C721}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "42LicenceManagerSetup", "42LicenceManagerSetup\42LicenceManagerSetup.vdproj", "{162F71BF-8BFD-4961-8F0F-B9C8028722BE}"
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "42LicenseManagerInstaller", "42LicenseManagerInstaller\42LicenseManagerInstaller.aiproj", "{E7A2752F-BC5B-4E1E-9F9B-CEA1448CD614}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC0085A5-B491-4CC3-9105-F94729F1C721}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{FC0085A5-B491-4CC3-9105-F94729F1C721}.All|Any CPU.Build.0 = Release|Any CPU
 		{FC0085A5-B491-4CC3-9105-F94729F1C721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC0085A5-B491-4CC3-9105-F94729F1C721}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC0085A5-B491-4CC3-9105-F94729F1C721}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC0085A5-B491-4CC3-9105-F94729F1C721}.Release|Any CPU.Build.0 = Release|Any CPU
-		{162F71BF-8BFD-4961-8F0F-B9C8028722BE}.Debug|Any CPU.ActiveCfg = Debug
-		{162F71BF-8BFD-4961-8F0F-B9C8028722BE}.Release|Any CPU.ActiveCfg = Release
+		{E7A2752F-BC5B-4E1E-9F9B-CEA1448CD614}.All|Any CPU.ActiveCfg = DefaultBuild
+		{E7A2752F-BC5B-4E1E-9F9B-CEA1448CD614}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{E7A2752F-BC5B-4E1E-9F9B-CEA1448CD614}.Release|Any CPU.ActiveCfg = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
