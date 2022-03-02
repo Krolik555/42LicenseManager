@@ -213,6 +213,7 @@
             this.aComboboxReviewStatus.Name = "aComboboxReviewStatus";
             this.aComboboxReviewStatus.Size = new System.Drawing.Size(121, 21);
             this.aComboboxReviewStatus.TabIndex = 4;
+            this.aComboboxReviewStatus.SelectedIndexChanged += new System.EventHandler(this.aComboboxReviewStatus_SelectedIndexChanged);
             // 
             // aLabelReviewStatus
             // 

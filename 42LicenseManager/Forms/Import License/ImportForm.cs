@@ -113,18 +113,22 @@ namespace _42LicenseManager.Forms.Import_License
 
         private void aComboboxFormat_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            // Control visibility of aLinkLabelTemplate
+            // Control visibility of controls
             if (aComboboxFormat.SelectedItem.ToString() == "Avast Business Cloud Care")
             {
                 aLinkLabelTemplate.Visible = true;
+                aTextBoxSource.Enabled = true;
             }
             else
             {
                 aLinkLabelTemplate.Visible = false;
+                aTextBoxSource.Enabled = false;
             }
+
             if (aComboboxFormat.SelectedItem.ToString() == null)
             {
                 aButtonSubmit.Enabled = false;
+                aTextBoxSource.Enabled = false;
                 aBtnBrowse.Enabled = false;
                 aBtnAnalyze.Enabled = false;
             }

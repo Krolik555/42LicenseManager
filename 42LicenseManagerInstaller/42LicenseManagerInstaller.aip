@@ -29,10 +29,10 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPPRODUCTICON" Value="Square42redTransparent.exe" Type="8"/>
     <ROW Property="Manufacturer" Value="42 Tech Solutions, Inc"/>
-    <ROW Property="ProductCode" Value="1033:{C9B867BD-B2A6-4145-91BD-23FFC8B6EA07} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{449B094A-63D7-4CEA-B14E-3FA9120D279D} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="42LicenseManager"/>
-    <ROW Property="ProductVersion" Value="2.1.4" Type="32"/>
+    <ROW Property="ProductVersion" Value="2.1.5" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{D2AAA9B8-F940-454F-A1A3-BAE2B20E64E8}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

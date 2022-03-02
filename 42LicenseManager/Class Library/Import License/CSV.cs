@@ -65,13 +65,13 @@ namespace _42LicenseManager.Class_Library.Import_License
                 // If file structure is compatible, continue.
                 if (SupportedFormat(VerifiedImportData))
                 {
-                    // for each row
+                    // for each row (aka client)
                     for (int i = 0; i < csvTable.Rows.Count; i++)
                     {
                         License NewLicense = new License();
 
                         #region License Count
-                        // If subscription contains more than 0 it is considered active.
+                        // If client contains more than 0 subscriptions it is considered active.
                         if (Convert.ToInt32(csvTable.Rows[i][2]) > 0)
                         {
                             #region Service
@@ -85,6 +85,9 @@ namespace _42LicenseManager.Class_Library.Import_License
                                 // If License has expiration date
                                 if (csvTable.Rows[i][3].ToString().Contains("Prepaid"))
                                 {
+                                    // Set Anti-Virus license to Active
+                                    NewLicense.Active = true;
+
                                     // Get expiration date
                                     NewLicense.ExpirationDate = Convert.ToDateTime(csvTable.Rows[i][4]);
                                     VerifiedLicenses.Add(NewLicense);

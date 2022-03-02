@@ -271,6 +271,32 @@ namespace _42LicenseManager
             }
         }
 
+        private void aComboboxReviewStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (aComboboxRenewalStatus.SelectedItem == null || aComboboxReviewStatus.SelectedItem == null)
+                {
+                    return;
+                }
+                // Handle license active status automatically if license is cancelled and closed set it to inactive.
+                // FYI: This same method occurs during RenewalStatus_SelectedIndexChanged.
+                if (aComboboxRenewalStatus.SelectedItem.ToString() == "Cancelled" && aComboboxReviewStatus.SelectedItem.ToString() == "Closed")
+                {
+                    // Set license Active status to false (Inactive).
+                    aComboboxActive.SelectedIndex = 1; // 1 = false
+                }
+                else
+                {// Else it must always be set to active.
+                    aComboboxActive.SelectedIndex = 0; // 0 = true
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
         private void AComboboxRenewalStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (aComboboxRenewalStatus.SelectedIndex == 3)// 3 = Cancel Pending
@@ -284,6 +310,25 @@ namespace _42LicenseManager
                 aCheckBoxDeleted.Enabled = false;
                 aCheckBoxUninstalled.Enabled = false;
                 //aCheckBoxWillCancel.Enabled = false;
+            }
+
+            try
+            {
+                // Handle license active status automatically if license is cancelled and closed set it to inactive.
+                // FYI: This same method occurs during ReviewStatus_SelectedIndexChanged.
+                if (aComboboxRenewalStatus.SelectedItem.ToString() == "Cancelled" && aComboboxReviewStatus.SelectedItem.ToString() == "Closed")
+                {
+                    // Set license Active status to false (Inactive).
+                    aComboboxActive.SelectedIndex = 1; // 1 = false
+                }
+                else
+                {// Else it must always be set to active.
+                    aComboboxActive.SelectedIndex = 0; // 0 = true
+                }
+            }
+            catch
+            {
+
             }
         }
 
