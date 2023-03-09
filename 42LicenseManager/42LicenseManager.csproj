@@ -84,7 +84,7 @@
       <HintPath>..\packages\SplashScreen.Winforms.1.0.0\lib\SplashScreen.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -123,8 +123,10 @@
     <Compile Include="Class Library\DataGridView\DGVUtilities.cs" />
     <Compile Include="Class Library\Config.cs" />
     <Compile Include="Class Library\ErrorLogs.cs" />
+    <Compile Include="Class Library\gAddMachine.cs" />
     <Compile Include="Class Library\Import License\CSV.cs" />
     <Compile Include="Class Library\Import License\CustomerNamingLogic.cs" />
+    <Compile Include="Class Library\Import Machines\CSV.cs" />
     <Compile Include="Class Library\Settings.cs" />
     <Compile Include="Class Library\Updates.cs" />
     <Compile Include="Forms\BackupForm.cs">
@@ -209,6 +211,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Import License\ImportForm.Designer.cs">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Import Machines\ImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Import Machines\ImportForm.Designer.cs">
       <DependentUpon>ImportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ProRate\ProRateForm.cs">

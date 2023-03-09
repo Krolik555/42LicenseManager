@@ -1,4 +1,7 @@
-﻿using Equin.ApplicationFramework;
+﻿using _42LicenseManager.Class_Library;
+using _42LicenseManager.Class_Library.Import_License;
+using _42LicenseManager.Class_Library.Import_Machines;
+using Equin.ApplicationFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -157,7 +160,7 @@ namespace _42LicenseManager
 
         private void aButtonClose_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            // dialog result is modified during FormClosing
             this.Close();
         }
 
@@ -172,6 +175,7 @@ namespace _42LicenseManager
             InputLicense.CopyDataTo(ChangedLicense);
             ChangedLicense.PCCount = LM.Count;
             DataAccess_GDataTable.UpdateLicenseData(ChangedLicense, Config.DBDir_Name);
+            this.DialogResult = DialogResult.OK;
         }
 
         private void aDataGridViewMachines_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -218,6 +222,51 @@ namespace _42LicenseManager
             catch(Exception err)
             {
                 MessageBox.Show(err.ToString());
+            }
+        }
+
+        private void aButtonImport_Click(object sender, EventArgs e)
+        {
+            // Browse for File
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Title = "Select a file";
+            openDialog.Filter = "SCV Files (*.csv) | *.csv";
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openDialog.FileName;
+
+                // Get data from filePath
+                DataTable csvTable = Class_Library.Import_Machines.CSV.Read(filePath);
+                if (csvTable == null)
+                {
+                    return;
+                }
+
+                List<string> ValidMachineNames = Class_Library.Import_Machines.CSV.TranslateData(csvTable);
+
+                #region Add each machine to database
+                foreach (string MachineName in ValidMachineNames)
+                {
+                    // check if machine already exists within this license.
+                    bool MachineExistsInCurrentLicense = false;
+                    foreach(DataGridViewRow row in aDataGridViewMachines.Rows)
+                    {
+                        if (row.Cells[2].Value.ToString() == MachineName)
+                        {
+                            MachineExistsInCurrentLicense = true;
+                        }
+                    }
+                    
+                    // if current license does not already contain a machine with this name, add it to this license.
+                    if (MachineExistsInCurrentLicense == false)
+                    {
+                        //Add machine(a couple properties are optional for this method because they have default values.)
+                        gAddMachine.Add(MachineName, "", InputLicense.Id);
+                    }
+                }
+                #endregion Add each machine to database
+
+                RefreshDataGridViewTable();
             }
         }
     }

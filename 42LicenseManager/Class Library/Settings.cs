@@ -23,8 +23,8 @@ namespace _42LicenseManager.Class_Library
         /// </summary>
         public static string SelectedDatabaseFilePath { get; set; }
 
-
-
+        // This is an attempt to stop the practice of creating a new Config object in every form and class.
+        public static ConfigClass gConfig { get; set; }
     }
 
 }

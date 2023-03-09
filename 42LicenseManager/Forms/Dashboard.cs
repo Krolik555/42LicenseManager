@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,6 +37,9 @@ namespace _42LicenseManager
         /// </summary>
         public ConfigClass Config = new ConfigClass();
         Version CurrentVer = Assembly.GetExecutingAssembly().GetName().Version;
+
+        
+
 
 
         public Dashboard()
@@ -69,6 +73,8 @@ namespace _42LicenseManager
                 
                 // VERIFY INTEGRITY OF CONFIG & DATABASE | GET CONFIG INFO
                 Config = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
+                // This is an attempt to transition away from a new config object for every form and class by creating a global config.
+                Class_Library.Settings.gConfig = Class_Library.Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
                 // Check If DB is current Version
                 Utilities.CheckDatabaseForUpdates(Config);
@@ -730,12 +736,10 @@ namespace _42LicenseManager
             if (DRBackupPrompt == DialogResult.Yes)
             {
                 Cursor.Current = Cursors.WaitCursor;
-                // Get Backup Target Directory
-                string BackupDir = Config.BackupTarget_PathOnly;
                 // Get backup Target File name
                 string backupFileName = Path.GetFileName(Config.DBDir_Name);
                 // Backup
-                if (Config.DBDir_Name != "" && backupFileName != "" && BackupDir != "")
+                if (Config.DBDir_Name != "" && backupFileName != "" && Config.BackupTarget_PathOnly != "")
                 {
                     
                     backgroundWorkerBackup.RunWorkerAsync();

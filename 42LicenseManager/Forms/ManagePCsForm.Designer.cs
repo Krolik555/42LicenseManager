@@ -31,18 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagePCsForm));
             this.aDataGridViewMachines = new System.Windows.Forms.DataGridView();
-            this.licensedMachinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.InstallDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aButtonClose = new System.Windows.Forms.Button();
             this.aButtonAdd = new System.Windows.Forms.Button();
             this.aButtonEdit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.aButtonDelete = new System.Windows.Forms.Button();
             this.aButtonMove = new System.Windows.Forms.Button();
+            this.aButtonImport = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InstallDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.machineNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.machineNotesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.licenseIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.licensedMachinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewMachines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licensedMachinesBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -71,9 +72,12 @@
             this.aDataGridViewMachines.TabStop = false;
             this.aDataGridViewMachines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewMachines_CellDoubleClick);
             // 
-            // licensedMachinesBindingSource
+            // InstallDate
             // 
-            this.licensedMachinesBindingSource.DataSource = typeof(_42LicenseManager.LicensedMachines);
+            this.InstallDate.DataPropertyName = "InstallDate";
+            this.InstallDate.HeaderText = "Install Date";
+            this.InstallDate.Name = "InstallDate";
+            this.InstallDate.ReadOnly = true;
             // 
             // aButtonClose
             // 
@@ -100,7 +104,7 @@
             // aButtonEdit
             // 
             this.aButtonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonEdit.Location = new System.Drawing.Point(697, 73);
+            this.aButtonEdit.Location = new System.Drawing.Point(697, 102);
             this.aButtonEdit.Name = "aButtonEdit";
             this.aButtonEdit.Size = new System.Drawing.Size(101, 23);
             this.aButtonEdit.TabIndex = 2;
@@ -121,7 +125,7 @@
             // aButtonDelete
             // 
             this.aButtonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonDelete.Location = new System.Drawing.Point(697, 131);
+            this.aButtonDelete.Location = new System.Drawing.Point(697, 160);
             this.aButtonDelete.Name = "aButtonDelete";
             this.aButtonDelete.Size = new System.Drawing.Size(101, 23);
             this.aButtonDelete.TabIndex = 4;
@@ -132,13 +136,24 @@
             // aButtonMove
             // 
             this.aButtonMove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.aButtonMove.Location = new System.Drawing.Point(697, 102);
+            this.aButtonMove.Location = new System.Drawing.Point(697, 131);
             this.aButtonMove.Name = "aButtonMove";
             this.aButtonMove.Size = new System.Drawing.Size(101, 23);
             this.aButtonMove.TabIndex = 3;
             this.aButtonMove.Text = "Move";
             this.aButtonMove.UseVisualStyleBackColor = true;
             this.aButtonMove.Click += new System.EventHandler(this.AButtonMove_Click);
+            // 
+            // aButtonImport
+            // 
+            this.aButtonImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aButtonImport.Location = new System.Drawing.Point(697, 73);
+            this.aButtonImport.Name = "aButtonImport";
+            this.aButtonImport.Size = new System.Drawing.Size(101, 23);
+            this.aButtonImport.TabIndex = 6;
+            this.aButtonImport.Text = "Import Machines";
+            this.aButtonImport.UseVisualStyleBackColor = true;
+            this.aButtonImport.Click += new System.EventHandler(this.aButtonImport_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -147,13 +162,6 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // InstallDate
-            // 
-            this.InstallDate.DataPropertyName = "InstallDate";
-            this.InstallDate.HeaderText = "Install Date";
-            this.InstallDate.Name = "InstallDate";
-            this.InstallDate.ReadOnly = true;
             // 
             // machineNameDataGridViewTextBoxColumn
             // 
@@ -179,11 +187,16 @@
             this.licenseIdDataGridViewTextBoxColumn.ReadOnly = true;
             this.licenseIdDataGridViewTextBoxColumn.Visible = false;
             // 
+            // licensedMachinesBindingSource
+            // 
+            this.licensedMachinesBindingSource.DataSource = typeof(_42LicenseManager.LicensedMachines);
+            // 
             // ManagePCsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 428);
+            this.Controls.Add(this.aButtonImport);
             this.Controls.Add(this.aButtonMove);
             this.Controls.Add(this.aButtonDelete);
             this.Controls.Add(this.label1);
@@ -220,5 +233,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn machineNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn machineNotesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn licenseIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button aButtonImport;
     }
 }

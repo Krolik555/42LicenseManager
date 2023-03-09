@@ -122,7 +122,7 @@ namespace _42LicenseManager
             // Resolve possible problem - License set to renewed but still open
             if (aComboboxRenewalStatus.SelectedItem.ToString() == "Renewed" && aComboboxReviewStatus.SelectedItem.ToString() == "Open")
             {
-                if (MessageBox.Show("You have marked this license as Renewed but it is still open for review. Would you like to change the review status to close for this license?", "Possible Problem", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                if (MessageBox.Show("You have marked this license as Renewed but it is still open for review. Would you like to change the review status to 'closed' for this license?", "Possible Problem", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
                     aComboboxReviewStatus.SelectedItem = "Closed";
                 }

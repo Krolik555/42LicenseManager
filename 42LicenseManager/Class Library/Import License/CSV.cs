@@ -25,6 +25,9 @@ namespace _42LicenseManager.Class_Library.Import_License
                 // Step 1 - remove blank column
                 RemoveBlankColumn(csv_FilePath);
 
+                // Step 1.5 - Remove double quotes
+                RemoveDoubleQuotes(csv_FilePath);
+
                 // Step 2 - collect the data
                 var csvTable = new DataTable();
                 using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(csv_FilePath)), true))
@@ -142,12 +145,13 @@ namespace _42LicenseManager.Class_Library.Import_License
                 if (data[0].Contains(",\"\""))
                 {
                     data[0] = (data[0].Remove((data[0].Length - 4), 3));
-
+                    
+                    // clear the contents of the old file.
+                    File.WriteAllText(csv_FilePath, "");
+                    // save the new contents to the old file.
+                    File.AppendAllLines(csv_FilePath, data);
                 }
-                // clear the contents of the old file.
-                File.WriteAllText(csv_FilePath, "");
-                // save the new contents to the old file.
-                File.AppendAllLines(csv_FilePath, data);
+                
             }
             catch (IOException err)
             {
@@ -157,6 +161,34 @@ namespace _42LicenseManager.Class_Library.Import_License
                 }
             }
             
+        }
+
+        /// <summary>
+        /// Sometime around January 2023 Avast started adding double quotes in the report for companies containing commas in the name. The CSV Reading nuget doesn't understand this so the double quote must be removed.
+        /// </summary>
+        /// <param name="csv_FilePath"></param>
+        private static void RemoveDoubleQuotes(string csv_FilePath)
+        {
+            try
+            {
+                // Clear double quotes from all lines
+                string[] data = File.ReadAllLines(csv_FilePath);
+                for (int i = 0; i < data.Length; i++)
+                {
+                    if (data[i].Contains("\"\""))
+                    {
+                        data[i] = (data[i].Replace("\"\"", "\""));
+                    }
+                }
+                // clear the contents of the old file.
+                File.WriteAllText(csv_FilePath, "");
+                // save the new contents to the old file.
+                File.AppendAllLines(csv_FilePath, data);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("An error occurred during RemoveDoubleQuotes method: " + err.Message);
+            }
         }
 
         /// <summary>
