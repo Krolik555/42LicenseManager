@@ -84,7 +84,7 @@ namespace _42LicenseManager.Class_Library.Import_License
                                 // Get License Name Info - figure out what is a company name, first name and last name.
                                 Import_License.CustomerNamingLogic.SortNames(NewLicense, csvTable.Rows[i][0].ToString());
 
-                                #region Subscription and Expireation/Renewal Date
+                                #region Subscription and Expiration/Renewal Date
                                 // If License has expiration date
                                 if (csvTable.Rows[i][3].ToString().Contains("Prepaid"))
                                 {
@@ -113,7 +113,7 @@ namespace _42LicenseManager.Class_Library.Import_License
                                     NewLicense.Notes = "License rejected: Does not have an expiration date (Monthly subscription).";
                                     FailedLicenses.Add(NewLicense);
                                 }
-                                #endregion Subscription and Expireation/Renewal Date
+                                #endregion Subscription and Expiration/Renewal Date
                             }
                             // Subscription is NOT ANTIVIRUS
                             else

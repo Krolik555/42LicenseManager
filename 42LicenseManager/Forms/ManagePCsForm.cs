@@ -235,23 +235,36 @@ namespace _42LicenseManager
             {
                 string filePath = openDialog.FileName;
 
-                // Get data from filePath
-                DataTable csvTable = Class_Library.Import_Machines.CSV.Read(filePath);
+                // Get raw data from filePath
+                string filePath1 = filePath;
+                DataTable csvTable = Class_Library.Import_Machines.CSV.Read(filePath1);
                 if (csvTable == null)
                 {
                     return;
                 }
-
+                // Translate raw data
                 List<string> ValidMachineNames = Class_Library.Import_Machines.CSV.TranslateData(csvTable);
 
                 #region Add each machine to database
                 foreach (string MachineName in ValidMachineNames)
                 {
+                    //These strings are local and are only used for the purpose of extracting notes from the "MachineName"
+                    string _verifiedName = MachineName;
+                    string _verifiedNotes = "";
+                    // Look for and extract "Notes" from the name. Notes are only separated from the name with a :
+                    if (MachineName.Contains(":"))
+                    {
+                        int indexOfNotes = MachineName.IndexOf(":");
+                        _verifiedName = MachineName.Substring(0, indexOfNotes);
+                        _verifiedNotes = MachineName.Substring(indexOfNotes + 2);
+                    }
+                    
+
                     // check if machine already exists within this license.
                     bool MachineExistsInCurrentLicense = false;
                     foreach(DataGridViewRow row in aDataGridViewMachines.Rows)
                     {
-                        if (row.Cells[2].Value.ToString() == MachineName)
+                        if (row.Cells[2].Value.ToString() == _verifiedName)
                         {
                             MachineExistsInCurrentLicense = true;
                         }
@@ -261,7 +274,7 @@ namespace _42LicenseManager
                     if (MachineExistsInCurrentLicense == false)
                     {
                         //Add machine(a couple properties are optional for this method because they have default values.)
-                        gAddMachine.Add(MachineName, "", InputLicense.Id);
+                        gAddMachine.Add(_verifiedName, _verifiedNotes, InputLicense.Id);
                     }
                 }
                 #endregion Add each machine to database
