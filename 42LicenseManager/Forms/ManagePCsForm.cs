@@ -100,16 +100,17 @@ namespace _42LicenseManager
             Class_Library.DataGridView.DGVPositionInfo DGVPOS = DGVUtilities.GetPosition(aDataGridViewMachines);
             Class_Library.DataGridView.DGVSortInfo DGVSortInfo = DGVUtilities.GetSortation(aDataGridViewMachines);
 
+            
+
             if (aDataGridViewMachines.SelectedCells.Count > 1) // IF MULTIPLE MACHINES ARE SELECTED
             {
                 // INSTANTIATE LIST FOR STORING MACHINE ID'S
                 List<int> SelectedMachines_ID = new List<int>(); 
 
                 // GET LIST OF MACHINE ID'S
-                SelectedMachines_ID = DGVUtilities.DGVGetColumXofSelectedCell(aDataGridViewMachines, 0); 
+                SelectedMachines_ID = DGVUtilities.DGVGetColumXofSelectedCell(aDataGridViewMachines, 0);
 
-
-                DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete {SelectedMachines_ID.Count()} machines from the database?", "Verification", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete {DGVUtilities.GetSelectedRowCount(aDataGridViewMachines)} machines from the database?", "Verification", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     // GET CHANGES MADE
@@ -248,12 +249,14 @@ namespace _42LicenseManager
                 #region Add each machine to database
                 foreach (string MachineName in ValidMachineNames)
                 {
-                    //These strings are local and are only used for the purpose of extracting notes from the "MachineName"
-                    string _verifiedName = MachineName;
+                    //These strings are local and are only used here for the purpose of extracting notes from the "MachineName"
+                    string _verifiedName = MachineName; 
                     string _verifiedNotes = "";
+
                     // Look for and extract "Notes" from the name. Notes are only separated from the name with a :
                     if (MachineName.Contains(":"))
                     {
+                        // split the name at the colon and remove the colon
                         int indexOfNotes = MachineName.IndexOf(":");
                         _verifiedName = MachineName.Substring(0, indexOfNotes);
                         _verifiedNotes = MachineName.Substring(indexOfNotes + 2);

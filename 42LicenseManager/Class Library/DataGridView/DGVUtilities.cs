@@ -130,5 +130,27 @@ namespace _42LicenseManager
             }
             return ColumnValues;
         }
+
+        public static int GetSelectedRowCount(DataGridView DGV)
+        {
+            // Get the index of each row with a selected cell.
+            DataGridViewSelectedCellCollection cells = DGV.SelectedCells;
+
+            List<int> rowIndexesOfSelectedCells = new List<int>();
+            foreach (DataGridViewCell Cell in cells)
+            {
+                rowIndexesOfSelectedCells.Add(Cell.RowIndex); // Collect the row index of every selected cell. This will resuilt in duplicates.
+            }
+            // Remove duplicates
+            List<int> SelectedRowIndexes = new List<int>();
+            foreach (int index in rowIndexesOfSelectedCells)
+            {
+                if (!SelectedRowIndexes.Contains(index))
+                {
+                    SelectedRowIndexes.Add(index); // Add index only if SelectedRowIndexes doesn't already contain that index.
+                }
+            }
+            return SelectedRowIndexes.Count;
+        }
     }
 }
