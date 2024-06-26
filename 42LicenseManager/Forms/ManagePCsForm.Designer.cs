@@ -31,7 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagePCsForm));
             this.aDataGridViewMachines = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InstallDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.machineNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.machineNotesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.licenseIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.licensedMachinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aButtonClose = new System.Windows.Forms.Button();
             this.aButtonAdd = new System.Windows.Forms.Button();
             this.aButtonEdit = new System.Windows.Forms.Button();
@@ -39,11 +44,7 @@
             this.aButtonDelete = new System.Windows.Forms.Button();
             this.aButtonMove = new System.Windows.Forms.Button();
             this.aButtonImport = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.machineNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.machineNotesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.licenseIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.licensedMachinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.aButtonTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewMachines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licensedMachinesBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -72,12 +73,48 @@
             this.aDataGridViewMachines.TabStop = false;
             this.aDataGridViewMachines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewMachines_CellDoubleClick);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
             // InstallDate
             // 
             this.InstallDate.DataPropertyName = "InstallDate";
             this.InstallDate.HeaderText = "Install Date";
             this.InstallDate.Name = "InstallDate";
             this.InstallDate.ReadOnly = true;
+            // 
+            // machineNameDataGridViewTextBoxColumn
+            // 
+            this.machineNameDataGridViewTextBoxColumn.DataPropertyName = "MachineName";
+            this.machineNameDataGridViewTextBoxColumn.HeaderText = "MachineName";
+            this.machineNameDataGridViewTextBoxColumn.Name = "machineNameDataGridViewTextBoxColumn";
+            this.machineNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.machineNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // machineNotesDataGridViewTextBoxColumn
+            // 
+            this.machineNotesDataGridViewTextBoxColumn.DataPropertyName = "MachineNotes";
+            this.machineNotesDataGridViewTextBoxColumn.HeaderText = "MachineNotes";
+            this.machineNotesDataGridViewTextBoxColumn.Name = "machineNotesDataGridViewTextBoxColumn";
+            this.machineNotesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.machineNotesDataGridViewTextBoxColumn.Width = 350;
+            // 
+            // licenseIdDataGridViewTextBoxColumn
+            // 
+            this.licenseIdDataGridViewTextBoxColumn.DataPropertyName = "LicenseId";
+            this.licenseIdDataGridViewTextBoxColumn.HeaderText = "LicenseId";
+            this.licenseIdDataGridViewTextBoxColumn.Name = "licenseIdDataGridViewTextBoxColumn";
+            this.licenseIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.licenseIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // licensedMachinesBindingSource
+            // 
+            this.licensedMachinesBindingSource.DataSource = typeof(_42LicenseManager.LicensedMachines);
             // 
             // aButtonClose
             // 
@@ -155,47 +192,22 @@
             this.aButtonImport.UseVisualStyleBackColor = true;
             this.aButtonImport.Click += new System.EventHandler(this.aButtonImport_Click);
             // 
-            // idDataGridViewTextBoxColumn
+            // aButtonTest
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // machineNameDataGridViewTextBoxColumn
-            // 
-            this.machineNameDataGridViewTextBoxColumn.DataPropertyName = "MachineName";
-            this.machineNameDataGridViewTextBoxColumn.HeaderText = "MachineName";
-            this.machineNameDataGridViewTextBoxColumn.Name = "machineNameDataGridViewTextBoxColumn";
-            this.machineNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.machineNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // machineNotesDataGridViewTextBoxColumn
-            // 
-            this.machineNotesDataGridViewTextBoxColumn.DataPropertyName = "MachineNotes";
-            this.machineNotesDataGridViewTextBoxColumn.HeaderText = "MachineNotes";
-            this.machineNotesDataGridViewTextBoxColumn.Name = "machineNotesDataGridViewTextBoxColumn";
-            this.machineNotesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.machineNotesDataGridViewTextBoxColumn.Width = 350;
-            // 
-            // licenseIdDataGridViewTextBoxColumn
-            // 
-            this.licenseIdDataGridViewTextBoxColumn.DataPropertyName = "LicenseId";
-            this.licenseIdDataGridViewTextBoxColumn.HeaderText = "LicenseId";
-            this.licenseIdDataGridViewTextBoxColumn.Name = "licenseIdDataGridViewTextBoxColumn";
-            this.licenseIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.licenseIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // licensedMachinesBindingSource
-            // 
-            this.licensedMachinesBindingSource.DataSource = typeof(_42LicenseManager.LicensedMachines);
+            this.aButtonTest.Location = new System.Drawing.Point(697, 271);
+            this.aButtonTest.Name = "aButtonTest";
+            this.aButtonTest.Size = new System.Drawing.Size(75, 23);
+            this.aButtonTest.TabIndex = 7;
+            this.aButtonTest.Text = "Test";
+            this.aButtonTest.UseVisualStyleBackColor = true;
+            this.aButtonTest.Click += new System.EventHandler(this.aButtonTest_Click);
             // 
             // ManagePCsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 428);
+            this.Controls.Add(this.aButtonTest);
             this.Controls.Add(this.aButtonImport);
             this.Controls.Add(this.aButtonMove);
             this.Controls.Add(this.aButtonDelete);
@@ -234,5 +246,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn machineNotesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn licenseIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button aButtonImport;
+        private System.Windows.Forms.Button aButtonTest;
     }
 }

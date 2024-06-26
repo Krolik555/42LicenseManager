@@ -35,21 +35,41 @@ namespace _42LicenseManager
 
         public void RefreshDataGridViewTable()
         {
+            #region GetData
             // Get Data from Database
             List<LicensedMachines> LM = DataAccess_LicensedMachinesTable.GetByLicenseID(InputLicense.Id, Config.DBDir_Name);
             BindingListView<LicensedMachines> SortableLM = new BindingListView<LicensedMachines>(LM);
             aDataGridViewMachines.DataSource = SortableLM;
             Utilities.CloseSQLConnection();
+            #endregion GetData
+
+            #region SortDGV
+            // Get collection of DataGridView columns from the current DGV.
+            DataGridViewColumnCollection collection = aDataGridViewMachines.Columns;
+            // Iterate through those columns to find the MachineName column
+            foreach (DataGridViewColumn column in collection)
+            {
+                if (column.DataPropertyName == "MachineName")
+                {
+                    // Sort the DGV by the MachineName Column
+                    aDataGridViewMachines.Sort(column, System.ComponentModel.ListSortDirection.Ascending);
+                }
+            }
+            #endregion SortDGV
         }
 
         private void aButtonAdd_Click(object sender, EventArgs e)
         {
+            // SAVE POSITION AND SORTATION
+            Class_Library.DataGridView.DGVPositionInfo DGVPOS = DGVUtilities.GetPosition(aDataGridViewMachines);
+            Class_Library.DataGridView.DGVSortInfo DGVSortInfo = DGVUtilities.GetSortation(aDataGridViewMachines);
+
             AddMachinesForm AddForm = new AddMachinesForm();
             AddForm.InputLicense = InputLicense; // Set License to be passed in
             DialogResult _form = AddForm.ShowDialog();
             if (_form == DialogResult.OK) // When editform.Savebutton is clicked
             {
-
+                
                 // GET CHANGES MADE
                 List<string> ChangesMade = new List<string>();
                 ChangesMade.Add($"Machine added to {InputLicense.Identifiable_Name} account: '{AddForm.NewMachine.MachineName}'");
@@ -58,6 +78,23 @@ namespace _42LicenseManager
                 Utilities.CreateLog(ChangesMade, InputLicense.Id);
 
                 RefreshDataGridViewTable();
+                // SET SORTATION
+                DGVUtilities.SetSortation(DGVSortInfo, aDataGridViewMachines);
+
+                // Get POSITION
+                foreach(DataGridViewRow row in aDataGridViewMachines.Rows)
+                {
+                    // Cell[2] = MachineName.
+                    // If Machine Name in current row matches the MachineName of the machine that was just added
+                    if (row.Cells[2].Value.ToString() == AddForm.NewMachine.MachineName)
+                    {
+                        // Set DGVPosition data to the new machine location
+                        DGVPOS.SelectedColumn = 2;
+                        DGVPOS.SelectedRow = row.Index;
+                    }
+                }
+                // Set current position to show the newly added machine
+                DGVUtilities.SetPosition(DGVPOS, aDataGridViewMachines);
             }
         }
 
@@ -283,6 +320,21 @@ namespace _42LicenseManager
                 #endregion Add each machine to database
 
                 RefreshDataGridViewTable();
+            }
+        }
+
+        private void aButtonTest_Click(object sender, EventArgs e)
+        {
+            // Get collection of DataGridView columns from the current DGV.
+            DataGridViewColumnCollection collection = aDataGridViewMachines.Columns;
+            // Iterate through those columns to find the MachineName column
+            foreach(DataGridViewColumn column in collection)
+            {
+                if (column.DataPropertyName == "MachineName")
+                {
+                    // Sort the DGV by the MachineName Column
+                    aDataGridViewMachines.Sort(column, System.ComponentModel.ListSortDirection.Ascending);
+                }
             }
         }
     }
