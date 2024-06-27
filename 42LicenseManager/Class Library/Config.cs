@@ -14,25 +14,53 @@ namespace _42LicenseManager.Class_Library
         
 
         #region Edit/Update Config File
-        public static void Update(ConfigClass In_ConfigData)
+        public static void Update(ConfigClass NewConfig, ConfigClass OldConfig)
         {
             // if Config exists, update config
             if (File.Exists(Class_Library.Settings.SelectedDatabaseConfigFilePath))
             {
-                // Create/Update config.txt file
-                createConfig(In_ConfigData);
+                // Update BACKUP settings
+                if(NewConfig.DBDir_Name == null)// If DBDir_Name is null then user is updating backup settings.
+                {
+                    // ## BACKUP settings are retrieved from NewConfig ##
+
+                    // Get database settings from old config.
+                    NewConfig.DBDir_Name = OldConfig.DBDir_Name;
+                    NewConfig.TimeToRenew = OldConfig.TimeToRenew;
+                    NewConfig.InstalledDirectory = OldConfig.InstalledDirectory;
+                    NewConfig.AllowDuplicateMachines = OldConfig.AllowDuplicateMachines;
+                    NewConfig.AllowDuplicateClients = OldConfig.AllowDuplicateClients;
+                }
+               // Update DATABASE settings
+                else if(NewConfig.BackupTarget_PathOnly == null) // If BackupTarget is null then user is updating database settings.
+                {
+                    // ## DATABASE settings are retrived from NewConfig ##
+
+                    // Get backup settings from old config.
+                    NewConfig.BackupTarget_PathOnly = OldConfig.BackupTarget_PathOnly;
+                    NewConfig.AutoBackup = OldConfig.AutoBackup;
+                    NewConfig.BackupSchedule = OldConfig.BackupSchedule;
+                    NewConfig.BackupExpiration = OldConfig.BackupExpiration;
+                    NewConfig.LastBackup = OldConfig.LastBackup;
+                }
+
+                // Get import data from old config
+                NewConfig.LastDataImport = OldConfig.LastDataImport;
+
+                // Update config.txt file
+                createConfig(NewConfig);
             }
             // If Config file is missing - Create new config file
             else
             {
                 // Default Config settings 
-                In_ConfigData.BackupTarget_PathOnly = "";
-                In_ConfigData.AutoBackup = false;
-                In_ConfigData.BackupSchedule = 24;
-                In_ConfigData.BackupExpiration = 6;
+                NewConfig.BackupTarget_PathOnly = "";
+                NewConfig.AutoBackup = false;
+                NewConfig.BackupSchedule = 24;
+                NewConfig.BackupExpiration = 6;
 
                 // Create Config.txt file
-                createConfig(In_ConfigData);
+                createConfig(NewConfig);
                 
             }
 
@@ -43,7 +71,7 @@ namespace _42LicenseManager.Class_Library
                 if (Utilities.VerifyDatabaseExists(_ConfigData))
                 {
                     // OVERWRITE/CREATE CONFIG FILE USING TEXT FILE DATA
-                    TextWriter tw = new StreamWriter($@"{Path.GetDirectoryName(In_ConfigData.DBDir_Name)}\Config.txt");
+                    TextWriter tw = new StreamWriter($@"{Path.GetDirectoryName(NewConfig.DBDir_Name)}\Config.txt");
                     tw.WriteLine($"DBDIR={_ConfigData.DBDir_Name}");
                     tw.WriteLine($"TimeToRenew={_ConfigData.TimeToRenew}");
                     tw.WriteLine($"InstalledDirectory={_ConfigData.InstalledDirectory}");

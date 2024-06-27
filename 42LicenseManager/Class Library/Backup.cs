@@ -49,7 +49,7 @@ namespace _42LicenseManager.Class_Library
                 // Set successful backup date
                 config.LastBackup = DateTime.Now;
                 // Update config file with new data
-                Class_Library.Config.Update(config);
+                Class_Library.Config.Update(config, Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath));
 
                 Thread.Sleep(2000);
                 Forms.ConfirmationForm confirmForm = new Forms.ConfirmationForm("Backup Complete!");
@@ -109,7 +109,7 @@ namespace _42LicenseManager.Class_Library
                 // Set successful backup date
                 config.LastBackup = DateTime.Now;
                 // Update config file with new data
-                Class_Library.Config.Update(config);
+                Class_Library.Config.Update(config, Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath));
             }
 
         }

@@ -14,10 +14,12 @@ namespace _42LicenseManager.Class_Library
         /// Should NOT contain database name
         /// </summary>
         public static string SelectedDatabaseDirectory_Only { get; set; }
+
         /// <summary>
         /// Should end with "\Config.txt"
         /// </summary>
         public static string SelectedDatabaseConfigFilePath { get; set; }
+
         /// <summary>
         /// Should end with the database name .mdf
         /// </summary>

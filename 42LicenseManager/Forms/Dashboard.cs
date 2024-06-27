@@ -926,7 +926,7 @@ namespace _42LicenseManager
 
                 }
                 Config.LastDataImport = DateTime.Now;
-                Class_Library.Config.Update(Config);
+                Class_Library.Config.Update(Config, Config);
                 UpdateTitleBar();
                 InitializeLicensesTTR();
                 RefreshDashboard(this, e);

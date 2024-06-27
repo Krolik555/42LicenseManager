@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _42LicenseManager.Class_Library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -59,7 +60,7 @@ namespace _42LicenseManager.Forms
                 config.BackupExpiration = Convert.ToInt32(aComboboxBackupExpiration.SelectedItem);
 
                 // update config file
-                Class_Library.Config.Update(config);
+                Class_Library.Config.Update(config, Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath));
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

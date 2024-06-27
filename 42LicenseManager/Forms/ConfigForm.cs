@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _42LicenseManager.Class_Library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,7 @@ namespace _42LicenseManager
     public partial class ConfigForm : Form
     {
         public ConfigClass ConfigOutput = new ConfigClass();
-        public ConfigClass _configInput = new ConfigClass();
+        public ConfigClass _oldConfig = new ConfigClass();
 
         public bool? Preload_AllowDupeClients { get; set; }
         public bool? Preload_AllowDupeMachines { get; set; }
@@ -25,11 +26,11 @@ namespace _42LicenseManager
             wireup();
         }
 
-        public ConfigForm(ConfigClass ConfigInput)
+        public ConfigForm(ConfigClass OldConfig)
         {
-            _configInput = ConfigInput;
-            Preload_AllowDupeClients = _configInput.AllowDuplicateClients;
-            Preload_AllowDupeMachines = _configInput.AllowDuplicateMachines;
+            _oldConfig = OldConfig;
+            Preload_AllowDupeClients = _oldConfig.AllowDuplicateClients;
+            Preload_AllowDupeMachines = _oldConfig.AllowDuplicateMachines;
             InitializeComponent();
             wireup();
         }
@@ -58,10 +59,10 @@ namespace _42LicenseManager
             {
                 //MessageBox.Show(Class_Library.Settings.SelectedDatabaseConfigFilePath);
 
-                aTextBoxDir.Text = _configInput.DBDir_Name;
-                aTextBoxTimeToRenew.Text = _configInput.TimeToRenew;
-                aCheckBoxAllowDupeClients.Checked = _configInput.AllowDuplicateClients;
-                aCheckBoxAllowDupeMachines.Checked = _configInput.AllowDuplicateMachines;
+                aTextBoxDir.Text = _oldConfig.DBDir_Name;
+                aTextBoxTimeToRenew.Text = _oldConfig.TimeToRenew;
+                aCheckBoxAllowDupeClients.Checked = _oldConfig.AllowDuplicateClients;
+                aCheckBoxAllowDupeMachines.Checked = _oldConfig.AllowDuplicateMachines;
             }
 
         }
@@ -83,6 +84,8 @@ namespace _42LicenseManager
             ConfigClass NewConfig = new ConfigClass();
             try
             {
+
+
                 // SAVE DATA TO CONFIG OBJECT
                 NewConfig.DBDir_Name = aTextBoxDir.Text;
                 NewConfig.TimeToRenew = aTextBoxTimeToRenew.Text;
@@ -90,7 +93,7 @@ namespace _42LicenseManager
                 NewConfig.AllowDuplicateClients = aCheckBoxAllowDupeClients.Checked;
                 NewConfig.AllowDuplicateMachines = aCheckBoxAllowDupeMachines.Checked;
 
-                Class_Library.Config.Update(NewConfig);
+                Class_Library.Config.Update(NewConfig, _oldConfig);
                 ConfigOutput = NewConfig;
 
                 // Add new db to DatabaseLibrary

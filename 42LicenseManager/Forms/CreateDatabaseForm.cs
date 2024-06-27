@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _42LicenseManager.Class_Library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -71,7 +72,7 @@ namespace _42LicenseManager
                 // CREATE NEW DATABASE
                 Utilities.CreateNewDatabase(newConfig);
                 // Create new Config file
-                Class_Library.Config.Update(newConfig);
+                Class_Library.Config.Update(newConfig, Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath));
 
                 
 
