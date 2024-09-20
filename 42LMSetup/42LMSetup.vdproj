@@ -106,12 +106,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0575E5063CB98325363953FF377055AF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_ECF993154321435D99096E7D845EF077"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -169,6 +163,12 @@
         "OwnerKey" = "8:_A68760B44F033EC2D2D923267FDDA9D2"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0575E5063CB98325363953FF377055AF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -224,6 +224,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -650,15 +658,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:42LicenseManager"
-        "ProductCode" = "8:{67433151-F95B-467D-8DF4-8DF4EBC2C18C}"
-        "PackageCode" = "8:{78AE75BE-564F-42AC-AEAA-0F1B2B041752}"
+        "ProductCode" = "8:{8584533F-A853-4215-9808-215AA17F1285}"
+        "PackageCode" = "8:{333AEA66-EC64-49E9-9711-49A87A7CE0C4}"
         "UpgradeCode" = "8:{7A4D77F7-269C-4B97-B2A7-4F7F80185F99}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.1.6"
+        "ProductVersion" = "8:2.1.7"
         "Manufacturer" = "8:42 Tech Solutions, Inc."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1200,7 +1208,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ECF993154321435D99096E7D845EF077"
             {
-            "SourcePath" = "8:..\\42LicenseManager\\obj\\Release\\42LicenseManager.exe"
+            "SourcePath" = "8:..\\42LicenseManager\\obj\\Debug\\42LicenseManager.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_8CC2FE92071B416480A6E10A6FD6E54D"

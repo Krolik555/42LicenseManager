@@ -30,14 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.aLabelSearch = new System.Windows.Forms.Label();
             this.aButtonEdit = new System.Windows.Forms.Button();
             this.aDataGridViewLicenses = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReviewStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expirationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.renewalStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChkBxAutoRenew = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aComboboxSortBy = new System.Windows.Forms.ComboBox();
             this.aTextBoxSearch = new System.Windows.Forms.TextBox();
             this.aButtonTest = new System.Windows.Forms.Button();
@@ -70,19 +79,10 @@
             this.aButtonRefresh = new System.Windows.Forms.Button();
             this.aButtonSearch = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expirationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.renewalStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pCCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.licenseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // aLabelSearch
@@ -143,12 +143,73 @@
             this.aDataGridViewLicenses.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.aDataGridViewLicenses_CellEnter);
             this.aDataGridViewLicenses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.aDataGridViewLicenses_CellFormatting);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.idDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 60;
+            // 
             // ReviewStatus
             // 
             this.ReviewStatus.DataPropertyName = "ReviewStatus";
             this.ReviewStatus.HeaderText = "Review Status";
             this.ReviewStatus.Name = "ReviewStatus";
             this.ReviewStatus.ReadOnly = true;
+            // 
+            // companyNameDataGridViewTextBoxColumn
+            // 
+            this.companyNameDataGridViewTextBoxColumn.DataPropertyName = "CompanyName";
+            this.companyNameDataGridViewTextBoxColumn.HeaderText = "Company Name";
+            this.companyNameDataGridViewTextBoxColumn.Name = "companyNameDataGridViewTextBoxColumn";
+            this.companyNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.companyNameDataGridViewTextBoxColumn.Width = 230;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "First Name";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.firstNameDataGridViewTextBoxColumn.Width = 190;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Last Name";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lastNameDataGridViewTextBoxColumn.Width = 190;
+            // 
+            // expirationDateDataGridViewTextBoxColumn
+            // 
+            this.expirationDateDataGridViewTextBoxColumn.DataPropertyName = "ExpirationDate";
+            this.expirationDateDataGridViewTextBoxColumn.HeaderText = "Expiration Date";
+            this.expirationDateDataGridViewTextBoxColumn.Name = "expirationDateDataGridViewTextBoxColumn";
+            this.expirationDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.expirationDateDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // renewalStatusDataGridViewTextBoxColumn
+            // 
+            this.renewalStatusDataGridViewTextBoxColumn.DataPropertyName = "RenewalStatus";
+            this.renewalStatusDataGridViewTextBoxColumn.HeaderText = "Renewal Status";
+            this.renewalStatusDataGridViewTextBoxColumn.Name = "renewalStatusDataGridViewTextBoxColumn";
+            this.renewalStatusDataGridViewTextBoxColumn.ReadOnly = true;
+            this.renewalStatusDataGridViewTextBoxColumn.Width = 115;
+            // 
+            // pCCountDataGridViewTextBoxColumn
+            // 
+            this.pCCountDataGridViewTextBoxColumn.DataPropertyName = "PCCount";
+            this.pCCountDataGridViewTextBoxColumn.HeaderText = "PC Count";
+            this.pCCountDataGridViewTextBoxColumn.Name = "pCCountDataGridViewTextBoxColumn";
+            this.pCCountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pCCountDataGridViewTextBoxColumn.Width = 60;
             // 
             // Active
             // 
@@ -158,12 +219,24 @@
             this.Active.ReadOnly = true;
             this.Active.Visible = false;
             // 
+            // notesDataGridViewTextBoxColumn
+            // 
+            this.notesDataGridViewTextBoxColumn.DataPropertyName = "Notes";
+            this.notesDataGridViewTextBoxColumn.HeaderText = "Notes";
+            this.notesDataGridViewTextBoxColumn.Name = "notesDataGridViewTextBoxColumn";
+            this.notesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.notesDataGridViewTextBoxColumn.Visible = false;
+            // 
             // ChkBxAutoRenew
             // 
             this.ChkBxAutoRenew.DataPropertyName = "ChkBxAutoRenew";
             this.ChkBxAutoRenew.HeaderText = "Auto Renew";
             this.ChkBxAutoRenew.Name = "ChkBxAutoRenew";
             this.ChkBxAutoRenew.ReadOnly = true;
+            // 
+            // licenseBindingSource
+            // 
+            this.licenseBindingSource.DataSource = typeof(_42LicenseManager.License);
             // 
             // aComboboxSortBy
             // 
@@ -470,79 +543,6 @@
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.idDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // companyNameDataGridViewTextBoxColumn
-            // 
-            this.companyNameDataGridViewTextBoxColumn.DataPropertyName = "CompanyName";
-            this.companyNameDataGridViewTextBoxColumn.HeaderText = "Company Name";
-            this.companyNameDataGridViewTextBoxColumn.Name = "companyNameDataGridViewTextBoxColumn";
-            this.companyNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.companyNameDataGridViewTextBoxColumn.Width = 230;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "First Name";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.firstNameDataGridViewTextBoxColumn.Width = 190;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Last Name";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.lastNameDataGridViewTextBoxColumn.Width = 190;
-            // 
-            // expirationDateDataGridViewTextBoxColumn
-            // 
-            this.expirationDateDataGridViewTextBoxColumn.DataPropertyName = "ExpirationDate";
-            this.expirationDateDataGridViewTextBoxColumn.HeaderText = "Expiration Date";
-            this.expirationDateDataGridViewTextBoxColumn.Name = "expirationDateDataGridViewTextBoxColumn";
-            this.expirationDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.expirationDateDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // renewalStatusDataGridViewTextBoxColumn
-            // 
-            this.renewalStatusDataGridViewTextBoxColumn.DataPropertyName = "RenewalStatus";
-            this.renewalStatusDataGridViewTextBoxColumn.HeaderText = "Renewal Status";
-            this.renewalStatusDataGridViewTextBoxColumn.Name = "renewalStatusDataGridViewTextBoxColumn";
-            this.renewalStatusDataGridViewTextBoxColumn.ReadOnly = true;
-            this.renewalStatusDataGridViewTextBoxColumn.Width = 115;
-            // 
-            // pCCountDataGridViewTextBoxColumn
-            // 
-            this.pCCountDataGridViewTextBoxColumn.DataPropertyName = "PCCount";
-            this.pCCountDataGridViewTextBoxColumn.HeaderText = "PC Count";
-            this.pCCountDataGridViewTextBoxColumn.Name = "pCCountDataGridViewTextBoxColumn";
-            this.pCCountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pCCountDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // notesDataGridViewTextBoxColumn
-            // 
-            this.notesDataGridViewTextBoxColumn.DataPropertyName = "Notes";
-            this.notesDataGridViewTextBoxColumn.HeaderText = "Notes";
-            this.notesDataGridViewTextBoxColumn.Name = "notesDataGridViewTextBoxColumn";
-            this.notesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.notesDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // licenseBindingSource
-            // 
-            this.licenseBindingSource.DataSource = typeof(_42LicenseManager.License);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -581,10 +581,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dashboard_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aDataGridViewLicenses)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

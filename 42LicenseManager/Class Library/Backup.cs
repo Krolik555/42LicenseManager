@@ -110,6 +110,7 @@ namespace _42LicenseManager.Class_Library
                 config.LastBackup = DateTime.Now;
                 // Update config file with new data
                 Class_Library.Config.Update(config, Config.Get(Class_Library.Settings.SelectedDatabaseConfigFilePath));
+                
             }
 
         }
