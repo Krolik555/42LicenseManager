@@ -53,6 +53,40 @@ namespace _42LicenseManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Restore form position and size from config file
+            try
+            {
+                string configPath = @"C:\programdata\42TechSolutions\cfg.txt";
+                if (File.Exists(configPath))
+                {
+                    var lines = File.ReadAllLines(configPath);
+                    int x = this.Location.X, y = this.Location.Y, w = this.Size.Width, h = this.Size.Height;
+                    foreach (var line in lines)
+                    {
+                        var parts = line.Split('=');
+                        if (parts.Length == 2)
+                        {
+                            switch (parts[0])
+                            {
+                                case "X": int.TryParse(parts[1], out x); break;
+                                case "Y": int.TryParse(parts[1], out y); break;
+                                case "Width": int.TryParse(parts[1], out w); break;
+                                case "Height": int.TryParse(parts[1], out h); break;
+                            }
+                        }
+                    }
+                    // Set bounds (do this before showing the form)
+                    this.StartPosition = FormStartPosition.Manual;
+                    this.Location = new Point(x, y);
+                    this.Size = new Size(w, h);
+                }
+            }
+            catch
+            {
+                // Ignore errors and use default position/size
+            }
+
+
             try
             {
                 //Select Database
@@ -742,7 +776,39 @@ namespace _42LicenseManager
 
         private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Get xy and size of the form and save to config file
+            try
+            {
+                // Ensure the directory exists
+                string dir = @"C:\programdata\42TechSolutions";
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
 
+                // Prepare the config file path
+                string configPath = Path.Combine(dir, "cfg.txt");
+
+                // Get form position and size
+                int x = this.Location.X;
+                int y = this.Location.Y;
+                int width = this.Size.Width;
+                int height = this.Size.Height;
+
+                // Write to file in a simple key=value format
+                using (StreamWriter sw = new StreamWriter(configPath, false, Encoding.UTF8))
+                {
+                    sw.WriteLine($"X={x}");
+                    sw.WriteLine($"Y={y}");
+                    sw.WriteLine($"Width={width}");
+                    sw.WriteLine($"Height={height}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Optionally log or handle the error
+                MessageBox.Show("Failed to save window position: " + ex.Message);
+            }
         }
 
         #region Backup async processes

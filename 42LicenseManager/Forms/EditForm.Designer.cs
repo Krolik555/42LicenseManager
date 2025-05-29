@@ -68,6 +68,7 @@
             this.aTextBoxNotes.Margin = new System.Windows.Forms.Padding(4);
             this.aTextBoxNotes.Multiline = true;
             this.aTextBoxNotes.Name = "aTextBoxNotes";
+            this.aTextBoxNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.aTextBoxNotes.Size = new System.Drawing.Size(458, 225);
             this.aTextBoxNotes.TabIndex = 10;
             // 

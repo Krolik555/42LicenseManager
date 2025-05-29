@@ -247,7 +247,7 @@ namespace _42LicenseManager
             }
 
             // DATE ADDED
-            if (OriginalMachine.InstallDate != ChangedMachine.InstallDate)
+            if (OriginalMachine.InstallDate != null && ChangedMachine.InstallDate != null && OriginalMachine.InstallDate != ChangedMachine.InstallDate)
             {
                 if (MachineNameChanged)
                 {

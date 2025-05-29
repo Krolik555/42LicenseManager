@@ -194,12 +194,14 @@
             // 
             // aButtonTest
             // 
+            this.aButtonTest.Enabled = false;
             this.aButtonTest.Location = new System.Drawing.Point(697, 271);
             this.aButtonTest.Name = "aButtonTest";
             this.aButtonTest.Size = new System.Drawing.Size(75, 23);
             this.aButtonTest.TabIndex = 7;
             this.aButtonTest.Text = "Test";
             this.aButtonTest.UseVisualStyleBackColor = true;
+            this.aButtonTest.Visible = false;
             this.aButtonTest.Click += new System.EventHandler(this.aButtonTest_Click);
             // 
             // ManagePCsForm

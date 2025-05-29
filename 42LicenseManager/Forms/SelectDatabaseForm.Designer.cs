@@ -113,7 +113,7 @@ namespace _42LicenseManager.Forms
             this.Name = "SelectDatabaseForm";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Select Database";
             this.Load += new System.EventHandler(this.SelectDatabaseForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aDGVDatabases)).EndInit();

@@ -1,4 +1,4 @@
-﻿using LumenWorks.Framework.IO.Csv;
+﻿//using LumenWorks.Framework.IO.Csv;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,10 +30,10 @@ namespace _42LicenseManager.Class_Library.Import_License
 
                 // Step 2 - collect the data
                 var csvTable = new DataTable();
-                using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(csv_FilePath)), true))
-                {
-                    csvTable.Load(csvReader);
-                }
+                //using (var csvReader = new CsvReader(new StreamReader(System.IO.File.OpenRead(csv_FilePath)), true))
+                //{
+                //    csvTable.Load(csvReader);
+                //}
                 // step 3 - return collected data
                 return csvTable;
             }
