@@ -1,5 +1,6 @@
 ﻿//using LumenWorks.Framework.IO.Csv;
 using CsvHelper;
+using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -102,18 +103,17 @@ namespace _42LicenseManager.Class_Library.Import_Machines
             }
 
         }
-
         public static DataTable CollectData(string csv_FilePath)
         {
-            // Step 1 - Read the CSV file
-            string csvContent;
-            using (var reader = new StreamReader(csv_FilePath))
-            {
-                csvContent = reader.ReadToEnd();
-            }
 
-            // Step 2 - Fix double quotes issue
-            csvContent = FixQuotes(csvContent);
+            // Step 1 - Read the CSV file
+            string csvContent = File.ReadAllText(csv_FilePath);
+
+            // Step 2 - Fix double quotes issue (10/1/25: Removed this because quote at all are now a problem)
+            //csvContent = FixQuotes(csvContent);
+
+            // Step 2 - Remove all quotes
+            RemoveAllQuotes(csvContent);
 
             // Step 3 - Use CsvReader to read cleaned CSV content
             using (var reader = new StringReader(csvContent))
@@ -143,11 +143,21 @@ namespace _42LicenseManager.Class_Library.Import_Machines
                 }
             }
         }
+        
 
-            public static string FixQuotes(string input)
+        private static string FixQuotes(string input) // No longer in use.
         {
             return System.Text.RegularExpressions.Regex.Replace(input, @"(?<!\,)""(?!\,)", string.Empty);
+
         }
+
+        private static string RemoveAllQuotes(string input)
+        {
+            return input.Replace("\"", "");
+
+        }
+
+
 
         public static List<string> TranslateData(DataTable csvTable)
         {

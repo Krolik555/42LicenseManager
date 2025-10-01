@@ -1,4 +1,5 @@
 ﻿//using LumenWorks.Framework.IO.Csv;
+using CsvHelper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -34,7 +35,32 @@ namespace _42LicenseManager.Class_Library.Import_License
                 //{
                 //    csvTable.Load(csvReader);
                 //}
-                // step 3 - return collected data
+                using (var reader = new StreamReader(csv_FilePath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    csv.Read();
+                    csv.ReadHeader();
+
+                    // Create columns from header
+                    foreach (var header in csv.HeaderRecord)
+                    {
+                        csvTable.Columns.Add(header);
+                    }
+
+                    // Add rows
+                    while (csv.Read())
+                    {
+                        var row = csvTable.NewRow();
+                        foreach (DataColumn column in csvTable.Columns)
+                        {
+                            row[column.ColumnName] = csv.GetField(column.ColumnName);
+                        }
+                        csvTable.Rows.Add(row);
+                    }
+                }
+
+
+                //step 3 - return collected data
                 return csvTable;
             }
             catch (IOException err)
